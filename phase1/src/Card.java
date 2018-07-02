@@ -1,3 +1,4 @@
+import java.sql.Time;
 import java.util.ArrayList;
 
 public class Card {
@@ -25,5 +26,15 @@ public class Card {
 
     void setUser(User user){
         this.user = user;
+    }
+
+    void recordTrip(String vehicle, String enterOrExit, Time time, String stationName){
+        if(enterOrExit.equals("enter")){
+            Trip trip = new Trip(stationName, time, vehicle);
+            myTrip.add(trip);
+        }
+        else{
+            myTrip.get(myTrip.size() - 1).setExit(stationName, time);
+        }
     }
 }
