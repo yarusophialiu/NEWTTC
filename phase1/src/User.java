@@ -23,6 +23,7 @@ public class User {
     void addCard(Card card){
         if(!myCards.contains(card)){
             this.myCards.add(card);
+            card.setUser(this);
         }
         else{
             System.out.println("This card was already added.");
