@@ -41,4 +41,8 @@ public class User {
         this.userName = newName;
     }
 
+    String getEmailAddress(){
+        return emailAddress;
+    }
+
 }
