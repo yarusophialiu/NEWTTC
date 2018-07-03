@@ -2,6 +2,7 @@ import java.util.ArrayList;
 
 public class CardManager {
     private ArrayList<Card> cardList = new ArrayList<Card>();
+    private ArrayList<Station> stationList = new ArrayList<>();
 
     void addCard(Card card){cardList.add(card);
     }
