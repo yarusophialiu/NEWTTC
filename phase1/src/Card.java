@@ -28,6 +28,14 @@ public class Card {
         this.user = user;
     }
 
+    void increaseBalance(int i) throws Exception {
+        if (i == 10 || i == 20 || i == 50) {
+            this.balance += i;
+        } else {
+            throw new Exception("You can only add $10, $20 or $50");
+        }
+    }
+
     void deductFare(String vehicle) {
         if (vehicle.equals("Bus")) {
             this.balance -= 2;
