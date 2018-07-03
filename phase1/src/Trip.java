@@ -9,11 +9,21 @@ public class Trip {
     private boolean isContinuous = false;
     private double currentFare;
     private Time continuousTime;
+    static int totalFare;
+    static int totalStations;
 
     Trip(String entrance, Time enterTime, String vehile){
         this.enterTime = enterTime;
         this.entrance = entrance;
         this.transportation = vehile;
+    }
+
+    String getEntrance() {
+        return entrance;
+    }
+
+    String getExit() {
+        return exit;
     }
 
     void setExit(String exit, Time exitTime){
