@@ -1,1 +1,13 @@
-1000 enters College at 12:20
+Steven steven@mail.com steven123
+Steven bought 1 card
+Card 1000 enters Bloor-Yonge subway station
+Card 1000 exits Queen subway station
+Card 1000 enters Queen bus station
+Card 1000 exits Union Station bus station
+
+Frank frank@mail.com 789frank
+Frank bought 2 cards
+Card 1002 enters Wellesley subway station
+Card 1002 exits College subway station
+Card 1002 enters Museum bus station
+Card 1002 exits Bloor-Yonge bus station
