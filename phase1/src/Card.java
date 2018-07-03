@@ -28,6 +28,23 @@ public class Card {
         this.user = user;
     }
 
+    void deductFare(String vehicle) {
+        if (vehicle.equals("Bus")) {
+            this.balance -= 2;
+            Trip.totalFare += 2;
+        }
+
+        if (vehicle.equals("Subway")) {
+            Trip trip = myTrip.get(myTrip.size()-1);
+            ArrayList<String> stationList = CardManager.stationList;
+            int numOfStations = stationList.indexOf(trip.getExit()) - stationList.indexOf(trip.getEntrance());
+            double fare = numOfStations * 0.5;
+            this.balance -= fare;
+            Trip.totalFare += fare;
+        }
+
+    }
+
     void recordTrip(String vehicle, String enterOrExit, Time time, String stationName){
         if(enterOrExit.equals("enter")){
             Trip trip = new Trip(stationName, time, vehicle);
