@@ -17,6 +17,10 @@ public class Main {
             new Stop(info);
             info = fileReader.readLine();
         }
+        // the above parts are for reading from station.txt
+
+        BufferedReader fileReader2 = new BufferedReader(new FileReader("phase1/src/events.txt"));
+        String info2 = fileReader2.readLine();
 
   }
 }
