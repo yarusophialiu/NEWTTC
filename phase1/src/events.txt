@@ -1,13 +1,24 @@
 Steven steven@mail.com steven123
 Steven bought 1 card
-Card 1000 enters Bloor-Yonge subway station at 2018-05-01 10:00:00
-Card 1000 exits Queen subway station at 2018-05-01 10:15:37
-Card 1000 enters Queen bus station at 2018-05-01 17:16:25
-Card 1000 exits Union Station bus station at 2018-05-01 17:31:04
-
 Frank frank@mail.com 789frank
 Frank bought 2 cards
-Card 1002 enters Wellesley subway station at 2018-05-03 10:08:00
-Card 1002 exits College subway station at 2018-05-03 11:00:42
-Card 1002 enters Museum bus station at 2018-05-03 19:03:10
-Card 1002 exits Bloor-Yonge bus station at 2018-05-03 19:28:43
+Sophia sophia@mail.com 4sophia56
+Sophia bought 1 card
+
+Card 1000 enters Bloor-Yonge subway station at 2018-05-01 10:00:00
+Card 1000 exits Queen subway station at 2018-05-01 10:15:37
+Card 1002 enters Wellesley subway station at 2018-05-01 10:08:00
+Card 1002 exits College subway station at 2018-05-01 11:00:42
+Card 1003 enters Dundus subway station at 2018-05-01 16:12:56
+Card 1000 enters Queen bus station at 2018-05-01 17:16:25
+Card 1003 exits Bloor-Yonge subway station at 2018-05-01 17:20:45
+Card 1000 exits Union Station bus station at 2018-05-01 17:31:04
+Card 1002 enters Museum bus station at 2018-05-01 19:03:10
+Card 1003 enters Queens Park bus station at 2018-05-01 19:06:58
+Card 1003 exits King bus station at 2018-05-01 19:28:41
+Card 1002 exits Bloor-Yonge bus station at 2018-05-01 19:28:43
+
+
+
+
+
