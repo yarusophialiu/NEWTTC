@@ -57,9 +57,15 @@ public class Card {
         if(enterOrExit.equals("enter")){
             Trip trip = new Trip(stationName, time, vehicle);
             myTrip.add(trip);
+            if (vehicle.equals("Bus")){
+                deductFare("Bus");
+            }
         }
         else{
             myTrip.get(myTrip.size() - 1).setExit(stationName, time);
+            if (vehicle.equals("Subway")){
+                deductFare("Subway");
+            }
         }
     }
 }
