@@ -42,27 +42,27 @@ public class Card {
             Trip.totalFare += 2;
         }
 
-        if (vehicle.equals("Subway")) {
-            Trip trip = myTrip.get(myTrip.size()-1);
-            ArrayList<String> stationList = CardManager.stationList;
-            int numOfStations = stationList.indexOf(trip.getExit()) - stationList.indexOf(trip.getEntrance());
-            double fare = numOfStations * 0.5;
-            this.balance -= fare;
-            Trip.totalFare += fare;
-        }
+//        if (vehicle.equals("Subway")) {
+//            Trip trip = myTrip.get(myTrip.size()-1);
+//            ArrayList<String> stationList = CardManager.stationList;
+//            int numOfStations = stationList.indexOf(trip.getExit()) - stationList.indexOf(trip.getEntrance());
+//            double fare = numOfStations * 0.5;
+//            this.balance -= fare;
+//            Trip.totalFare += fare;
+//        }
 
     }
 
-    void recordTrip(String vehicle, String enterOrExit, Time time, String stationName){
+    void recordTrip(String vehicle, String enterOrExit, Time time, Station station){
         if(enterOrExit.equals("enter")){
-            Trip trip = new Trip(stationName, time, vehicle);
+            Trip trip = new Trip(station, time, vehicle);
             myTrip.add(trip);
             if (vehicle.equals("Bus")){
                 deductFare("Bus");
             }
         }
         else{
-            myTrip.get(myTrip.size() - 1).setExit(stationName, time);
+            myTrip.get(myTrip.size() - 1).setExit(station, time);
             if (vehicle.equals("Subway")){
                 deductFare("Subway");
             }
