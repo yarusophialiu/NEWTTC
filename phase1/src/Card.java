@@ -68,4 +68,15 @@ public class Card {
             }
         }
     }
+
+    void regulateMyTrip() {
+        if (myTrip.size() > 3) {
+            ArrayList<Trip> tripsLeft = new ArrayList<>();
+            for (int i = 3; i > 0; i--) {
+                Trip trip = myTrip.get(myTrip.size() - i);
+                tripsLeft.add(trip);
+            }
+            myTrip = tripsLeft;
+        }
+    }
 }
