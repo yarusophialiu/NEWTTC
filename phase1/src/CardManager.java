@@ -3,7 +3,6 @@ import java.util.ArrayList;
 public class CardManager {
     private ArrayList<Card> cardList = new ArrayList<Card>();
 
-    static ArrayList<String> stationList = new ArrayList<>();
 
     void addCard(Card card){cardList.add(card);
     }

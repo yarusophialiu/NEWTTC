@@ -1,8 +1,8 @@
 import java.sql.Time;
 
 public class Trip {
-    private String entrance;
-    private String exit;
+    private Station entrance;
+    private Station exit;
     private Time enterTime;
     private Time exitTime;
     private String transportation;    //vehicles used in this trip.
@@ -12,21 +12,21 @@ public class Trip {
     static int totalFare;
     static int totalStations;
 
-    Trip(String entrance, Time enterTime, String vehile){
+    Trip(Station entrance, Time enterTime, String vehile){
         this.enterTime = enterTime;
         this.entrance = entrance;
         this.transportation = vehile;
     }
 
-    String getEntrance() {
+    Station getEntrance() {
         return entrance;
     }
 
-    String getExit() {
+    Station getExit() {
         return exit;
     }
 
-    void setExit(String exit, Time exitTime){
+    void setExit(Station exit, Time exitTime){
         this.exit = exit;
         this.exitTime = exitTime;
     }
