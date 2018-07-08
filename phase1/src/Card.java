@@ -56,7 +56,13 @@ public class Card {
     void recordTrip(String vehicle, String enterOrExit, Time time, Station station){
         if(enterOrExit.equals("enter")){
             Trip trip = new Trip(station, time, vehicle);
-            myTrip.add(trip);
+            if (myTrip.size() >= 3){
+                myTrip.remove(myTrip.get(0));
+                myTrip.add(trip);
+            }
+            else{
+                myTrip.add(trip);
+            }
             if (vehicle.equals("Bus")){
                 deductFare("Bus");
             }
@@ -66,17 +72,6 @@ public class Card {
             if (vehicle.equals("Subway")){
                 deductFare("Subway");
             }
-        }
-    }
-
-    void regulateMyTrip() {
-        if (myTrip.size() > 3) {
-            ArrayList<Trip> tripsLeft = new ArrayList<>();
-            for (int i = 3; i > 0; i--) {
-                Trip trip = myTrip.get(myTrip.size() - i);
-                tripsLeft.add(trip);
-            }
-            myTrip = tripsLeft;
         }
     }
 }
