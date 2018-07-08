@@ -8,7 +8,7 @@ public class Trip {
     private String transportation;    //vehicles used in this trip.
     private boolean isContinuous = false;
     private double currentFare;
-    private Time continuousTime;
+    private Long continuousTime;
     static int totalFare;
     static int totalStations;
 
@@ -39,7 +39,7 @@ public class Trip {
         this.currentFare = fare;
     }
 
-    void setContinuousTime(Time time){
+    void setContinuousTime(Long time){
         this.continuousTime = time;
     }
 
@@ -47,11 +47,15 @@ public class Trip {
         return this.currentFare;
     }
 
-    Time getContinuousTime(){
+    Long getContinuousTime(){
         return continuousTime;
     }
 
     boolean getIsContinuous(){
         return this.isContinuous;
+    }
+
+    Long tripTime() {
+        return exitTime.getTime() - enterTime.getTime();
     }
 }
