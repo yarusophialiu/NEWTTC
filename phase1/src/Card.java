@@ -37,7 +37,8 @@ public class Card {
     }
 
     void deductFare(String vehicle) {
-        if (vehicle.equals("Bus")) {
+        Trip currentTrip = myTrip.get(myTrip.size() - 1);
+        if (vehicle.equals("Bus") & currentTrip.getCurrentFare() + 2 <= 6 ) {
             this.balance -= 2;
             Trip.totalFare += 2;
         }
@@ -51,11 +52,17 @@ public class Card {
 //            Trip.totalFare += fare;
 //        }
 
+
     }
 
     void recordTrip(String vehicle, String enterOrExit, Time time, Station station){
         if(enterOrExit.equals("enter")){
             Trip trip = new Trip(station, time, vehicle);
+            Trip previousTrip = myTrip.get(myTrip.size() - 1);
+            if (trip.getEntrance() == previousTrip.getExit()){
+                trip.reverseContinuous();
+                trip.setContinuousTime(previousTrip.tripTime());
+            }
             if (myTrip.size() >= 3){
                 myTrip.remove(myTrip.get(0));
                 myTrip.add(trip);
