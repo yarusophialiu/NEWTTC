@@ -12,10 +12,10 @@ public class Trip {
     static int totalFare;
     static int totalStations;
 
-    Trip(Station entrance, Time enterTime, String vehile){
+    Trip(Station entrance, Time enterTime, String vehicle){
         this.enterTime = enterTime;
         this.entrance = entrance;
-        this.transportation = vehile;
+        this.transportation = vehicle;
     }
 
     Station getEntrance() {
