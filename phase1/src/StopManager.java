@@ -1,6 +1,6 @@
 import java.util.ArrayList;
 
-public class StopManager {
+class StopManager {
     private ArrayList<Stop> stopSet = new ArrayList<>();
 
 
