@@ -4,17 +4,17 @@ import java.io.IOException;
 
 public class Main {
   public static void main(String[] args) throws IOException{
+        StationManager stationManager = new StationManager();
+        StopManager stopManager = new StopManager();
         BufferedReader fileReader = new BufferedReader(new FileReader("phase1/src/stations.txt"));
         String info = fileReader.readLine();
-        info = fileReader.readLine();
         while (!info.equals("")) {
-            new Station(info);
+            stationManager.addStations(info);
             info = fileReader.readLine();
         }
         info = fileReader.readLine();
-        info = fileReader.readLine();
         while (!(info == null)){
-            new Stop(info);
+            stopManager.addStop(info);
             info = fileReader.readLine();
         }
         // the above parts are for reading from station.txt

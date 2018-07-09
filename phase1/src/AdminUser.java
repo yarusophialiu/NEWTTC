@@ -4,7 +4,7 @@ public class AdminUser {
     private String password;
 
     String report(){
-        return Trip.totalFare + " dollars were collected " + "from " + Trip.totalStations + " today.";
+        return Trip.totalFare + " dollars were collected " + "from " + Trip.totalStations + " stations today.";
     }
 
 }

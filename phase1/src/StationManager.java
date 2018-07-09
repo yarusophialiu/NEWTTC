@@ -1,29 +1,43 @@
 import java.util.ArrayList;
 
+
 class StationManager {
-    private static ArrayList<Station> stations = new ArrayList<>();
+    private ArrayList<Station> stationSet = new ArrayList<>();
+    
 
-
-    static void addStations(Station station){
-        stations.add(station);
+    void addStations(String stationID){
+        Station station = new Station(stationID);
+        stationSet.add(station);
     }
 
-    static ArrayList<Station> getStations(){
-        return stations;
-    }
-
-    int getShortestDistance(Trip trip){
-        Station source = trip.getEntrance();
-        Station destination = trip.getExit();
+    int minDistance(Station source, Station destination){
         source.setDistance(0);
-        while (!source.getNeighbour().contains(destination)){
-            for (Station station :source.getNeighbour()) {
-                if (!(station.getPathVia()== null) & station.getDistance() > source.getDistance() + 1){
-                    station.setDistance(source.getDistance() + 1);
-//                    station.setPathVia();
+        ArrayList<Station> queue = new ArrayList<>();
+        for (Station station :stationSet ) {
+            if (station != source){
+                station.setDistance(Integer.MAX_VALUE);
+            }
+            queue.add(station);
+        }
+        Station minStation = queue.get(0);
+        Integer min = minStation.getDistance();
+        while (!queue.isEmpty()){
+            for (Station station :queue) {
+                if (station.getDistance() < min){
+                    min = station.getDistance();
+                    minStation = station;
+                }
+            }
+            queue.remove(minStation);
+
+            for (Station neighbour :minStation.getNeighbours()) {
+                int newDistance = minStation.getDistance() + 1;
+                if (newDistance < neighbour.getDistance()){
+                    neighbour.setDistance(newDistance);
                 }
             }
         }
-        return 0;
+        return destination.getDistance();
     }
+
 }

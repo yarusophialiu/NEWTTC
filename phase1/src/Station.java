@@ -1,46 +1,28 @@
-import java.util.ArrayList;
+import java.util.*;
 
 class Station {
     /**
      * this class is used to record stations for subway.
      */
     private String name;
-    private ArrayList<Station> neighbour = new ArrayList<>();
-    private Station pathVia;
-    private int distance;
-
-    Station(String name, ArrayList<Station> neighbour){
-        this.name = name;
-        StationManager.addStations(this);
-        this.neighbour = neighbour;
-    }
+    private Integer distance;
+    private ArrayList<Station> neighbours = new ArrayList<>();
 
     Station(String name){
         this.name = name;
-        StationManager.addStations(this);
     }
 
-    Station getPathVia(){
-        return pathVia;
-    }
-
-    void setPathVia(Station pathVia){
-        this.pathVia = pathVia;
-    }
-
-    ArrayList<Station> getNeighbour(){
-        return this.neighbour;
-    }
-
-    void setNeighbour(ArrayList<Station> neighbour){
-        this.neighbour = neighbour;
-    }
-
-    void setDistance(int distance){
+    void setDistance(Integer distance){
         this.distance = distance;
     }
 
-    int getDistance(){
+    Integer getDistance(){
         return distance;
     }
+
+    ArrayList<Station> getNeighbours(){
+        return neighbours;
+    }
+
+
 }
