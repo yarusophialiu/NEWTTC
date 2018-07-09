@@ -80,7 +80,7 @@ public class Card {
         if(enterOrExit.equals("enter")){
             if (trip.getEntrance() == previousTrip.getExit()){
                 trip.reverseContinuous();
-                trip.setContinuousTime(previousTrip.tripTime());
+                trip.setContinuousTime(previousTrip.getContinuousTime());
             }
             else if (trip.getEntrance()!= previousTrip.getExit()){
                 trip.setContinuousTime((long) 0);
