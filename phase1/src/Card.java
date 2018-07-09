@@ -111,51 +111,56 @@ public class Card {
 
 
     void recordTrip(String vehicle, String enterOrExit, Time time, Station station){
-        Trip trip = new Trip(station, time, vehicle);
-        if (myTrip.size() >= 1){
-            Trip previousTrip = myTrip.get(myTrip.size() - 1);
-            if(enterOrExit.equals("enter")){
-                if (previousTrip.getExit() == null || !trip.getEntrance().equals(previousTrip.getExit())){
-                    trip.setContinuousTime((long) 0);
-                }
-                else if (trip.getEntrance().equals(previousTrip.getExit())){
-                    trip.setContinuous();
-                    trip.setContinuousTime(previousTrip.getContinuousTime() + (trip.getEnterTime().getTime() - previousTrip.getExitTime().getTime()));
-                }
-                if (myTrip.size() >= 3){
-                    myTrip.remove(myTrip.get(0));
-                    myTrip.add(trip);
+        if (!isSuspended){
+            Trip trip = new Trip(station, time, vehicle);
+            if (myTrip.size() >= 1){
+                Trip previousTrip = myTrip.get(myTrip.size() - 1);
+                if(enterOrExit.equals("enter")){
+                    if (!trip.getEntrance().equals(previousTrip.getExit())){
+                        trip.setContinuousTime((long) 0);
+                    }
+                    else if (trip.getEntrance().equals(previousTrip.getExit())){
+                        trip.setContinuous();
+                        trip.setContinuousTime(previousTrip.getContinuousTime() + (trip.getEnterTime().getTime() - previousTrip.getExitTime().getTime()));
+                    }
+                    if (myTrip.size() >= 3){
+                        myTrip.remove(myTrip.get(0));
+                        myTrip.add(trip);
+                    }
+                    else{
+                        myTrip.add(trip);
+                    }
+                    if (vehicle.equals("Bus")){
+                        deductFare("Bus");
+                    }
+                    else if (vehicle.equals("Subway") && balance == 0){
+                        System.out.println("Your balance is not enough.");
+                    }
                 }
                 else{
-                    myTrip.add(trip);
-                }
-                if (vehicle.equals("Bus")){
-                    deductFare("Bus");
-                }
-                else if (vehicle.equals("Subway") && balance == 0){
-                    System.out.println("Your balance is not enough.");
+                    myTrip.get(myTrip.size() - 1).setExit(station, time);
+                    trip.setContinuousTime(trip.getContinuousTime() + trip.tripTime());
+                    if (vehicle.equals("Subway")){
+                        deductFare("Subway");
+                    }
                 }
             }
             else{
-                myTrip.get(myTrip.size() - 1).setExit(station, time);
-                trip.setContinuousTime(trip.getContinuousTime() + trip.tripTime());
-                if (vehicle.equals("Subway")){
-                    deductFare("Subway");
+                if (enterOrExit.equals("enter")){
+                    trip.setContinuous();
+                    trip.setContinuousTime((long) 0); // addTrip
+                    myTrip.add(trip);
+                    if (vehicle.equals("Bus")){
+                        deductFare("Bus");
+                    }
+                    else if (vehicle.equals("Subway") && balance == 0){
+                        System.out.println("Your balance is not enough.");
+                    }
                 }
             }
         }
-        else{
-            if (enterOrExit.equals("enter")){
-                trip.setContinuous();
-                trip.setContinuousTime((long) 0); // addTrip
-                myTrip.add(trip);
-                if (vehicle.equals("Bus")){
-                    deductFare("Bus");
-                }
-                else if (vehicle.equals("Subway") && balance == 0){
-                    System.out.println("Your balance is not enough.");
-                }
-            }
+        else {
+            System.out.println("This card is suspended.");
         }
     }
 
