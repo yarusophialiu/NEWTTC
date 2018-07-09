@@ -1,7 +1,7 @@
 
 import java.util.ArrayList;
 
-public class User {
+class User {
     private String userName;
     private String emailAddress;
     private ArrayList<Card> myCards;

@@ -7,7 +7,7 @@ public class Card {
     private User user;
     private double balance;
     private static int idIncrementer = 1000;
-    private ArrayList<Trip> myTrip;
+    private ArrayList<Trip> myTrip = new ArrayList<>();
 
 
     Card(){
@@ -36,72 +36,109 @@ public class Card {
         }
     }
 
-    void deductFare(String vehicle) {
+    private void deductFare(String vehicle) {
         Trip currentTrip = myTrip.get(myTrip.size() - 1);
-        if (vehicle.equals("Bus") & currentTrip.getCurrentFare() + 2 <= 6 & currentTrip.getIsContinuous()) {
-            this.balance -= 2;
-            Trip.totalFare += 2;
-            currentTrip.setCurrentFare(currentTrip.getCurrentFare() + 2.0);
-        }
-        if (vehicle.equals("Bus") & currentTrip.getCurrentFare() + 2 > 6 & currentTrip.getIsContinuous()
-                & currentTrip.getContinuousTime() <= 7200000){
-            double diff = 6 - currentTrip.getCurrentFare();
-            this.balance -= diff;
-            Trip.totalFare += diff;
-            currentTrip.setCurrentFare(6.0);
-        }
-        if (vehicle.equals("Bus") & currentTrip.getCurrentFare() + 2 > 6 & currentTrip.getIsContinuous()
-                & currentTrip.getContinuousTime() > 7200000){
-            this.balance -= 2;
-            Trip.totalFare += 2;
-            currentTrip.setCurrentFare(2.0);
-        }
-        if (vehicle.equals("Bus") & !currentTrip.getIsContinuous()){
-            this.balance -=2;
-            Trip.totalFare += 2;
-            currentTrip.setCurrentFare(2.0);
+        if(vehicle.equals("Bus")){
+            if (currentTrip.getCurrentFare() + 2 <= 6 & currentTrip.getIsContinuous()) {
+                this.balance -= 2;
+                Trip.totalFare += 2;
+                currentTrip.setCurrentFare(currentTrip.getCurrentFare() + 2.0);
+            }
+            else if (currentTrip.getCurrentFare() + 2 > 6 & currentTrip.getIsContinuous()
+                    & currentTrip.getContinuousTime() <= 7200000){
+                double diff = 6 - currentTrip.getCurrentFare();
+                this.balance -= diff;
+                Trip.totalFare += diff;
+                currentTrip.setCurrentFare(6.0);
+            }
+            else if (currentTrip.getCurrentFare() + 2 > 6 & currentTrip.getIsContinuous() & currentTrip.getContinuousTime() > 7200000){
+                this.balance -= 2;
+                Trip.totalFare += 2;
+                currentTrip.setCurrentFare(2.0);
+            }
+            else if (!currentTrip.getIsContinuous()){
+                this.balance -=2;
+                Trip.totalFare += 2;
+                currentTrip.setCurrentFare(2.0);
+                currentTrip.setDiscontinuous();
+            }
         }
 
-//        if (vehicle.equals("Subway")) {
-//            Trip trip = myTrip.get(myTrip.size()-1);
-//            ArrayList<String> stationList = CardManager.stationList;
-//            int numOfStations = stationList.indexOf(trip.getExit()) - stationList.indexOf(trip.getEntrance());
-//            double fare = numOfStations * 0.5;
-//            this.balance -= fare;
-//            Trip.totalFare += fare;
-//        }
-
-
+        if (vehicle.equals("Subway")){
+            Trip trip = myTrip.get(myTrip.size() - 1);
+            double fare = StationManager.minDistance(trip.getEntrance(), trip.getExit()) * 0.5;
+            if (currentTrip.getCurrentFare() + fare <= 6 & currentTrip.getIsContinuous()) {
+                this.balance -= fare;
+                Trip.totalFare += fare;
+                currentTrip.setCurrentFare(currentTrip.getCurrentFare() + fare);
+            }
+            else if (currentTrip.getCurrentFare() + fare > 6 & currentTrip.getIsContinuous()
+                    & (currentTrip.getContinuousTime() - currentTrip.tripTime()) <= 7200000){
+                double diff = 6 - currentTrip.getCurrentFare();
+                this.balance -= diff;
+                Trip.totalFare += diff;
+                currentTrip.setCurrentFare(6.0);
+            }
+            else if (currentTrip.getCurrentFare() + fare > 6 & currentTrip.getIsContinuous() &
+                    (currentTrip.getContinuousTime() - currentTrip.tripTime()) > 7200000){
+                this.balance -= fare;
+                Trip.totalFare += fare;
+                currentTrip.setCurrentFare(fare);
+            }
+            else if (!currentTrip.getIsContinuous()){
+                this.balance -= fare;
+                Trip.totalFare += fare;
+                currentTrip.setCurrentFare(fare);
+                currentTrip.setDiscontinuous();
+            }
+        }
     }
+
 
     void recordTrip(String vehicle, String enterOrExit, Time time, Station station){
         Trip trip = new Trip(station, time, vehicle);
-        Trip previousTrip = myTrip.get(myTrip.size() - 1);
-        if(enterOrExit.equals("enter")){
-            if (trip.getEntrance() == previousTrip.getExit()){
-                trip.reverseContinuous();
-                trip.setContinuousTime(previousTrip.getContinuousTime());
-            }
-            else if (trip.getEntrance()!= previousTrip.getExit()){
-                trip.setContinuousTime((long) 0);
-            }
-            if (myTrip.size() >= 3){
-                myTrip.remove(myTrip.get(0));
-                myTrip.add(trip);
+        if (myTrip.size() >= 1){
+            Trip previousTrip = myTrip.get(myTrip.size() - 1);
+            if(enterOrExit.equals("enter")){
+                if (previousTrip.getExit() == null || !trip.getEntrance().equals(previousTrip.getExit())){
+                    trip.setContinuousTime((long) 0);
+                }
+                else if (trip.getEntrance().equals(previousTrip.getExit())){
+                    trip.setContinuous();
+                    trip.setContinuousTime(previousTrip.getContinuousTime() + (trip.getEnterTime().getTime() - previousTrip.getExitTime().getTime()));
+                }
+                if (myTrip.size() >= 3){
+                    myTrip.remove(myTrip.get(0));
+                    myTrip.add(trip);
+                }
+                else{
+                    myTrip.add(trip);
+                }
+                if (vehicle.equals("Bus")){
+                    deductFare("Bus");
+                }
             }
             else{
-                myTrip.add(trip);
-            }
-            if (vehicle.equals("Bus")){
-                deductFare("Bus");
+                myTrip.get(myTrip.size() - 1).setExit(station, time);
+                trip.setContinuousTime(trip.getContinuousTime() + trip.tripTime());
+                if (vehicle.equals("Subway")){
+                    deductFare("Subway");
+                }
             }
         }
         else{
-            myTrip.get(myTrip.size() - 1).setExit(station, time);
-            trip.setContinuousTime(trip.getContinuousTime() + trip.tripTime());
-            if (vehicle.equals("Subway")){
-                deductFare("Subway");
+            if (enterOrExit.equals("enter")){
+                trip.setContinuous();
+                trip.setContinuousTime((long) 0); // addTrip
+                myTrip.add(trip);
+                if (vehicle.equals("Bus")){
+                    deductFare("Bus");
+                }
             }
         }
+    }
+
+    double getBalance(){
+        return balance;
     }
 }

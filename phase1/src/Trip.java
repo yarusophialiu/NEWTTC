@@ -31,8 +31,12 @@ public class Trip {
         this.exitTime = exitTime;
     }
 
-    void reverseContinuous(){
-        this.isContinuous = !this.isContinuous;
+    void setContinuous(){
+        this.isContinuous = true;
+    }
+
+    void setDiscontinuous(){
+        this.isContinuous = false;
     }
 
     void setCurrentFare(double fare){
@@ -57,5 +61,13 @@ public class Trip {
 
     Long tripTime() {
         return exitTime.getTime() - enterTime.getTime();
+    }
+
+    Time getEnterTime(){
+        return enterTime;
+    }
+
+    Time getExitTime(){
+        return exitTime;
     }
 }

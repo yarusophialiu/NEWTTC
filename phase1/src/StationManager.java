@@ -2,15 +2,18 @@ import java.util.ArrayList;
 
 
 class StationManager {
-    private ArrayList<Station> stationSet = new ArrayList<>();
-    
+    private static ArrayList<Station> stationSet = new ArrayList<>();
 
-    void addStations(String stationID){
+    static void addStations(String stationID){
         Station station = new Station(stationID);
         stationSet.add(station);
     }
 
-    int minDistance(Station source, Station destination){
+    static ArrayList<Station> getStationSet(){
+        return stationSet;
+    }
+
+    static int minDistance(Station source, Station destination){
         source.setDistance(0);
         ArrayList<Station> queue = new ArrayList<>();
         for (Station station :stationSet ) {
