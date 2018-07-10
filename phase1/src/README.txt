@@ -1,6 +1,6 @@
 Summary
 In this project, we design a public transit system that tracks and
-calculates fares for anyone who uses a travel card (called "cardholder")
+calculates fares for anyone who uses the presto card (called "cardholder")
 to enter and exit the system. The transit system only contains subways and buses.
 Fares are calculated based on time and stations(for subways)/stops(for buses)
 
@@ -8,10 +8,9 @@ Fares are calculated based on time and stations(for subways)/stops(for buses)
 Instructions
 First, set up subway and bus lines in stations.txt.
 For each subway line, use the format:
-subway:
-Bloor-Yonge
-Wellesley
-...
+Bloor-Yonge neighbour: Wellesley                //the first word should be the name of the station followed by " neighbour: " and its neighbour stations
+Wellesley neighbour: Bloor-Yonge College        //note that stations can only be count as one word, for example, Union Station need to be written as Union_Station
+...                                             //start a new line when you need to add new stations and the last line of the stations.txt MUST BE null
 
 For each bus line, use the format:
 bus:
@@ -26,10 +25,9 @@ Steven bought 1 card
 
 When taking a subway/bus, cardholder is expected to tap the card when enter and exit the station.
 Use the following format in event.txt:
-Card 1000 enters Bloor-Yonge subway station at 2018-05-01 10:00:00
+Card 1000 enters Bloor-Yonge subway station at 2018-05-01 10:00:00          // same as the above, station name can only be one word, Union Station need to be written as Union_Station
 
-When user links a card to his/her own account, use format: Sophia adds Card1000
-When user lost and a suspends a card, use format: Xiaolei suspends Card1000
-When user founds the card and reverses the suspended card, use format: Yuxing reverses Card1000
-When user removes a card, use format: Yunfan removes Card1000
-When user adds money to a card, use format: Yunfan adds Card1000 10
+
+When user lost and suspends a card, use format: Card 1004 is suspended at 2018-05-01 17:19:26
+When user founds the card and reverses the suspended card, use format: Card 1004 is found at 2018-05-01 17:29:26
+When user adds money to a card, use format: 10 dollars is added to card 1000 at 2018-05-01 17:39:26     // do not write dollar sign instead.
