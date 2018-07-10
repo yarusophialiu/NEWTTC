@@ -17,6 +17,7 @@ class User {
     void buyCard(){
         Card card = new Card();  // modify the constructor later when finished Card class.
         addCard(card);
+        System.out.println(userName + "bought" + " " + "1 card." );
 
     }
 
