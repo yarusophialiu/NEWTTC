@@ -66,7 +66,7 @@ public class Card {
                             currentTrip.getEnterTime());
                 }
                 else{
-                    System.out.println("Your balance is not enough at " + currentTrip.getEnterTime());
+                    System.out.println("Card " + id + " balance is not enough at " + currentTrip.getEnterTime());
                 }
             }
             else if (currentTrip.getCurrentFare() + 2 > 6 & currentTrip.getIsContinuous() & currentTrip.getContinuousTime() > 7200000){
@@ -78,7 +78,7 @@ public class Card {
                             currentTrip.getEnterTime());
                 }
                 else {
-                    System.out.println("Your balance is not enough at " + currentTrip.getEnterTime());
+                    System.out.println("Card " + id + " balance is not enough at " + currentTrip.getEnterTime());
                 }
             }
             else if (!currentTrip.getIsContinuous()){
@@ -91,7 +91,7 @@ public class Card {
                             currentTrip.getEnterTime());
                 }
                 else {
-                    System.out.println("Your balance is not enough at " + currentTrip.getEnterTime());
+                    System.out.println("Card " + id + " balance is not enough at " + currentTrip.getEnterTime());
                 }
             }
         }
@@ -168,7 +168,7 @@ public class Card {
                         deductFare("bus");
                     }
                     else if (vehicle.equals("subway") && balance <= 0){
-                        System.out.println("Your balance is not enough at " + time);
+                        System.out.println("Card " + id + " balance is not enough at " + time);
                     }
                 }
                 else{
@@ -190,7 +190,7 @@ public class Card {
                         deductFare("bus");
                     }
                     else if (vehicle.equals("subway") && balance <= 0){
-                        System.out.println("Your balance is not enough at " + time);
+                        System.out.println("Card " + id + " balance is not enough at " + time);
                     }
                 }
             }

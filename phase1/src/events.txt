@@ -42,6 +42,4 @@ Card 1002 enters Queens_Park bus station at 2018-05-01 21:28:05
 Card 1002 exits College bus station at 2018-05-01 21:41:52
 Card 1002 enters Bloor-Yonge bus station at 2018-05-01 21:50:12
 Card 1002 exits Queens_Park bus station at 2018-05-01 22:00:11
-Card 1002 enters King bus station at 2018-05-01 23:15:16
-Card 1002 exits Union_Station bus station at 2018-05-01 23:32:19
 Card 1002 enters King subway station at 2018-05-01 23:46:15 // This card should be rejected
