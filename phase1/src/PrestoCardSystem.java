@@ -11,10 +11,7 @@ public class PrestoCardSystem {
 
     ArrayList<User> users = new ArrayList<>();
 
-    void doEvent() throws IOException, ParseException {
-        BufferedReader fileReader = new BufferedReader(new FileReader("phase1/src/events.txt"));
-        String info = fileReader.readLine();
-        ArrayList<String> data = new ArrayList<String>(Arrays.asList(info.split(" ")));
+    void doEvent(ArrayList<String> data) throws ParseException {
         if (data.contains("bought")){
             for (User user : users) {
                 if(user.getUserName().equals(data.get(0))){

@@ -38,8 +38,8 @@ public class Card {
 
     private void deductFare(String vehicle) {
         Trip currentTrip = myTrip.get(myTrip.size() - 1);
-        if(vehicle.equals("Bus")){
-      if (currentTrip.getCurrentFare() + 2 <= 6 & currentTrip.getIsContinuous()) {
+        if(vehicle.equals("bus")){
+            if (currentTrip.getCurrentFare() + 2 <= 6 & currentTrip.getIsContinuous()) {
                 if (balance >= 0) {
                     this.balance -= 2;
                     Trip.totalFare += 2;
@@ -81,7 +81,7 @@ public class Card {
             }
         }
 
-        if (vehicle.equals("Subway")){
+        if (vehicle.equals("subway")){
             Trip trip = myTrip.get(myTrip.size() - 1);
             double fare = StationManager.minDistance(trip.getEntrance(), trip.getExit()) * 0.5;
             if (currentTrip.getCurrentFare() + fare <= 6 & currentTrip.getIsContinuous()) {
@@ -114,10 +114,10 @@ public class Card {
 
     void recordTrip(String vehicle, String enterOrExit, Date time, Station station){
         if (!isSuspended){
-            Trip trip = new Trip(station, time, vehicle);
             if (myTrip.size() >= 1){
                 Trip previousTrip = myTrip.get(myTrip.size() - 1);
                 if(enterOrExit.equals("enters")){
+                    Trip trip = new Trip(station, time, vehicle);
                     if (!trip.getEntrance().equals(previousTrip.getExit())){
                         trip.setContinuousTime((long) 0);
                     }
@@ -140,8 +140,9 @@ public class Card {
                     }
                 }
                 else{
-                    myTrip.get(myTrip.size() - 1).setExit(station, time);
-                    trip.setContinuousTime(trip.getContinuousTime() + trip.tripTime());
+                    Trip exitTrip = myTrip.get(myTrip.size() - 1);
+                    exitTrip.setExit(station, time);
+                    exitTrip.setContinuousTime(exitTrip.getContinuousTime() + exitTrip.tripTime());
                     if (vehicle.equals("subway")){
                         deductFare("subway");
                     }
@@ -149,6 +150,7 @@ public class Card {
             }
             else{
                 if (enterOrExit.equals("enters")){
+                    Trip trip = new Trip(station, time, vehicle);
                     trip.setContinuous();
                     trip.setContinuousTime((long) 0); // addTrip
                     myTrip.add(trip);

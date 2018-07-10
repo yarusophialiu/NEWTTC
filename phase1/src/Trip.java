@@ -8,7 +8,7 @@ public class Trip {
     private String transportation;    //vehicles used in this trip.
     private boolean isContinuous = false;
     private double currentFare;
-    private Long continuousTime;
+    private Long continuousTime = (long)0;
     static int totalFare;
     static int totalStations;
 

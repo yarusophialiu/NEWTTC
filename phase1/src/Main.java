@@ -1,24 +1,22 @@
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Arrays;
 
 public class Main {
-  public static void main(String[] args) throws IOException{
+  public static void main(String[] args) throws IOException, ParseException {
         BufferedReader fileReader = new BufferedReader(new FileReader("phase1/src/stations.txt"));
         String info = fileReader.readLine();
         info = fileReader.readLine();
         while (!info.equals("")) {
-            String[] data = info.split(" ");
-            ArrayList<String> dataArray = new ArrayList<String>(Arrays.asList(data));
+            ArrayList<String> dataArray = new ArrayList<String>(Arrays.asList(info.split(" ")));
             dataArray.remove(dataArray.get(1));
-            for (String id : dataArray) {
-                Station station = StationManager.newStation(id);
+            Station station = StationManager.newStation(dataArray.get(0));
                 for (int i = 1; i < dataArray.size(); i++){
                     station.addNeighbours(StationManager.newStation(dataArray.get(i)));
                 }
-            }
             info = fileReader.readLine();
         }
         info = fileReader.readLine();
@@ -26,5 +24,17 @@ public class Main {
             StopManager.addStop(info);
             info = fileReader.readLine();
         }
+
+        PrestoCardSystem prestoCardSystem = new PrestoCardSystem();
+        BufferedReader fileReader2 = new BufferedReader(new FileReader("phase1/src/events.txt"));
+        String info2 = fileReader2.readLine();
+        while (!(info2 == null)){
+            if (!info2.equals("")){
+                ArrayList<String> data = new ArrayList<String>(Arrays.asList(info2.split(" ")));
+                prestoCardSystem.doEvent(data);
+            }
+            info2 = fileReader2.readLine();
+        }
+
   }
 }
