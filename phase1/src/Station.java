@@ -10,6 +10,7 @@ class Station {
 
     Station(String name){
         this.name = name;
+        StationManager.addStations(this);
     }
 
     void setDistance(Integer distance){
@@ -22,6 +23,14 @@ class Station {
 
     ArrayList<Station> getNeighbours(){
         return neighbours;
+    }
+
+    String getName(){
+        return name;
+    }
+
+    void addNeighbours(Station neighbour){
+        this.neighbours.add(neighbour);
     }
 
 

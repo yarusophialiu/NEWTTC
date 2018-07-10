@@ -3,14 +3,32 @@ import java.util.ArrayList;
 
 class StationManager {
     private static ArrayList<Station> stationSet = new ArrayList<>();
+    private static ArrayList<String> stationIDSet = new ArrayList<>();
 
-    static void addStations(String stationID){
-        Station station = new Station(stationID);
+    static void addStations(Station station){
         stationSet.add(station);
+        stationIDSet.add(station.getName());
     }
 
     static ArrayList<Station> getStationSet(){
         return stationSet;
+    }
+
+    static ArrayList<String> getStationIDSet(){
+        return stationIDSet;
+    }
+
+    static Station newStation(String stationID){
+        ArrayList<Station> stationSet = StationManager.getStationSet();
+        ArrayList<String> stationIDSet = StationManager.getStationIDSet();
+        if (stationIDSet.contains(stationID)){
+            for (Station station : stationSet) {
+                if(station.getName().equals(stationID)){
+                    return station;
+                }
+            }
+        }
+        return new Station(stationID);
     }
 
     static int minDistance(Station source, Station destination){

@@ -1,10 +1,10 @@
 subway:
-Bloor-Yonge
-Wellesley
-College
-Dundus
-Queen
-King
+Bloor-Yonge neighbour: Wellesley
+Wellesley neighbour: Bloor-Yonge College
+College neighbour: Wellesley Dundus
+Dundus neighbour: College Queen
+Queen neighbour: Dundus King
+King neighbour: Queen
 
 bus:
 Bloor-Yonge
