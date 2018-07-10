@@ -51,7 +51,8 @@ public class Card {
                 Trip.totalFare += diff;
                 currentTrip.setCurrentFare(6.0);
             }
-            else if (currentTrip.getCurrentFare() + 2 > 6 & currentTrip.getIsContinuous() & currentTrip.getContinuousTime() > 7200000){
+            else if (currentTrip.getCurrentFare() + 2 > 6 & currentTrip.getIsContinuous()
+                    & currentTrip.getContinuousTime() > 7200000){
                 this.balance -= 2;
                 Trip.totalFare += 2;
                 currentTrip.setCurrentFare(2.0);
@@ -105,7 +106,8 @@ public class Card {
                 }
                 else if (trip.getEntrance().equals(previousTrip.getExit())){
                     trip.setContinuous();
-                    trip.setContinuousTime(previousTrip.getContinuousTime() + (trip.getEnterTime().getTime() - previousTrip.getExitTime().getTime()));
+                    trip.setContinuousTime(previousTrip.getContinuousTime() +
+                            (trip.getEnterTime().getTime() - previousTrip.getExitTime().getTime()));
                 }
                 if (myTrip.size() >= 3){
                     myTrip.remove(myTrip.get(0));
