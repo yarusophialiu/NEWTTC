@@ -29,5 +29,5 @@ Card 1000 enters Bloor-Yonge subway station at 2018-05-01 10:00:00          // s
 
 
 When user lost and suspends a card, use format: Card 1004 is suspended at 2018-05-01 17:19:26
-When user founds the card and reverses the suspended card, use format: Card 1004 is found at 2018-05-01 17:29:26
+When user founds the card and reverses the suspended card, use format: Card 1004 is retrieved at 2018-05-01 17:29:26
 When user adds money to a card, use format: 10 dollars is added to card 1000 at 2018-05-01 17:39:26     // do not write dollar sign instead.
