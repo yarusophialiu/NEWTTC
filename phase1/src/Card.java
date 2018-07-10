@@ -1,5 +1,5 @@
-import java.sql.Time;
 import java.util.ArrayList;
+import java.util.Date;
 
 public class Card {
     private boolean isSuspended = false;
@@ -39,15 +39,17 @@ public class Card {
     private void deductFare(String vehicle) {
         Trip currentTrip = myTrip.get(myTrip.size() - 1);
         if(vehicle.equals("Bus")){
-            if (currentTrip.getCurrentFare() + 2 <= 6 & currentTrip.getIsContinuous()) {
-                this.balance -= 2;
-                Trip.totalFare += 2;
-                currentTrip.setCurrentFare(currentTrip.getCurrentFare() + 2.0);
+      if (currentTrip.getCurrentFare() + 2 <= 6 & currentTrip.getIsContinuous()) {
+                if (balance >= 0) {
+                    this.balance -= 2;
+                    Trip.totalFare += 2;
+                    currentTrip.setCurrentFare(currentTrip.getCurrentFare() + 2.0);
+                }
             }
             else if (currentTrip.getCurrentFare() + 2 > 6 & currentTrip.getIsContinuous()
                     & currentTrip.getContinuousTime() <= 7200000){
                 double diff = 6 - currentTrip.getCurrentFare();
-                if(balance >= diff){
+                if(balance >= 0){
                     this.balance -= diff;
                     Trip.totalFare += diff;
                     currentTrip.setCurrentFare(6.0);
@@ -57,7 +59,7 @@ public class Card {
                 }
             }
             else if (currentTrip.getCurrentFare() + 2 > 6 & currentTrip.getIsContinuous() & currentTrip.getContinuousTime() > 7200000){
-                if (balance >= 2){
+                if (balance >= 0){
                     this.balance -= 2;
                     Trip.totalFare += 2;
                     currentTrip.setCurrentFare(2.0);
@@ -67,7 +69,7 @@ public class Card {
                 }
             }
             else if (!currentTrip.getIsContinuous()){
-                if (balance >= 2){
+                if (balance >= 0){
                     this.balance -=2;
                     Trip.totalFare += 2;
                     currentTrip.setCurrentFare(2.0);
@@ -110,12 +112,12 @@ public class Card {
     }
 
 
-    void recordTrip(String vehicle, String enterOrExit, Time time, Station station){
+    void recordTrip(String vehicle, String enterOrExit, Date time, Station station){
         if (!isSuspended){
             Trip trip = new Trip(station, time, vehicle);
             if (myTrip.size() >= 1){
                 Trip previousTrip = myTrip.get(myTrip.size() - 1);
-                if(enterOrExit.equals("enter")){
+                if(enterOrExit.equals("enters")){
                     if (!trip.getEntrance().equals(previousTrip.getExit())){
                         trip.setContinuousTime((long) 0);
                     }
@@ -130,30 +132,30 @@ public class Card {
                     else{
                         myTrip.add(trip);
                     }
-                    if (vehicle.equals("Bus")){
-                        deductFare("Bus");
+                    if (vehicle.equals("bus")){
+                        deductFare("bus");
                     }
-                    else if (vehicle.equals("Subway") && balance == 0){
+                    else if (vehicle.equals("subway") && balance <= 0){
                         System.out.println("Your balance is not enough.");
                     }
                 }
                 else{
                     myTrip.get(myTrip.size() - 1).setExit(station, time);
                     trip.setContinuousTime(trip.getContinuousTime() + trip.tripTime());
-                    if (vehicle.equals("Subway")){
-                        deductFare("Subway");
+                    if (vehicle.equals("subway")){
+                        deductFare("subway");
                     }
                 }
             }
             else{
-                if (enterOrExit.equals("enter")){
+                if (enterOrExit.equals("enters")){
                     trip.setContinuous();
                     trip.setContinuousTime((long) 0); // addTrip
                     myTrip.add(trip);
-                    if (vehicle.equals("Bus")){
-                        deductFare("Bus");
+                    if (vehicle.equals("bus")){
+                        deductFare("bus");
                     }
-                    else if (vehicle.equals("Subway") && balance == 0){
+                    else if (vehicle.equals("subway") && balance <= 0){
                         System.out.println("Your balance is not enough.");
                     }
                 }

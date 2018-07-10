@@ -1,10 +1,10 @@
-import java.sql.Time;
+import java.util.Date;
 
 public class Trip {
     private Station entrance;
     private Station exit;
-    private Time enterTime;
-    private Time exitTime;
+    private Date enterTime;
+    private Date exitTime;
     private String transportation;    //vehicles used in this trip.
     private boolean isContinuous = false;
     private double currentFare;
@@ -12,7 +12,7 @@ public class Trip {
     static int totalFare;
     static int totalStations;
 
-    Trip(Station entrance, Time enterTime, String vehicle){
+    Trip(Station entrance, Date enterTime, String vehicle){
         this.enterTime = enterTime;
         this.entrance = entrance;
         this.transportation = vehicle;
@@ -26,7 +26,7 @@ public class Trip {
         return exit;
     }
 
-    void setExit(Station exit, Time exitTime){
+    void setExit(Station exit, Date exitTime){
         this.exit = exit;
         this.exitTime = exitTime;
     }
@@ -63,11 +63,11 @@ public class Trip {
         return exitTime.getTime() - enterTime.getTime();
     }
 
-    Time getEnterTime(){
+    Date getEnterTime(){
         return enterTime;
     }
 
-    Time getExitTime(){
+    Date getExitTime(){
         return exitTime;
     }
 }
