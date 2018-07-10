@@ -4,16 +4,41 @@ Frank frank@mail.com 789frank
 Frank bought 2 cards
 Sophia sophia@mail.com 4sophia56
 Sophia bought 1 card
+Xiaolei xiaolei@mail.com 0xiao0lei0
+Xiaolei bought 2 cards
 
 Card 1000 enters Bloor-Yonge subway station at 2018-05-01 10:00:00
 Card 1000 exits Queen subway station at 2018-05-01 10:15:37
 Card 1002 enters Wellesley subway station at 2018-05-01 10:08:00
 Card 1002 exits College subway station at 2018-05-01 11:00:42
+Card 1002 enters College bus station at 2018-05-01 11:05:54
+Card 1002 exits Museum bus station at 2018-05-01 11:15:50
+Card 1002 enters Museum bus station at 2018-05-01 11:17:45
+Card 1002 exits Queen bus station at 2018-05-01 11:20:20
+Card 1002 enters Queen bus station at 2018-05-01 11:21:23
+Card 1002 exits King bus station at 2018-05-01 11:25:10
+Card 1002 enters King bus station at 2018-05-01 12:15:50
+Card 1002 exits Union Station bus station at 2018-05-01 12:24:03
+Card 1002 enters Queens Park bus station at 2018-05-01 13:30:59
+Card 1002 exits College bus station at 2018-05-01 13:41:52
+Card 1002 enters Bloor-Yonge bus station at 2018-05-01 14:30:59
+Card 1002 exits Queens Park bus station at 2018-05-01 15:00:33
 Card 1003 enters Dundus subway station at 2018-05-01 16:12:56
 Card 1000 enters Queen bus station at 2018-05-01 17:16:25
+Card 1004 is suspended at 2018-05-01 17:19:26
 Card 1003 exits Bloor-Yonge subway station at 2018-05-01 17:20:45
 Card 1000 exits Union Station bus station at 2018-05-01 17:31:04
+Card 1004 enters Union Station bus station at 2018-05-01 18:30:00 // This card should be rejected
 Card 1002 enters Museum bus station at 2018-05-01 19:03:10
 Card 1003 enters Queens Park bus station at 2018-05-01 19:06:58
 Card 1003 exits King bus station at 2018-05-01 19:28:41
 Card 1002 exits Bloor-Yonge bus station at 2018-05-01 19:28:43
+Card 1002 enters King bus station at 2018-05-01 20:13:51
+Card 1002 exits Union Station bus station at 2018-05-01 20:34:01
+Card 1002 enters Queens Park bus station at 2018-05-01 21:28:05
+Card 1002 exits College bus station at 2018-05-01 21:41:52
+Card 1002 enters Bloor-Yonge bus station at 2018-05-01 21:50:12
+Card 1002 exits Queens Park bus station at 2018-05-01 22:00:11
+Card 1002 enters King bus station at 2018-05-01 23:15:16
+Card 1002 exits Union bus station at 2018-05-01 23:32:19
+Card 1002 enters King subway station at 2018-05-01 23:46:15 // This card should be rejected
