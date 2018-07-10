@@ -9,8 +9,6 @@ public class Trip {
     private boolean isContinuous = false;
     private double currentFare;
     private Long continuousTime = (long)0;
-    static int totalFare;
-    static int totalStations;
 
     Trip(Station entrance, Date enterTime, String vehicle){
         this.enterTime = enterTime;

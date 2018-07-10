@@ -42,7 +42,7 @@ public class Card {
             if (currentTrip.getCurrentFare() + 2 <= 6 & currentTrip.getIsContinuous()) {
                 if (balance >= 0) {
                     this.balance -= 2;
-                    Trip.totalFare += 2;
+                    AdminUser.totalFare += 2;
                     currentTrip.setCurrentFare(currentTrip.getCurrentFare() + 2.0);
                 }
             }
@@ -51,7 +51,7 @@ public class Card {
                 double diff = 6 - currentTrip.getCurrentFare();
                 if(balance >= 0){
                     this.balance -= diff;
-                    Trip.totalFare += diff;
+                    AdminUser.totalFare += diff;
                     currentTrip.setCurrentFare(6.0);
                 }
                 else{
@@ -61,7 +61,7 @@ public class Card {
             else if (currentTrip.getCurrentFare() + 2 > 6 & currentTrip.getIsContinuous() & currentTrip.getContinuousTime() > 7200000){
                 if (balance >= 0){
                     this.balance -= 2;
-                    Trip.totalFare += 2;
+                    AdminUser.totalFare += 2;
                     currentTrip.setCurrentFare(2.0);
                 }
                 else {
@@ -71,7 +71,7 @@ public class Card {
             else if (!currentTrip.getIsContinuous()){
                 if (balance >= 0){
                     this.balance -=2;
-                    Trip.totalFare += 2;
+                    AdminUser.totalFare += 2;
                     currentTrip.setCurrentFare(2.0);
                     currentTrip.setDiscontinuous();
                 }
@@ -86,25 +86,25 @@ public class Card {
             double fare = StationManager.minDistance(trip.getEntrance(), trip.getExit()) * 0.5;
             if (currentTrip.getCurrentFare() + fare <= 6 & currentTrip.getIsContinuous()) {
                 this.balance -= fare;
-                Trip.totalFare += fare;
+                AdminUser.totalFare += fare;
                 currentTrip.setCurrentFare(currentTrip.getCurrentFare() + fare);
             }
             else if (currentTrip.getCurrentFare() + fare > 6 & currentTrip.getIsContinuous()
                     & (currentTrip.getContinuousTime() - currentTrip.tripTime()) <= 7200000){
                 double diff = 6 - currentTrip.getCurrentFare();
                 this.balance -= diff;
-                Trip.totalFare += diff;
+                AdminUser.totalFare += diff;
                 currentTrip.setCurrentFare(6.0);
             }
             else if (currentTrip.getCurrentFare() + fare > 6 & currentTrip.getIsContinuous() &
                     (currentTrip.getContinuousTime() - currentTrip.tripTime()) > 7200000){
                 this.balance -= fare;
-                Trip.totalFare += fare;
+                AdminUser.totalFare += fare;
                 currentTrip.setCurrentFare(fare);
             }
             else if (!currentTrip.getIsContinuous()){
                 this.balance -= fare;
-                Trip.totalFare += fare;
+                AdminUser.totalFare += fare;
                 currentTrip.setCurrentFare(fare);
                 currentTrip.setDiscontinuous();
             }
