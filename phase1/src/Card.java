@@ -47,21 +47,35 @@ public class Card {
             else if (currentTrip.getCurrentFare() + 2 > 6 & currentTrip.getIsContinuous()
                     & currentTrip.getContinuousTime() <= 7200000){
                 double diff = 6 - currentTrip.getCurrentFare();
-                this.balance -= diff;
-                Trip.totalFare += diff;
-                currentTrip.setCurrentFare(6.0);
+                if(balance >= diff){
+                    this.balance -= diff;
+                    Trip.totalFare += diff;
+                    currentTrip.setCurrentFare(6.0);
+                }
+                else{
+                    System.out.println("Your balance is not enough.");
+                }
             }
-            else if (currentTrip.getCurrentFare() + 2 > 6 & currentTrip.getIsContinuous()
-                    & currentTrip.getContinuousTime() > 7200000){
-                this.balance -= 2;
-                Trip.totalFare += 2;
-                currentTrip.setCurrentFare(2.0);
+            else if (currentTrip.getCurrentFare() + 2 > 6 & currentTrip.getIsContinuous() & currentTrip.getContinuousTime() > 7200000){
+                if (balance >= 2){
+                    this.balance -= 2;
+                    Trip.totalFare += 2;
+                    currentTrip.setCurrentFare(2.0);
+                }
+                else {
+                    System.out.println("Your balance is not enough.");
+                }
             }
             else if (!currentTrip.getIsContinuous()){
-                this.balance -=2;
-                Trip.totalFare += 2;
-                currentTrip.setCurrentFare(2.0);
-                currentTrip.setDiscontinuous();
+                if (balance >= 2){
+                    this.balance -=2;
+                    Trip.totalFare += 2;
+                    currentTrip.setCurrentFare(2.0);
+                    currentTrip.setDiscontinuous();
+                }
+                else {
+                    System.out.println("Your balance is not enough.");
+                }
             }
         }
 
@@ -97,46 +111,56 @@ public class Card {
 
 
     void recordTrip(String vehicle, String enterOrExit, Time time, Station station){
-        Trip trip = new Trip(station, time, vehicle);
-        if (myTrip.size() >= 1){
-            Trip previousTrip = myTrip.get(myTrip.size() - 1);
-            if(enterOrExit.equals("enter")){
-                if (previousTrip.getExit() == null || !trip.getEntrance().equals(previousTrip.getExit())){
-                    trip.setContinuousTime((long) 0);
-                }
-                else if (trip.getEntrance().equals(previousTrip.getExit())){
-                    trip.setContinuous();
-                    trip.setContinuousTime(previousTrip.getContinuousTime() +
-                            (trip.getEnterTime().getTime() - previousTrip.getExitTime().getTime()));
-                }
-                if (myTrip.size() >= 3){
-                    myTrip.remove(myTrip.get(0));
-                    myTrip.add(trip);
+        if (!isSuspended){
+            Trip trip = new Trip(station, time, vehicle);
+            if (myTrip.size() >= 1){
+                Trip previousTrip = myTrip.get(myTrip.size() - 1);
+                if(enterOrExit.equals("enter")){
+                    if (!trip.getEntrance().equals(previousTrip.getExit())){
+                        trip.setContinuousTime((long) 0);
+                    }
+                    else if (trip.getEntrance().equals(previousTrip.getExit())){
+                        trip.setContinuous();
+                        trip.setContinuousTime(previousTrip.getContinuousTime() + (trip.getEnterTime().getTime() - previousTrip.getExitTime().getTime()));
+                    }
+                    if (myTrip.size() >= 3){
+                        myTrip.remove(myTrip.get(0));
+                        myTrip.add(trip);
+                    }
+                    else{
+                        myTrip.add(trip);
+                    }
+                    if (vehicle.equals("Bus")){
+                        deductFare("Bus");
+                    }
+                    else if (vehicle.equals("Subway") && balance == 0){
+                        System.out.println("Your balance is not enough.");
+                    }
                 }
                 else{
-                    myTrip.add(trip);
-                }
-                if (vehicle.equals("Bus")){
-                    deductFare("Bus");
+                    myTrip.get(myTrip.size() - 1).setExit(station, time);
+                    trip.setContinuousTime(trip.getContinuousTime() + trip.tripTime());
+                    if (vehicle.equals("Subway")){
+                        deductFare("Subway");
+                    }
                 }
             }
             else{
-                myTrip.get(myTrip.size() - 1).setExit(station, time);
-                trip.setContinuousTime(trip.getContinuousTime() + trip.tripTime());
-                if (vehicle.equals("Subway")){
-                    deductFare("Subway");
+                if (enterOrExit.equals("enter")){
+                    trip.setContinuous();
+                    trip.setContinuousTime((long) 0); // addTrip
+                    myTrip.add(trip);
+                    if (vehicle.equals("Bus")){
+                        deductFare("Bus");
+                    }
+                    else if (vehicle.equals("Subway") && balance == 0){
+                        System.out.println("Your balance is not enough.");
+                    }
                 }
             }
         }
-        else{
-            if (enterOrExit.equals("enter")){
-                trip.setContinuous();
-                trip.setContinuousTime((long) 0); // addTrip
-                myTrip.add(trip);
-                if (vehicle.equals("Bus")){
-                    deductFare("Bus");
-                }
-            }
+        else {
+            System.out.println("This card is suspended.");
         }
     }
 
