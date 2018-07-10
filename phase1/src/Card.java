@@ -19,10 +19,10 @@ public class Card {
     void reverseSuspended(){
         this.isSuspended = !this.isSuspended;
         if (isSuspended){
-            System.out.println("The card has been suspended.");
+            System.out.println("Card " + id + " has been suspended.");
         }
         else{
-            System.out.println("The card has been retrieved.");
+            System.out.println("Card " + id + " has been retrieved.");
         }
     }
 
@@ -37,7 +37,7 @@ public class Card {
     void increaseBalance(int i) throws Exception {
         if (i == 10 || i == 20 || i == 50) {
             this.balance += i;
-            System.out.println(i + " dollars has been added to card " + id);
+            System.out.println(i + " dollars has been added to card " + id + " New balance: " + balance);
         } else {
             throw new Exception("You can only add $10, $20 or $50");
         }
@@ -51,7 +51,7 @@ public class Card {
                     this.balance -= 2;
                     AdminUser.totalFare += 2;
                     currentTrip.setCurrentFare(currentTrip.getCurrentFare() + 2.0);
-                    System.out.println("Card " + id + "new balance: " + getBalance() + "at " +
+                    System.out.println("Card " + id + " new balance: $" + getBalance() + " at " +
                     currentTrip.getEnterTime());
                 }
             }
@@ -62,11 +62,11 @@ public class Card {
                     this.balance -= diff;
                     AdminUser.totalFare += diff;
                     currentTrip.setCurrentFare(6.0);
-                    System.out.println("Card " + id + "new balance: " + getBalance() + "at " +
+                    System.out.println("Card " + id + " new balance: $" + getBalance() + " at " +
                             currentTrip.getEnterTime());
                 }
                 else{
-                    System.out.println("Your balance is not enough.");
+                    System.out.println("Your balance is not enough at " + currentTrip.getEnterTime());
                 }
             }
             else if (currentTrip.getCurrentFare() + 2 > 6 & currentTrip.getIsContinuous() & currentTrip.getContinuousTime() > 7200000){
@@ -74,11 +74,11 @@ public class Card {
                     this.balance -= 2;
                     AdminUser.totalFare += 2;
                     currentTrip.setCurrentFare(2.0);
-                    System.out.println("Card " + id + "new balance: " + getBalance() + "at " +
+                    System.out.println("Card " + id + " new balance: $" + getBalance() + " at " +
                             currentTrip.getEnterTime());
                 }
                 else {
-                    System.out.println("Your balance is not enough.");
+                    System.out.println("Your balance is not enough at " + currentTrip.getEnterTime());
                 }
             }
             else if (!currentTrip.getIsContinuous()){
@@ -87,23 +87,23 @@ public class Card {
                     AdminUser.totalFare += 2;
                     currentTrip.setCurrentFare(2.0);
                     currentTrip.setDiscontinuous();
-                    System.out.println("Card " + id + "new balance: " + getBalance() + "at " +
+                    System.out.println("Card " + id + " new balance: $" + getBalance() + " at " +
                             currentTrip.getEnterTime());
                 }
                 else {
-                    System.out.println("Your balance is not enough.");
+                    System.out.println("Your balance is not enough at " + currentTrip.getEnterTime());
                 }
             }
         }
 
-        if (vehicle.equals("subway")){
+        else if (vehicle.equals("subway")){
             Trip trip = myTrip.get(myTrip.size() - 1);
             double fare = StationManager.minDistance(trip.getEntrance(), trip.getExit()) * 0.5;
             if (currentTrip.getCurrentFare() + fare <= 6 & currentTrip.getIsContinuous()) {
                 this.balance -= fare;
                 AdminUser.totalFare += fare;
                 currentTrip.setCurrentFare(currentTrip.getCurrentFare() + fare);
-                System.out.println("Card " + id + "new balance: " + getBalance() + "at " +
+                System.out.println("Card " + id + " new balance: $" + getBalance() + " at " +
                         currentTrip.getExitTime());
             }
             else if (currentTrip.getCurrentFare() + fare > 6 & currentTrip.getIsContinuous()
@@ -112,7 +112,7 @@ public class Card {
                 this.balance -= diff;
                 AdminUser.totalFare += diff;
                 currentTrip.setCurrentFare(6.0);
-                System.out.println("Card " + id + "new balance: " + getBalance() + "at " +
+                System.out.println("Card " + id + " new balance: $" + getBalance() + " at " +
                         currentTrip.getExitTime());
             }
             else if (currentTrip.getCurrentFare() + fare > 6 & currentTrip.getIsContinuous() &
@@ -120,7 +120,7 @@ public class Card {
                 this.balance -= fare;
                 AdminUser.totalFare += fare;
                 currentTrip.setCurrentFare(fare);
-                System.out.println("Card " + id + "new balance: " + getBalance() + "at " +
+                System.out.println("Card " + id + " new balance: $" + getBalance() + " at " +
                         currentTrip.getExitTime());
             }
             else if (!currentTrip.getIsContinuous()){
@@ -128,7 +128,7 @@ public class Card {
                 AdminUser.totalFare += fare;
                 currentTrip.setCurrentFare(fare);
                 currentTrip.setDiscontinuous();
-                System.out.println("Card " + id + "new balance: " + getBalance() + "at " +
+                System.out.println("Card " + id + " new balance: $" + getBalance() + " at " +
                         currentTrip.getExitTime());
             }
         }
@@ -150,6 +150,7 @@ public class Card {
                         if (currentContinuousTime < 7200000){
                             trip.setContinuous();
                             trip.setContinuousTime(currentContinuousTime);
+                            trip.setCurrentFare(previousTrip.getCurrentFare());
                         }
                         else{
                             trip.setDiscontinuous();
@@ -167,7 +168,7 @@ public class Card {
                         deductFare("bus");
                     }
                     else if (vehicle.equals("subway") && balance <= 0){
-                        System.out.println("Your balance is not enough.");
+                        System.out.println("Your balance is not enough at " + time);
                     }
                 }
                 else{
@@ -189,13 +190,13 @@ public class Card {
                         deductFare("bus");
                     }
                     else if (vehicle.equals("subway") && balance <= 0){
-                        System.out.println("Your balance is not enough.");
+                        System.out.println("Your balance is not enough at " + time);
                     }
                 }
             }
         }
         else {
-            System.out.println("This card is suspended.");
+            System.out.println("You cannot enter because card " + id + " is suspended " + time);
         }
     }
 

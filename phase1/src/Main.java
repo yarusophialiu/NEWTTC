@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 public class Main {
-  public static void main(String[] args) throws IOException, ParseException {
+  public static void main(String[] args) throws Exception {
         BufferedReader fileReader = new BufferedReader(new FileReader("phase1/src/stations.txt"));
         String info = fileReader.readLine();
         info = fileReader.readLine();
