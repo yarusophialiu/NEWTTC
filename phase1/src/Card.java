@@ -37,7 +37,7 @@ public class Card {
     void increaseBalance(int i) throws Exception {
         if (i == 10 || i == 20 || i == 50) {
             this.balance += i;
-            System.out.println(i + " dollars has been added to card " + id + " New balance: " + balance);
+            System.out.println(i + " dollars has been added to card " + id + " New balance: $" + balance);
         } else {
             throw new Exception("You can only add $10, $20 or $50");
         }
