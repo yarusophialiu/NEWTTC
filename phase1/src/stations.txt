@@ -8,7 +8,7 @@ King neighbour: Queen
 
 bus:
 Bloor-Yonge
-Queens Park
+Queens_Park
 College
 Museum
 Queen
