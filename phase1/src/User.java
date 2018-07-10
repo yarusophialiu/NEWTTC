@@ -38,8 +38,15 @@ class User {
         }
     }
 
+    ArrayList<Card> getMyCards(){
+        return myCards;
+    }
+
     void changeName(String newName){
         this.userName = newName;
+    }
+    String getUserName() {
+        return userName;
     }
 
     String getEmailAddress(){
