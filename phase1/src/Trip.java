@@ -9,7 +9,7 @@ public class Trip {
     private boolean isContinuous = false;
     private double currentFare;
     private Long continuousTime;
-    static int totalFare;
+    static double totalFare;
     static int totalStations;
 
     Trip(Station entrance, Time enterTime, String vehicle){
@@ -69,5 +69,10 @@ public class Trip {
 
     Time getExitTime(){
         return exitTime;
+    }
+
+    void clearData(){
+        totalFare = 0.0;
+        totalStations = 0;
     }
 }
