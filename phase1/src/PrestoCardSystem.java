@@ -6,6 +6,7 @@ import java.util.Date;
 public class PrestoCardSystem {
 
     ArrayList<User> users = new ArrayList<>();
+    AdminUser adimin = new AdminUser("Boss", "1234");
 
     void doEvent(ArrayList<String> data) throws Exception {
         if (data.contains("bought")){
@@ -46,6 +47,10 @@ public class PrestoCardSystem {
                     }
                 }
             }
+        }
+        else if (data.contains("ended")){
+            this.adimin.report();
+            this.adimin.clearData();
         }
         else{
             users.add(new User(data.get(0), data.get(1), data.get(2)));
