@@ -40,9 +40,9 @@ class StationManager {
             }
             queue.add(station);
         }
-        Station minStation = queue.get(0);
-        Integer min = minStation.getDistance();
         while (!queue.isEmpty()){
+            Station minStation = queue.get(0);
+            Integer min = minStation.getDistance();
             for (Station station :queue) {
                 if (station.getDistance() < min){
                     min = station.getDistance();
