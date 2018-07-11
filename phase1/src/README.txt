@@ -9,6 +9,7 @@ Notes:
    including add balance, enter bus station and exit subway station.
 2. the program will also print when errors happened such as balance not enough and a suspended card trying to get into a station.
 3. DO NOT END line with any sort of punctuation, and for empty lines, do not put space in them, keep them empty.
+4. Class UserManager and CardManager are removed because they are not needed in phase1, and we will add them in phase2 if needed.   
 
 Special Cases:                                                              status:
 1. The card has been suspended, and trying to get into a station:           dealt: Can't get in, the system will print a warning.
