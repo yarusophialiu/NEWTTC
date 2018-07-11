@@ -60,7 +60,15 @@ class PrestoCardSystem {
           }
         }
       }
-    } else if (data.contains(
+    } else if (data.contains("recent") && data.contains("trip")){
+        for (User user : users) {
+            for (Card card : user.getMyCards()) {
+                if (card.getId() == Integer.parseInt(data.get(1))) {
+                    System.out.println(card.recentTripString());
+                }
+            }
+        }
+    }else if (data.contains(
         "ended,")) { // events on when the day ended, clear data from the previous day and print
                      // report.
       this.admin.report();
