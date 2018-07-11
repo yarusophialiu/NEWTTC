@@ -10,6 +10,14 @@ Notes:
 2. the program will also print when errors happened such as balance not enough and a suspended card trying to get into a station.
 3. DO NOT END line with any sort of punctuation, and for empty lines, do not put space in them, keep them empty.
 
+Special Cases:                                                              status:
+1. The card has been suspended, and trying to get into a station:           dealt: Can't get in, the system will print a warning.
+2. Tap the card in, not tap out.                                            not dealt: we assume the passenger will behave right.
+3. Not tap in, tap out.                                                     not dealt: we assume the passenger will behave right.
+4. Tap one card in, tap another card out.(Assume user has multiple card.)   not dealt: we assume the passenger will behave right.
+5. Lost card, and found it after.                                           dealt: we can suspend and retrieve in our function.
+6. Lost card, can't find it and want to get that same card again.           not dealt: we assume a beautiful world where lost things are always been found.
+7. Station temporary closed and need to temporarily change route.           not dealt: we assume this won't happen.
 
 Instructions
 First, set up subway and bus lines in stations.txt.
