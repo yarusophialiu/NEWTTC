@@ -289,12 +289,23 @@ public class Card {
     return balance;
   }
 
-  String recentTripString(){
+  String recentTripString() {
     StringBuilder output = new StringBuilder();
     int i = 1;
     for (Trip trip : myTrip) {
-      String tripInfo = "Trip " + i + ": begin at " + trip.getEntrance().getName() + " " + trip.getEnterTime() + " end at " +
-              trip.getExit().getName() + " " + trip.getExitTime() + ". " + "\n";
+      String tripInfo =
+          "Trip "
+              + i
+              + ": begin at "
+              + trip.getEntrance().getName()
+              + " "
+              + trip.getEnterTime()
+              + " end at "
+              + trip.getExit().getName()
+              + " "
+              + trip.getExitTime()
+              + ". "
+              + "\n";
       output.append(tripInfo);
       i++;
     }
