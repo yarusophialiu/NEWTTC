@@ -289,7 +289,7 @@ public class Card {
     return balance;
   }
 
-  /** return a String representation of the recent trip the user has taken.*/
+  /** return a String representation of the recent trip the user has taken. */
   String recentTripString() {
     StringBuilder output = new StringBuilder();
     int i = 1;
