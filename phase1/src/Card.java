@@ -1,7 +1,14 @@
 import java.util.ArrayList;
 import java.util.Date;
 
+
+/**
+ * Class Card is responsible for storing information about the card balance and its id and the three recent trip
+ * related to the card. And Card is also responsible for calculate how much to deduct from the card balance when
+ * enter a bus station or exit a subway station.
+ * */
 public class Card {
+
     /** A boolean to indicate whether the card is suspended or not.*/
     private boolean isSuspended = false;
     /**An int to represent card number. */

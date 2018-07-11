@@ -14,8 +14,8 @@ Wellesley neighbour: Bloor-Yonge College        //note that stations can only be
 
 For each bus line, use the format:
 bus:
-Bloor-Yonge
-Queens Park
+Bloor-Yonge neighbour: Queens_Park
+Queens_Park neighbour: Bloor-Yonge College
 ...
 
 All other actions, such as buy card, take subway, happen in events.txt
