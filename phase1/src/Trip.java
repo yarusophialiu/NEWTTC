@@ -11,9 +11,9 @@ public class Trip {
     private Date exitTime;
     /**vehicles used in this trip. */
     private String transportation;
-    /**A boolean to indicate whether the trip is continuous trip. */
+    /**A boolean to indicate whether the trip is continuous trip in a two-hour period. */
     private boolean isContinuous = false;
-    /**A double to represent the cumulative fare in the chain of continuous trips. */
+    /**A double to represent the cumulative fare in the chain of continuous trips in two hours. */
     private double currentFare;
     /**Represent the length of time interval of continuous trip. */
     private Long continuousTime = (long)0;

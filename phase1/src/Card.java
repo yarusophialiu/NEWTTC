@@ -199,7 +199,8 @@ public class Card {
                         trip.setContinuousTime((long) 0);
                     }
                     else if (trip.getEntrance().getName().equals(previousTrip.getExit().getName())){
-                        //If current trip is continuous.
+                        //If current trip is continuous. Check the continuous time and compare
+                        //it with two hours.
                         Long currentContinuousTime = previousTrip.getContinuousTime() +
                                 (trip.getEnterTime().getTime() - previousTrip.getExitTime().getTime());
                         if (currentContinuousTime < 7200000){
