@@ -95,7 +95,7 @@ class Trip {
   Date getExitTime() {
     return exitTime;
   }
-
+  /** A getter for the type of transportations user used in this trip.*/
   String getTransportation() {
     return transportation;
   }
