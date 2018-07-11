@@ -44,4 +44,4 @@ Card 1002 enters Bloor-Yonge bus station at 2018-05-01 21:50:12
 Card 1002 exits Queens_Park bus station at 2018-05-01 22:00:11
 Card 1002 enters King subway station at 2018-05-01 23:46:15 // This card should be rejected
 
-Day ended
+Day ended, report generated

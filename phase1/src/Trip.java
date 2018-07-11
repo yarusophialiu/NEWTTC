@@ -1,13 +1,21 @@
 import java.util.Date;
 
 public class Trip {
+    /**The start station of the trip. */
     private Station entrance;
+    /**The end station of the trip. */
     private Station exit;
+    /**The start time of the trip. */
     private Date enterTime;
+    /**The end time of the trip. */
     private Date exitTime;
-    private String transportation;    //vehicles used in this trip.
+    /**vehicles used in this trip. */
+    private String transportation;
+    /**A boolean to indicate whether the trip is continuous trip. */
     private boolean isContinuous = false;
+    /**A double to represent the cumulative fare in the chain of continuous trips. */
     private double currentFare;
+    /**Represent the length of time interval of continuous trip. */
     private Long continuousTime = (long)0;
 
     Trip(Station entrance, Date enterTime, String vehicle){
@@ -65,7 +73,5 @@ public class Trip {
         return enterTime;
     }
 
-    Date getExitTime(){
-        return exitTime;
-    }
+    Date getExitTime(){ return exitTime; }
 }

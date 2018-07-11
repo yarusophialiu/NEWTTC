@@ -46,6 +46,7 @@ class User {
     void changeName(String newName){
         this.userName = newName;
     }
+
     String getUserName() {
         return userName;
     }
