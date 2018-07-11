@@ -98,7 +98,9 @@ public class Card {
 
         else if (vehicle.equals("subway")){
             Trip trip = myTrip.get(myTrip.size() - 1);
-            double fare = StationManager.minDistance(trip.getEntrance(), trip.getExit()) * 0.5;
+            int distance = StationManager.minDistance(trip.getEntrance(), trip.getExit());
+            double fare = distance * 0.5;
+            AdminUser.totalStations += distance;
             if (currentTrip.getCurrentFare() + fare <= 6 & currentTrip.getIsContinuous()) {
                 this.balance -= fare;
                 AdminUser.totalFare += fare;
@@ -141,10 +143,10 @@ public class Card {
                 Trip previousTrip = myTrip.get(myTrip.size() - 1);
                 if(enterOrExit.equals("enters")){
                     Trip trip = new Trip(station, time, vehicle);
-                    if (!trip.getEntrance().equals(previousTrip.getExit())){
+                    if (!trip.getEntrance().getName().equals(previousTrip.getExit().getName())){
                         trip.setContinuousTime((long) 0);
                     }
-                    else if (trip.getEntrance().equals(previousTrip.getExit())){
+                    else if (trip.getEntrance().getName().equals(previousTrip.getExit().getName())){
                         Long currentContinuousTime = previousTrip.getContinuousTime() +
                                 (trip.getEnterTime().getTime() - previousTrip.getExitTime().getTime());
                         if (currentContinuousTime < 7200000){
@@ -177,6 +179,10 @@ public class Card {
                     exitTrip.setContinuousTime(exitTrip.getContinuousTime() + exitTrip.tripTime());
                     if (vehicle.equals("subway")){
                         deductFare("subway");
+                    }
+                    else{
+                        int distance = StationManager.minDistance(exitTrip.getEntrance(), exitTrip.getExit());
+                        AdminUser.totalStations += distance;
                     }
                 }
             }

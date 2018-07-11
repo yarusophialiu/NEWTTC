@@ -8,20 +8,26 @@ import java.util.Arrays;
 public class Main {
   public static void main(String[] args) throws Exception {
         BufferedReader fileReader = new BufferedReader(new FileReader("phase1/src/stations.txt"));
+        String vehicle = fileReader.readLine();
         String info = fileReader.readLine();
-        info = fileReader.readLine();
         while (!info.equals("")) {
             ArrayList<String> dataArray = new ArrayList<String>(Arrays.asList(info.split(" ")));
             dataArray.remove(dataArray.get(1));
-            Station station = StationManager.newStation(dataArray.get(0));
+            Station station = StationManager.newStation(dataArray.get(0), vehicle);
                 for (int i = 1; i < dataArray.size(); i++){
-                    station.addNeighbours(StationManager.newStation(dataArray.get(i)));
+                    station.addNeighbours(StationManager.newStation(dataArray.get(i), vehicle));
                 }
             info = fileReader.readLine();
         }
+        vehicle = fileReader.readLine();
         info = fileReader.readLine();
         while (!(info == null)){
-            StopManager.addStop(info);
+            ArrayList<String> dataArray = new ArrayList<String>(Arrays.asList(info.split(" ")));
+            dataArray.remove(dataArray.get(1));
+            Station stop = StationManager.newStation(dataArray.get(0), vehicle);
+            for (int i = 1; i < dataArray.size(); i++){
+                stop.addNeighbours(StationManager.newStation(dataArray.get(i), vehicle));
+            }
             info = fileReader.readLine();
         }
 

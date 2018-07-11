@@ -7,10 +7,18 @@ class Station {
     private String name;
     private Integer distance;
     private ArrayList<Station> neighbours = new ArrayList<>();
+    private String vehicle;
 
-    Station(String name){
+    Station(String name, String vehicle){
         this.name = name;
-        StationManager.addStations(this);
+        if (vehicle.equals("subway")){
+            StationManager.addStations(this);
+        }
+        else{
+            StationManager.addStops(this);
+        }
+
+        this.vehicle = vehicle;
     }
 
     void setDistance(Integer distance){
@@ -33,5 +41,8 @@ class Station {
         this.neighbours.add(neighbour);
     }
 
+    String getVehicle() {
+        return vehicle;
+    }
 
 }

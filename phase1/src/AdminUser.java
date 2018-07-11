@@ -2,7 +2,7 @@ class AdminUser {
 
     private String userName = "Admin";
     private String password;
-    static int totalFare;
+    static double totalFare;
     static int totalStations;
 
 
