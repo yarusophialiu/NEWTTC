@@ -6,7 +6,7 @@ import java.util.Date;
  * recent trip related to the card. And Card is also responsible for calculate how much to deduct
  * from the card balance when enter a bus station or exit a subway station.
  */
-public class Card {
+class Card {
 
   /** A boolean to indicate whether the card is suspended or not. */
   private boolean isSuspended = false;
