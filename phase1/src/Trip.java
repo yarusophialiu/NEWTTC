@@ -95,4 +95,8 @@ class Trip {
   Date getExitTime() {
     return exitTime;
   }
+
+  String getTransportation() {
+    return transportation;
+  }
 }

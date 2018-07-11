@@ -302,6 +302,8 @@ public class Card {
               + trip.getEnterTime()
               + " end at "
               + trip.getExit().getName()
+              + " using "
+              + trip.getTransportation()
               + " "
               + trip.getExitTime()
               + ". "
