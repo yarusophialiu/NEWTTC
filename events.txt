@@ -45,4 +45,30 @@ Card 1002 enters Bloor-Yonge bus station at 2018-05-01 21:50:12
 Card 1002 exits Queens_Park bus station at 2018-05-01 22:00:11
 Card 1002 enters King subway station at 2018-05-01 23:46:15 // This card should be rejected because balance when to negative in the previous subway trip.
 
-Day ended, report generated      //the correct answer should be 27.5 dollars collected from 26 stations
+Day ended, report generated      //the correct report should be 27.5 dollars collected from 26 stations
+
+
+Card 1001 enters Wellesley subway station at 2018-06-01 09:40:42
+Card 1004 enters Wellesley subway station at 2018-06-01 10:03:43
+Card 1003 enters Wellesley subway station at 2018-06-01 10:22:35
+Card 1001 exits King subway station at 2018-06-01 10:42:15
+Card 1001 enters King bus station at 2018-06-01 10:46:36
+Card 1004 exits King subway station at 2018-06-01 10:50:01
+Card 1003 exits King subway station at 2018-06-01 10:50:04
+Card 1001 exits College bus station at 2018-06-01 11:06:11
+Card 1001 enters college bus station at 2018-06-01 11:12:12
+Card 1001 exits Bloor-Yonge bus station at 2018-06-01 11:28:52
+Card 1001 enters Bloor-Yonge subway station at 2018-06-01 11:40:00
+Card 1001 exits Queen subway station 2018-06-01 11:57:20
+Card 1003 enters Bloor-Yonge subway station at 2018-06-01 14:26:54
+Card 1004 enters Museum bus station at 2018-06-01 14:28:59
+Card 1004 exits Union_Station bus station at 2018-06-01 14:30:18
+Card 1004 enters Union_Station bus station at 2018-06-01 14:36:24
+Card 1004 exits Queens_Park bus station at 2018-06-01 14:41:03
+Card 1003 exits King subway station at 2018-06-01 14:45:15
+
+User Steven get average monthly fare
+User Frank get average monthly fare
+User Sophia get average monthly fare
+User Xiaolei get average monthly fare
+
