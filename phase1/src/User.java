@@ -15,9 +15,11 @@ class User {
   private String password;
   /** the month user currently in */
   private int month = 0;
-  /** store the total amount of month this user pass since their first time using any of their card */
+  /**
+   * store the total amount of month this user pass since their first time using any of their card
+   */
   private int totalMonth = 1;
-  /** stores average monthly cost for the user for all cards.*/
+  /** stores average monthly cost for the user for all cards. */
   private double averageMonthlyFare = 0.0;
 
   /** initialize a new User instance. */
@@ -65,40 +67,48 @@ class User {
     return emailAddress;
   }
 
-  /** this method will update the average monthly fare for the user depending on the month(if its a new month) */
-  void updateAverageMonthlyFare(String month, double fare){
+  /**
+   * this method will update the average monthly fare for the user depending on the month(if its a
+   * new month)
+   */
+  void updateAverageMonthlyFare(String month, double fare) {
     int intMonth = convertMonth(month);
-    if (this.month == 0){
+    if (this.month == 0) {
       this.month = intMonth;
       this.averageMonthlyFare = fare;
-    }
-    else if (this.month == intMonth){
-      this.averageMonthlyFare = (this.averageMonthlyFare * totalMonth + fare)/totalMonth;
-    }
-    else{
+    } else if (this.month == intMonth) {
+      this.averageMonthlyFare = (this.averageMonthlyFare * totalMonth + fare) / totalMonth;
+    } else {
       int difference = intMonth - this.month;
-      this.averageMonthlyFare = (this.averageMonthlyFare*this.totalMonth + fare)/(this.totalMonth + difference);
+      this.averageMonthlyFare =
+          (this.averageMonthlyFare * this.totalMonth + fare) / (this.totalMonth + difference);
       this.totalMonth += difference;
       this.month = intMonth;
     }
   }
   /** A getter for the averageMonthlyFare. */
-  double getAverageMonthlyFare(){
+  double getAverageMonthlyFare() {
     return this.averageMonthlyFare;
   }
-  /** A getter for the totalMonth variable*/
-  int getTotalMonth(){
+  /** A getter for the totalMonth variable */
+  int getTotalMonth() {
     return totalMonth;
   }
 
-  /** used in cases where the user didn't do anything in that month to update its average monthly cost.*/
-  void incrementTotalMonth(){
-    averageMonthlyFare = (averageMonthlyFare * totalMonth)/(totalMonth + 1);
+  /**
+   * used in cases where the user didn't do anything in that month to update its average monthly
+   * cost.
+   */
+  void incrementTotalMonth() {
+    averageMonthlyFare = (averageMonthlyFare * totalMonth) / (totalMonth + 1);
     totalMonth++;
   }
 
-  /** this method will turn the string representation of the month into int for updateAverageMonthlyFare method.*/
-  private int convertMonth(String month){
+  /**
+   * this method will turn the string representation of the month into int for
+   * updateAverageMonthlyFare method.
+   */
+  private int convertMonth(String month) {
     switch (month) {
       case "Jan":
         return 1;
