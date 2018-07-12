@@ -48,10 +48,10 @@ Card 1002 enters King subway station at 2018-05-01 23:46:15 // This card should 
 Day ended, report generated      //the correct report should be 27.5 dollars collected from 26 stations
 
 
-User Steven get average monthly fare
-User Frank get average monthly fare
-User Sophia get average monthly fare
-User Xiaolei get average monthly fare
+User Steven get average monthly fare            // correct report : 4.0
+User Frank get average monthly fare             // correct report : 20.0
+User Sophia get average monthly fare            // correct report : 3.5
+User Xiaolei get average monthly fare           // correct report : 0.0
 
 User Xiaolei did nothing in this month          //since Xiaolei's card get suspended.
 
@@ -76,8 +76,7 @@ Card 1003 exits King subway station at 2018-06-01 14:45:15
 
 User Steven did nothing in this month
 
-User Steven get average monthly fare
-User Frank get average monthly fare
-User Sophia get average monthly fare
-User Xiaolei get average monthly fare
-
+User Steven get average monthly fare            // correct report : 2.0
+User Frank get average monthly fare            // correct report : 13.0
+User Sophia get average monthly fare            // correct report : 4.0
+User Xiaolei get average monthly fare            // correct report : 3.0

@@ -70,7 +70,7 @@ class User {
     int intMonth = convertMonth(month);
     if (this.month == 0){
       this.month = intMonth;
-      this.averageMonthlyFare = fare;
+      this.averageMonthlyFare = fare/totalMonth;
     }
     else if (this.month == intMonth){
       this.averageMonthlyFare = (this.averageMonthlyFare * totalMonth + fare)/totalMonth;
