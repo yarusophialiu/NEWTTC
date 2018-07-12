@@ -68,7 +68,14 @@ class PrestoCardSystem {
           }
         }
       }
-    } else if (data.contains(
+    }else if (data.contains("average")){
+      for (User user : users){
+        if (user.getUserName().equals(data.get(1))){
+          System.out.println("User "+ user.getUserName() + "'s average monthly fee for the past " + user.getTotalMonth()
+                  + " months are " + user.getAverageMonthlyFare());
+        }
+      }
+    }else if (data.contains(
         "ended,")) { // events on when the day ended, clear data from the previous day and print
       // report.
       this.admin.report();

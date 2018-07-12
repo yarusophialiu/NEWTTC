@@ -79,6 +79,7 @@ class Card {
           // tapped.
           this.balance -= 2;
           AdminUser.totalFare += 2;
+          this.user.updateAverageMonthlyFare(currentTrip.getEnterTime().toString().split(" ")[1], 2);
           currentTrip.setCurrentFare(currentTrip.getCurrentFare() + 2.0);
           System.out.println(
               "Card "
@@ -101,6 +102,7 @@ class Card {
         if (balance >= 0) {
           this.balance -= diff;
           AdminUser.totalFare += diff;
+          this.user.updateAverageMonthlyFare(currentTrip.getEnterTime().toString().split(" ")[1], diff);
           currentTrip.setCurrentFare(6.0);
           System.out.println(
               "Card "
@@ -122,6 +124,7 @@ class Card {
         if (balance >= 0) {
           this.balance -= 2;
           AdminUser.totalFare += 2;
+          this.user.updateAverageMonthlyFare(currentTrip.getEnterTime().toString().split(" ")[1], 2);
           currentTrip.setCurrentFare(2.0);
           System.out.println(
               "Card "
@@ -139,6 +142,7 @@ class Card {
         if (balance >= 0) {
           this.balance -= 2;
           AdminUser.totalFare += 2;
+          this.user.updateAverageMonthlyFare(currentTrip.getEnterTime().toString().split(" ")[1], 2);
           currentTrip.setCurrentFare(2.0);
           currentTrip.setDiscontinuous();
           System.out.println(
@@ -166,6 +170,7 @@ class Card {
         // chain of continuous trips does not reach $6.
         this.balance -= fare;
         AdminUser.totalFare += fare;
+        this.user.updateAverageMonthlyFare(currentTrip.getEnterTime().toString().split(" ")[1], fare);
         currentTrip.setCurrentFare(currentTrip.getCurrentFare() + fare);
         System.out.println(
             "Card " + id + " new balance: $" + getBalance() + " at " + currentTrip.getExitTime());
@@ -178,6 +183,7 @@ class Card {
         double diff = 6 - currentTrip.getCurrentFare();
         this.balance -= diff;
         AdminUser.totalFare += diff;
+        this.user.updateAverageMonthlyFare(currentTrip.getEnterTime().toString().split(" ")[1], diff);
         currentTrip.setCurrentFare(6.0);
         System.out.println(
             "Card " + id + " new balance: $" + getBalance() + " at " + currentTrip.getExitTime());
@@ -189,6 +195,7 @@ class Card {
         // exceeds 2 hours.
         this.balance -= fare;
         AdminUser.totalFare += fare;
+        this.user.updateAverageMonthlyFare(currentTrip.getEnterTime().toString().split(" ")[1], fare);
         currentTrip.setCurrentFare(fare);
         System.out.println(
             "Card " + id + " new balance: $" + getBalance() + " at " + currentTrip.getExitTime());
@@ -196,6 +203,7 @@ class Card {
         // The trip is not in a continuous trip chain.
         this.balance -= fare;
         AdminUser.totalFare += fare;
+        this.user.updateAverageMonthlyFare(currentTrip.getEnterTime().toString().split(" ")[1], fare);
         currentTrip.setCurrentFare(fare);
         currentTrip.setDiscontinuous();
         System.out.println(
