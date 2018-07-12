@@ -84,13 +84,18 @@ class User {
   }
 
   double getAverageMonthlyFare(){
-
     return this.averageMonthlyFare;
   }
 
   int getTotalMonth(){
     return totalMonth;
   }
+
+  void incrementTotalMonth(){
+    averageMonthlyFare = (averageMonthlyFare * totalMonth)/(totalMonth + 1);
+    totalMonth++;
+  }
+
 
   private int convertMonth(String month){
     switch (month) {
