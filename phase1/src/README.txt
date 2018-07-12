@@ -19,6 +19,7 @@ Special Cases:                                                              stat
 5. Lost card, and found it after.                                           dealt: we can suspend and retrieve in our function.
 6. Lost card, can't find it and want to get that same card again.           not dealt: we assume a beautiful world where lost things are always been found.
 7. Station temporary closed and need to temporarily change route.           not dealt: we assume this won't happen.
+8. User used card in one month and skipped a month                          dealt: average monthly fare will correctly update.
 
 Instructions
 First, set up subway and bus lines in stations.txt.
@@ -60,3 +61,6 @@ Day ended, report generated             // report are only generated when the da
 
 When the month ended and want to make a report print  average monthly fee for every user, use format:
 User XXX(Username) get average monthly fare
+
+When user did nothing in a month, it is required to type:
+User Steven did nothing in this month       // use this one after generate their current month average month cost.
