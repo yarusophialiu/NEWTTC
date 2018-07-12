@@ -10,7 +10,7 @@ public class Main {
    * execute those events.
    */
   public static void main(String[] args) throws Exception {
-    BufferedReader fileReader = new BufferedReader(new FileReader("stations.txt"));
+    BufferedReader fileReader = new BufferedReader(new FileReader("phase1/stations.txt"));
     String vehicle = fileReader.readLine();
     String info = fileReader.readLine();
     while (!(info == null)) {
@@ -35,7 +35,7 @@ public class Main {
     }
 
     PrestoCardSystem prestoCardSystem = new PrestoCardSystem();
-    BufferedReader fileReader2 = new BufferedReader(new FileReader("events.txt"));
+    BufferedReader fileReader2 = new BufferedReader(new FileReader("phase1/events.txt"));
     String info2 = fileReader2.readLine();
     while (!(info2 == null)) {
       if (!info2.equals("")) {
