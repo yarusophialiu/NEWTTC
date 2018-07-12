@@ -52,8 +52,11 @@ Card 1004 is retrieved at 2018-05-01 17:29:26
 When user adds money to a card, use format:
 10 dollars is added to card 1000 at 2018-05-01 17:39:26     // do not write dollar sign instead.
 
-when user want to obtain information on recent trips, use format:
+When user want to obtain information on recent trips, use format:
 Card 1002 recent trip
 
-when the day ended and want to make a report, use format:
+When the day ended and want to make a report, use format:
 Day ended, report generated             // report are only generated when the day ended.
+
+When the month ended and want to make a report print  average monthly fee for every user, use format:
+User XXX(Username) get average monthly fare
