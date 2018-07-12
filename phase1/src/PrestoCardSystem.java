@@ -68,21 +68,26 @@ class PrestoCardSystem {
           }
         }
       }
-    }else if (data.contains("average")){
-      for (User user : users){
-        if (user.getUserName().equals(data.get(1))){
-          System.out.println("User "+ user.getUserName() + "'s average monthly fee for the past " + user.getTotalMonth()
-                  + " months are " + user.getAverageMonthlyFare());
+    } else if (data.contains("average")) {
+      for (User user : users) {
+        if (user.getUserName().equals(data.get(1))) {
+          System.out.println(
+              "User "
+                  + user.getUserName()
+                  + "'s average monthly fee for the past "
+                  + user.getTotalMonth()
+                  + " months are "
+                  + user.getAverageMonthlyFare());
         }
       }
-    }else if (data.contains("nothing")){
-      for (User user : users){
-        if (user.getUserName().equals(data.get(1))){
+    } else if (data.contains("nothing")) {
+      for (User user : users) {
+        if (user.getUserName().equals(data.get(1))) {
           user.incrementTotalMonth();
           System.out.println("Total month has been incremented for " + user.getUserName());
         }
       }
-    }else if (data.contains(
+    } else if (data.contains(
         "ended,")) { // events on when the day ended, clear data from the previous day and print
       // report.
       this.admin.report();
