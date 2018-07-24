@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement />
+  <nodes>
+    <node x="163.0" y="1605.1539758755614">com</node>
+    <node x="617.0" y="1531.1539758755614">netscape</node>
+    <node x="963.0472175553805" y="49.917758465325164">User</node>
+    <node x="391.51355558780983" y="696.6168115100612">SubwayFareCalculator</node>
+    <node x="984.0" y="1346.1539758755614">toolbarButtonGraphics</node>
+    <node x="143.51355558780983" y="719.1168115100612">BusFareCalculator</node>
+    <node x="477.0" y="1605.1539758755614">sun</node>
+    <node x="1317.0" y="1531.1539758755614">apple</node>
+    <node x="0.0" y="1531.1539758755614">groovyjarjarasm</node>
+    <node x="321.0" y="1605.1539758755614">java</node>
+    <node x="0.0" y="1605.1539758755614">javax</node>
+    <node x="424.29835256515025" y="933.7261642203559">SubwayMinDistance</node>
+    <node x="1114.0472175553805" y="327.91775846532516">AdminUser</node>
+    <node x="1149.0" y="1531.1539758755614">javafx</node>
+    <node x="279.79835256515025" y="832.7261642203559">MinDistance</node>
+    <node x="135.29835256515025" y="933.7261642203559">BusMinDistance</node>
+    <node x="-293.0716887314072" y="531.9323184192755">Trip</node>
+    <node x="980.0" y="1531.1539758755614">oracle</node>
+    <node x="632.0" y="1605.1539758755614">org</node>
+    <node x="730.0472175553805" y="261.91775846532516">RegularUser</node>
+    <node x="145.52497078941394" y="-28.355169306503285">PrestoCardSystem</node>
+    <node x="273.26355558780983" y="595.6168115100612">FareCalculator</node>
+    <node x="424.0" y="1531.1539758755614">resources</node>
+    <node x="150.3053573610091" y="192.21611103047542">Card</node>
+    <node x="230.0" y="1531.1539758755614">META-INF</node>
+    <node x="785.0" y="1605.1539758755614">jdk</node>
+    <node x="1056.262874581948" y="597.7978985612424">Station</node>
+    <node x="805.0" y="1531.1539758755614">groovy</node>
+    <node x="1183.762874581948" y="831.7978985612424">BusStation</node>
+    <node x="826.7628745819478" y="853.7978985612424">SubwayStation</node>
+    <node x="706.0" y="1346.1539758755614">groovyjarjarcommonscli</node>
+    <node x="1258.0" y="1346.1539758755614">groovyjarjarantlr</node>
+    <node x="149.41471007130372" y="-117.06031913928246">Main</node>
+    <node x="483.57828513283766" y="-26.58438192088056">StationFactory</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="RegularUser" target="User">
+      <point x="0.0" y="-147.0" />
+      <point x="912.0472175553805" y="236.91775846532516" />
+      <point x="1019.2972175553805" y="236.91775846532516" />
+      <point x="-56.25" y="81.0" />
+    </edge>
+    <edge source="AdminUser" target="User">
+      <point x="0.0" y="-81.0" />
+      <point x="1239.0472175553805" y="236.91775846532516" />
+      <point x="1131.7972175553805" y="236.91775846532516" />
+      <point x="56.25" y="81.0" />
+    </edge>
+    <edge source="BusMinDistance" target="MinDistance">
+      <point x="0.0" y="-37.0" />
+      <point x="269.79835256515025" y="908.7261642203559" />
+      <point x="347.04835256515025" y="908.7261642203559" />
+      <point x="-67.25" y="25.5" />
+    </edge>
+    <edge source="SubwayStation" target="Station">
+      <point x="0.0" y="-48.0" />
+      <point x="995.2628745819478" y="806.7978985612424" />
+      <point x="1112.012874581948" y="806.7978985612424" />
+      <point x="-55.75" y="92.0" />
+    </edge>
+    <edge source="BusFareCalculator" target="FareCalculator">
+      <point x="0.0" y="-25.5" />
+      <point x="257.51355558780983" y="671.6168115100612" />
+      <point x="330.26355558780983" y="671.6168115100612" />
+      <point x="-57.0" y="25.5" />
+    </edge>
+    <edge source="BusStation" target="Station">
+      <point x="0.0" y="-70.0" />
+      <point x="1340.262874581948" y="806.7978985612424" />
+      <point x="1223.512874581948" y="806.7978985612424" />
+      <point x="55.75" y="92.0" />
+    </edge>
+    <edge source="SubwayFareCalculator" target="FareCalculator">
+      <point x="0.0" y="-48.0" />
+      <point x="517.0135555878098" y="671.6168115100612" />
+      <point x="444.26355558780983" y="671.6168115100612" />
+      <point x="57.0" y="25.5" />
+    </edge>
+    <edge source="SubwayMinDistance" target="MinDistance">
+      <point x="0.0" y="-37.0" />
+      <point x="558.7983525651503" y="908.7261642203559" />
+      <point x="481.54835256515025" y="908.7261642203559" />
+      <point x="67.25" y="25.5" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Group" zoom="0.47685857036299006" x="578.4803873605019" y="717.592324496183" />
+  <SelectedNodes />
+  <Categories>
+    <Category>Methods</Category>
+    <Category>Inner Classes</Category>
+    <Category>Properties</Category>
+    <Category>Fields</Category>
+  </Categories>
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+
