@@ -1,99 +1,81 @@
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
-/**
- * Class PrestoCardSystem mainly accept orders from user (now its events.txt) and execute them
- * though other classes.
- */
 class PrestoCardSystem {
+    private ArrayList<RegularUser> users = new ArrayList<>();
+    private StationFactory stationFactory;
+    private AdminUser adminUser= new AdminUser("admin", "admin@mail.com", "12344");
 
-  /**
-   * users is a collection of User instance and is for easier access to the card each of them own.
-   */
-  private ArrayList<User> users = new ArrayList<>();
-  /**
-   * admin users are initiated automatically here since there can only be one boss for this system
-   * to check the information.
-   */
-  private AdminUser admin = new AdminUser("Boss", "1234");
+    PrestoCardSystem(StationFactory stationFactory){
+        this.stationFactory = stationFactory;
+        Card.setAdminUser(adminUser);
+    }
 
-  /**
-   * method doEvent accept an ArrayList of data read from events.txt (and in phase two, it will
-   * accept from user) and coordinate with other class if necessary
-   */
-  void doEvent(ArrayList<String> data) throws Exception {
-    if (data.contains("bought")) { // events about buy new card.
-      for (User user : users) {
-        if (user.getUserName().equals(data.get(0))) {
-          for (int i = 0; i < Integer.parseInt(data.get(2)); i++) {
-            user.buyCard();
-          }
+    private Card getCard(String id){
+        for (RegularUser user:users){
+            for (Card card:user.getMyCards()){
+                if (card.getId() == Integer.parseInt(id)){
+                    return card;
+                }
+            }
         }
-      }
-    } else if (data.contains("enters")
-        || data.contains("exits")) { // events on enter and exit a station.
-      for (User user : users) {
-        for (Card card : user.getMyCards()) {
-          if (card.getId() == Integer.parseInt(data.get(1))) {
+        return new Card();
+    }
+
+    private RegularUser getUser(String name){
+        for (RegularUser user:users){
+            if (user.getUserName().equals(name)){
+                return user;
+            }
+        }
+        return new RegularUser("","","");
+    }
+
+    void doEvent(ArrayList<String> data) throws Exception {
+        if (data.contains("bought")) { // events about buy new card.
+            RegularUser user = getUser(data.get(0));
+            for (int i = 0; i < Integer.parseInt(data.get(2)); i++) {
+                user.buyCard();
+            }
+        } else if (data.contains("enters")
+                || data.contains("exits")) { // events on enter and exit a station.
+            Card card = getCard(data.get(1));
             SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
             Date time = df.parse(data.get(7) + " " + data.get(8));
-            Station station = StationManager.newStation(data.get(3), data.get(4));
-            card.recordTrip(data.get(4), data.get(2), time, station);
-          }
-        }
-      }
-    } else if (data.contains("suspended")
-        || data.contains("retrieved")) { // events on suspend and retrieved card.
-      for (User user : users) {
-        for (Card card : user.getMyCards()) {
-          if (card.getId() == Integer.parseInt(data.get(1))) {
+            Station station = stationFactory.newStation(data.get(3), data.get(4), "1");
+            card.updateOnTap(data.get(2), station, time, data.get(4), stationFactory);
+        } else if (data.contains("suspended")
+                || data.contains("retrieved")) { // events on suspend and retrieved card.
+            Card card = getCard(data.get(1));
             card.reverseSuspended();
-          }
-        }
-      }
-    } else if (data.contains("added")) { // events on add balance for the card.
-      for (User user : users) {
-        for (Card card : user.getMyCards()) {
-          if (card.getId() == Integer.parseInt(data.get(6))) {
+        } else if (data.contains("added")) { // events on add balance for the card.
+            Card card = getCard(data.get(6));
             card.increaseBalance(Integer.parseInt(data.get(0)));
-          }
-        }
-      }
-    } else if (data.contains("recent") && data.contains("trip")) {
-      for (User user : users) {
-        for (Card card : user.getMyCards()) {
-          if (card.getId() == Integer.parseInt(data.get(1))) {
+        } else if (data.contains("recent") && data.contains("trip")) {
+            Card card = getCard(data.get(1));
             System.out.println(card.recentTripString());
-          }
+        } else if (data.contains("average")) {
+            RegularUser user = getUser(data.get(1));
+            System.out.println(
+                    "User "
+                            + user.getUserName()
+                            + "'s average monthly fee for the past "
+                            + user.getTotalMonth()
+                            + " months are "
+                            + user.getAverageMonthlyFare());
+        } else if (data.contains("nothing")) {
+            RegularUser user = getUser(data.get(1));
+            user.incrementTotalMonth();
+            System.out.println("Total month has been incremented for " + user.getUserName());
+        } else if (data.contains(
+                "ended,")) { // events on when the day ended, clear data from the previous day and print
+            // report.
+            this.adminUser.report();
+            this.adminUser.clearData();
+        } else { // events on create a new user.
+            users.add(new RegularUser(data.get(0), data.get(1), data.get(2)));
         }
-      }
-    } else if (data.contains("average")) {
-      for (User user : users) {
-        if (user.getUserName().equals(data.get(1))) {
-          System.out.println(
-              "User "
-                  + user.getUserName()
-                  + "'s average monthly fee for the past "
-                  + user.getTotalMonth()
-                  + " months are "
-                  + user.getAverageMonthlyFare());
-        }
-      }
-    } else if (data.contains("nothing")) {
-      for (User user : users) {
-        if (user.getUserName().equals(data.get(1))) {
-          user.incrementTotalMonth();
-          System.out.println("Total month has been incremented for " + user.getUserName());
-        }
-      }
-    } else if (data.contains(
-        "ended,")) { // events on when the day ended, clear data from the previous day and print
-      // report.
-      this.admin.report();
-      this.admin.clearData();
-    } else { // events on create a new user.
-      users.add(new User(data.get(0), data.get(1), data.get(2)));
     }
-  }
 }
