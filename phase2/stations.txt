@@ -1,16 +1,16 @@
 subway
-Bloor-Yonge neighbour: Wellesley
-Wellesley neighbour: Bloor-Yonge College
-College neighbour: Wellesley Dundus
-Dundus neighbour: College Queen
-Queen neighbour: Dundus King
-King neighbour: Queen
+1 Bloor-Yonge neighbour: Wellesley
+1 Wellesley neighbour: Bloor-Yonge College
+1 College neighbour: Wellesley Dundus
+1 Dundus neighbour: College Queen
+1 Queen neighbour: Dundus King
+1 King neighbour: Queen
 
 bus
-Bloor-Yonge neighbour: Queens_Park
-Queens_Park neighbour: Bloor-Yonge College
-College neighbour: Queens_Park Museum
-Museum neighbour: College Queen
-Queen neighbour: Museum King
-King neighbour: Queen Union_Station
-Union_Station neighbour: King
+1 Bloor-Yonge neighbour: Queens_Park
+1 Queens_Park neighbour: Bloor-Yonge College
+1 College neighbour: Queens_Park Museum
+1 Museum neighbour: College Queen
+1 Queen neighbour: Museum King
+1 King neighbour: Queen Union_Station
+1 Union_Station neighbour: King
