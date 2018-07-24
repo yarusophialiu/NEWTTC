@@ -5,7 +5,7 @@ import java.util.Arrays;
 
 public class Main {
   public static void main(String[] args) throws Exception{
-    BufferedReader fileReader = new BufferedReader(new FileReader("stations.txt"));
+    BufferedReader fileReader = new BufferedReader(new FileReader("phase2/stations.txt"));
     String vehicle = fileReader.readLine();
     String info = fileReader.readLine();
     StationFactory stationFactory = new StationFactory();
@@ -42,7 +42,7 @@ public class Main {
       }
     }
       PrestoCardSystem prestoCardSystem = new PrestoCardSystem(stationFactory);
-      BufferedReader fileReader2 = new BufferedReader(new FileReader("events.txt"));
+      BufferedReader fileReader2 = new BufferedReader(new FileReader("phase2/events.txt"));
       String info2 = fileReader2.readLine();
       while (!(info2 == null)) {
           if (!info2.equals("")) {
