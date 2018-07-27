@@ -6,9 +6,10 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="prestosystem.controller.Dashboard"
-            prefHeight="400.0" prefWidth="600.0">
 
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="prestosystem.controller.Dashboard">
+   <children>
+      <Label layoutX="68.0" layoutY="54.0" text="Dashboard" />
+      <Button layoutX="420.0" layoutY="308.0" mnemonicParsing="false" style="-fx-background-color: rgba(19, 173, 243, 0.63);" text="Log Out" textFill="WHITE" />
+   </children>
 </AnchorPane>
