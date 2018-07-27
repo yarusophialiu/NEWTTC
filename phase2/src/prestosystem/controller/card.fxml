@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="prestosystem.controller.Card">
+   <children>
+      <Label layoutX="71.0" layoutY="52.0" text="Card1">
+         <font>
+            <Font size="27.0" />
+         </font>
+      </Label>
+      <Button layoutX="484.0" layoutY="55.0" mnemonicParsing="false" onAction="#goBackPage" style="-fx-background-color: rgba(19, 173, 243, 0.63);" text="Dashboard" textFill="WHITE" />
+      <Label layoutX="71.0" layoutY="115.0" text="Balance: 10" />
+      <Button layoutX="70.0" layoutY="164.0" mnemonicParsing="false" style="-fx-background-color: rgba(19, 173, 243, 0.63);" text="Add Balance" textFill="WHITE">
+         <font>
+            <Font size="9.0" />
+         </font>
+      </Button>
+      <Button layoutX="71.0" layoutY="192.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="66.0" style="-fx-background-color: rgba(19, 173, 243, 0.63);" text="Delete Card" textFill="WHITE">
+         <font>
+            <Font size="9.0" />
+         </font>
+      </Button>
+      <Button layoutX="71.0" layoutY="222.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="66.0" style="-fx-background-color: rgba(19, 173, 243, 0.63);" text="Suspend" textFill="WHITE">
+         <font>
+            <Font size="9.0" />
+         </font>
+      </Button>
+      <CheckBox layoutX="175.0" layoutY="164.0" mnemonicParsing="false" text="10">
+         <font>
+            <Font size="9.0" />
+         </font>
+      </CheckBox>
+      <CheckBox layoutX="250.0" layoutY="164.0" mnemonicParsing="false" text="20">
+         <font>
+            <Font size="9.0" />
+         </font>
+      </CheckBox>
+      <CheckBox layoutX="322.0" layoutY="164.0" mnemonicParsing="false" text="30">
+         <font>
+            <Font size="9.0" />
+         </font>
+      </CheckBox>
+   </children>
+</AnchorPane>

@@ -8,16 +8,15 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class LoginSystem {
+public class Card {
 
-    // when this method is called, it will change the scene
-    public void nextScene(javafx.event.ActionEvent event) throws IOException{
+    public void goBackPage(javafx.event.ActionEvent event) throws IOException {
         Parent dashboard = FXMLLoader.load(getClass().getResource("dashboard.fxml"));
         Scene dashboardScene = new Scene(dashboard);
 
-        //get stage information
         Stage window = (Stage) ((Node)event.getSource()).getScene().getWindow();
         window.setScene(dashboardScene);
         window.show();
     }
+
 }
