@@ -7,9 +7,11 @@ import javafx.stage.Stage;
 import javafx.scene.Parent;
 
 public class TransitApp extends Application{
+
     @Override
     public void start(Stage primaryStage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("../controller/prestosystem.fxml"));
+
+        Parent root = FXMLLoader.load(getClass().getResource("../controller/loginsystem.fxml"));
         primaryStage.setTitle("Presto System App");
         primaryStage.setScene(new Scene(root, 800, 500 ));
         primaryStage.show();
