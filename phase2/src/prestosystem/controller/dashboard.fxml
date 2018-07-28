@@ -7,7 +7,6 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-
 <AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="prestosystem.controller.Dashboard">
    <children>
       <Label layoutX="33.0" layoutY="30.0" text="Dashboard" textFill="#6b6868">
@@ -15,17 +14,17 @@
             <Font size="25.0" />
          </font>
       </Label>
-      <Button layoutX="420.0" layoutY="308.0" mnemonicParsing="false" onAction="#goBackPage" style="-fx-background-color: rgba(19, 173, 243, 0.63);" text="Log Out" textFill="WHITE" />
+      <Button layoutX="464.0" layoutY="32.0" mnemonicParsing="false" onAction="#goBackPage" style="-fx-background-color: rgba(19, 173, 243, 0.63);" text="Log Out" textFill="WHITE" />
       <Label layoutX="39.0" layoutY="80.0" text="My Card" />
       <Button layoutX="38.0" layoutY="121.0" mnemonicParsing="false" onAction="#goToCard" text="Card1" />
       <Button layoutX="129.0" layoutY="121.0" mnemonicParsing="false" onAction="#goToCard" text="Card2" />
       <Button layoutX="218.0" layoutY="121.0" mnemonicParsing="false" onAction="#goToCard" text="Card3" />
-      <Button layoutX="33.0" layoutY="214.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="70.0" style="-fx-background-color: rgba(19, 173, 243, 0.63);" text="Add Card" textFill="WHITE">
+      <Button layoutX="33.0" layoutY="176.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="70.0" style="-fx-background-color: rgba(19, 173, 243, 0.63);" text="Add Card" textFill="WHITE">
          <font>
             <Font size="9.0" />
          </font>
       </Button>
-      <Button layoutX="33.0" layoutY="245.0" mnemonicParsing="false" style="-fx-background-color: rgba(19, 173, 243, 0.63);" text="Change Email" textFill="WHITE">
+      <Button layoutX="33.0" layoutY="208.0" mnemonicParsing="false" style="-fx-background-color: rgba(19, 173, 243, 0.63);" text="Change Email" textFill="WHITE">
          <font>
             <Font size="9.0" />
          </font>
