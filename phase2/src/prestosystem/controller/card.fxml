@@ -7,45 +7,59 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-
 <AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="prestosystem.controller.Card">
    <children>
-      <Label layoutX="71.0" layoutY="52.0" text="Card1">
-         <font>
-            <Font size="27.0" />
-         </font>
-      </Label>
-      <Button layoutX="484.0" layoutY="55.0" mnemonicParsing="false" onAction="#goBackPage" style="-fx-background-color: rgba(19, 173, 243, 0.63);" text="Dashboard" textFill="WHITE" />
-      <Label layoutX="71.0" layoutY="115.0" text="Balance: 10" />
-      <Button layoutX="70.0" layoutY="164.0" mnemonicParsing="false" style="-fx-background-color: rgba(19, 173, 243, 0.63);" text="Add Balance" textFill="WHITE">
-         <font>
-            <Font size="9.0" />
-         </font>
-      </Button>
-      <Button layoutX="71.0" layoutY="192.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="66.0" style="-fx-background-color: rgba(19, 173, 243, 0.63);" text="Delete Card" textFill="WHITE">
-         <font>
-            <Font size="9.0" />
-         </font>
-      </Button>
-      <Button layoutX="71.0" layoutY="222.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="66.0" style="-fx-background-color: rgba(19, 173, 243, 0.63);" text="Suspend" textFill="WHITE">
-         <font>
-            <Font size="9.0" />
-         </font>
-      </Button>
-      <CheckBox layoutX="175.0" layoutY="164.0" mnemonicParsing="false" text="10">
-         <font>
-            <Font size="9.0" />
-         </font>
-      </CheckBox>
-      <CheckBox layoutX="250.0" layoutY="164.0" mnemonicParsing="false" text="20">
-         <font>
-            <Font size="9.0" />
-         </font>
-      </CheckBox>
-      <CheckBox layoutX="322.0" layoutY="164.0" mnemonicParsing="false" text="30">
-         <font>
-            <Font size="9.0" />
-         </font>
-      </CheckBox>
+      <AnchorPane layoutX="-2.0" layoutY="-2.0" prefHeight="225.0" prefWidth="634.0">
+         <children>
+            <Button layoutX="72.0" layoutY="178.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="66.0" style="-fx-background-color: rgba(19, 173, 243, 0.63);" text="Suspend" textFill="WHITE">
+               <font>
+                  <Font size="9.0" />
+               </font>
+            </Button>
+            <Button layoutX="72.0" layoutY="109.0" mnemonicParsing="false" style="-fx-background-color: rgba(19, 173, 243, 0.63);" text="Add Balance" textFill="WHITE">
+               <font>
+                  <Font size="9.0" />
+               </font>
+            </Button>
+            <Button layoutX="482.0" layoutY="27.0" mnemonicParsing="false" onAction="#goBackPage" style="-fx-background-color: rgba(19, 173, 243, 0.63);" text="Dashboard" textFill="WHITE" />
+            <Label layoutX="66.0" layoutY="24.0" text="Card1">
+               <font>
+                  <Font size="27.0" />
+               </font>
+            </Label>
+            <Label layoutX="69.0" layoutY="69.0" text="Balance: 10" />
+            <Button layoutX="72.0" layoutY="145.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="66.0" style="-fx-background-color: rgba(19, 173, 243, 0.63);" text="Delete Card" textFill="WHITE">
+               <font>
+                  <Font size="9.0" />
+               </font>
+            </Button>
+            <CheckBox layoutX="229.0" layoutY="111.0" mnemonicParsing="false" text="10">
+               <font>
+                  <Font size="9.0" />
+               </font>
+            </CheckBox>
+            <CheckBox layoutX="286.0" layoutY="111.0" mnemonicParsing="false" prefHeight="13.0" prefWidth="21.0" text="20">
+               <font>
+                  <Font size="9.0" />
+               </font>
+            </CheckBox>
+            <CheckBox layoutX="356.0" layoutY="111.0" mnemonicParsing="false" text="30">
+               <font>
+                  <Font size="9.0" />
+               </font>
+            </CheckBox>
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="-2.0" layoutY="200.0" prefHeight="200.0" prefWidth="646.0" style="-fx-background-color: #ffffff;">
+         <children>
+            <Label layoutX="66.0" layoutY="25.0" text="Start A Trip">
+               <font>
+                  <Font size="27.0" />
+               </font>
+            </Label>
+            <Button layoutX="66.0" layoutY="87.0" mnemonicParsing="false" onAction="#takeSubway" style="-fx-background-color: rgba(19, 173, 243, 0.63);" text="Subway" textFill="WHITE" />
+            <Button layoutX="316.0" layoutY="87.0" mnemonicParsing="false" onAction="#takeBus" style="-fx-background-color: rgba(19, 173, 243, 0.63);" text="   Bus   " textFill="WHITE" />
+         </children>
+      </AnchorPane>
    </children>
 </AnchorPane>
