@@ -1,8 +1,13 @@
 package prestosystem.controller;
 
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 
 import java.io.BufferedWriter;
 import java.io.FileWriter;
@@ -31,8 +36,17 @@ public class BuyCardController implements Initializable{
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
 
+    @FXML
+    void login(javafx.event.ActionEvent event) throws IOException{
+        Parent dashboard = FXMLLoader.load(getClass().getResource("login.fxml"));
+        Scene dashboardScene = new Scene(dashboard);
 
+        //get stage information
+        Stage window = (Stage) ((Node)event.getSource()).getScene().getWindow();
+        window.setScene(dashboardScene);
+        window.show();
     }
 
     @Override
