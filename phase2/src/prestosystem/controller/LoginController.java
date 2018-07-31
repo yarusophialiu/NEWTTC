@@ -1,4 +1,5 @@
 package prestosystem.controller;
+
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -8,6 +9,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -20,8 +23,24 @@ public class LoginController implements Initializable{
     private TextField email;
 
     @FXML
-    void login(javafx.event.ActionEvent event) {
-
+    void login(javafx.event.ActionEvent event) throws IOException{
+        String file = "User.txt";
+        try {
+            FileReader fileReader = new FileReader(file);
+            BufferedReader bufferedReader = new BufferedReader(fileReader);
+            String line = bufferedReader.readLine();
+      while (line != null) {
+        if (!email.getText().isEmpty() && line.contains(email.getText())) {
+          if (line.contains(password.getText())) {
+              nextScene(event);
+              return;
+          }
+        }
+        fileReader.close();
+      }
+    } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @FXML
