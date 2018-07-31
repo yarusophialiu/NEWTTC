@@ -3,7 +3,7 @@ import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-public class Main {
+public class  Main {
   public static void main(String[] args) throws Exception{
     BufferedReader fileReader = new BufferedReader(new FileReader("phase2/stations.txt"));
     String vehicle = fileReader.readLine();

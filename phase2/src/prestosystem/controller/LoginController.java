@@ -8,7 +8,8 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class LoginSystem {
+public class LoginController {
+
 
     // when this method is called, it will change the scene
     public void nextScene(javafx.event.ActionEvent event) throws IOException{

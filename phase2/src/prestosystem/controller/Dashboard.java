@@ -10,7 +10,7 @@ import java.io.IOException;
 
 public class Dashboard {
     public void goBackPage(javafx.event.ActionEvent event) throws IOException{
-        Parent loginSystem = FXMLLoader.load(getClass().getResource("loginsystem.fxml"));
+        Parent loginSystem = FXMLLoader.load(getClass().getResource("login.fxml"));
         Scene loginSystemScene = new Scene(loginSystem);
 
         Stage window = (Stage) ((Node)event.getSource()).getScene().getWindow();

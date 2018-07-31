@@ -11,7 +11,7 @@ public class TransitApp extends Application{
     @Override
     public void start(Stage primaryStage) throws Exception {
 
-        Parent root = FXMLLoader.load(getClass().getResource("../controller/loginsystem.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("../controller/login.fxml"));
         primaryStage.setTitle("Presto System App");
         primaryStage.setScene(new Scene(root, 800, 500 ));
         primaryStage.show();
