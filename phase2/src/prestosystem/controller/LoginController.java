@@ -30,8 +30,8 @@ public class LoginController implements Initializable{
             BufferedReader bufferedReader = new BufferedReader(fileReader);
             String line = bufferedReader.readLine();
       while (line != null) {
-        if (!email.getText().isEmpty() && line.contains(email.getText())) {
-          if (line.contains(password.getText())) {
+        if (!email.getText().isEmpty() && !password.getText().isEmpty()) {
+          if (line.contains(password.getText()) && line.contains(email.getText())) {
               nextScene(event);
               return;
           }

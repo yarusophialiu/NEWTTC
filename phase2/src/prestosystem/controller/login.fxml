@@ -9,10 +9,17 @@
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="prestosystem.controller.LoginController">
    <children>
+<<<<<<< HEAD:phase2/src/prestosystem/controller/login.fxml
       <TextField fx:id="email" layoutX="198.0" layoutY="162.0" promptText="email" />
       <TextField fx:id="password" layoutX="198.0" layoutY="200.0" promptText="password" />
       <Button layoutX="247.0" layoutY="267.0" mnemonicParsing="false" onAction="#login" prefHeight="27.0" prefWidth="88.0" style="-fx-background-color: rgba(19, 173, 243, 0.63);" text="Log In" textFill="#f5f2f2" />
       <Button layoutX="247.0" layoutY="306.0" mnemonicParsing="false" onAction="#buycard" prefHeight="27.0" prefWidth="88.0" style="-fx-background-color: rgba(19, 173, 243, 0.63);" text="Buy a Card" textFill="#f5f2f2" />
+=======
+      <TextField layoutX="198.0" layoutY="162.0" promptText="email" fx:id="email"/>
+      <PasswordField layoutX="198.0" layoutY="200.0" promptText="password" fx:id="password"/>
+      <Button layoutX="247.0" layoutY="267.0" mnemonicParsing="false" onAction="#login" prefHeight="27.0" prefWidth="69.0" style="-fx-background-color: rgba(19, 173, 243, 0.63);" text="Log In" textFill="#f5f2f2" />
+      <Button layoutX="247.0" layoutY="306.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="69.0" style="-fx-background-color: rgba(19, 173, 243, 0.63);" text="Register" textFill="#f5f2f2" />
+>>>>>>> 5364a04bb64844bc532e8c1eb74489945e7d7f02:phase2/src/prestosystem/controller/loginsystem.fxml
       <Text fill="#8a8686" layoutX="88.0" layoutY="91.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Welcome to Presto System" AnchorPane.leftAnchor="88.0" AnchorPane.rightAnchor="88.0">
          <font>
             <Font name="Arial Bold" size="33.0" />
