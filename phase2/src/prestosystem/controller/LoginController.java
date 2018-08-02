@@ -6,6 +6,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
@@ -17,7 +18,7 @@ import java.util.ResourceBundle;
 
 public class LoginController implements Initializable{
     @FXML
-    private TextField password;
+    private PasswordField password;
 
     @FXML
     private TextField email;
@@ -36,6 +37,7 @@ public class LoginController implements Initializable{
               return;
           }
         }
+        line = bufferedReader.readLine();
         fileReader.close();
       }
     } catch (IOException e) {
