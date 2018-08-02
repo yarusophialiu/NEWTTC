@@ -7,12 +7,11 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
 public class Controller implements Initializable{
-    void switchScene(javafx.event.ActionEvent actionEvent, String newScene) throws IOException {
+    void switchScene(javafx.event.ActionEvent actionEvent, String newScene) throws Exception {
         Parent root = FXMLLoader.load(Controller.class.getResource(newScene));
         Scene scene = new Scene(root, 800, 500);
         Stage window = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
@@ -24,4 +23,5 @@ public class Controller implements Initializable{
     public void initialize(URL location, ResourceBundle resources) {
 
     }
+
 }
