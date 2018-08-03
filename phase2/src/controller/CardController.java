@@ -15,8 +15,12 @@ import java.awt.*;
 import java.io.IOException;
 
 public class CardController extends Controller{
+<<<<<<< HEAD
 
     private Card myCard;
+=======
+    private ArrayList<Card> myCard;
+>>>>>>> 97773703de3471f2a422c5c963c3035fdb8c1b52
 
     @FXML
     javafx.scene.control.Label cardNum;
@@ -55,8 +59,12 @@ public class CardController extends Controller{
         window.show();
     }
 
+<<<<<<< HEAD
     @FXML
     void setCard(Card card){
+=======
+    void setCardSet(ArrayList<Card> card){
+>>>>>>> 97773703de3471f2a422c5c963c3035fdb8c1b52
         myCard = card;
         cardNum.setText("1002");
 

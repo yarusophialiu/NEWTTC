@@ -16,16 +16,13 @@
       </Label>
       <Button layoutX="464.0" layoutY="32.0" mnemonicParsing="false" onAction="#goBackPage" style="-fx-background-color: rgba(19, 173, 243, 0.63);" text="Log Out" textFill="WHITE" />
       <Label layoutX="39.0" layoutY="80.0" text="My Card" />
-      <Label fx:id="userName" layoutX="39.0" layoutY="80.0"  />
-      <Button fx:id="card1" layoutX="38.0" layoutY="121.0" mnemonicParsing="false" onAction="#goToCard" />
-      <Button fx:id="card2" layoutX="188.0" layoutY="121.0" mnemonicParsing="false" onAction="#goToCard" />
-      <Button fx:id="card3" layoutX="338.0" layoutY="121.0" mnemonicParsing="false" onAction="#goToCard" />
-      <Button layoutX="33.0" layoutY="176.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="70.0" style="-fx-background-color: rgba(19, 173, 243, 0.63);" text="Add Card" textFill="WHITE">
+      <Label fx:id="userName" layoutX="39.0" layoutY="80.0" />
+      <Button layoutX="33.0" layoutY="176.0" mnemonicParsing="false" onAction="#addCard" prefHeight="17.0" prefWidth="70.0" style="-fx-background-color: rgba(19, 173, 243, 0.63);" text="Add Card" textFill="WHITE">
          <font>
             <Font size="9.0" />
          </font>
       </Button>
-      <Button layoutX="33.0" layoutY="208.0" mnemonicParsing="false" style="-fx-background-color: rgba(19, 173, 243, 0.63);" text="Change Email" textFill="WHITE">
+      <Button layoutX="162.0" layoutY="230.0" mnemonicParsing="false" onAction="#changeUsername" style="-fx-background-color: rgba(19, 173, 243, 0.63);" text="Change Username" textFill="WHITE">
          <font>
             <Font size="9.0" />
          </font>
@@ -42,5 +39,6 @@
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
       </GridPane>
+      <TextField fx:id="newUsername" layoutX="33.0" layoutY="225.0" prefHeight="11.0" prefWidth="117.0" promptText="new username" />
    </children>
 </AnchorPane>
