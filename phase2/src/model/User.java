@@ -1,5 +1,4 @@
 package model;
-import java.util.ArrayList;
 import java.util.HashMap;
 
 /**
@@ -25,12 +24,12 @@ public class User {
     }
 
     /** change the users user name. */
-    void changeName(String newName) {
+    public void changeName(String newName) {
         this.userName = newName;
     }
 
     /** return the user name of the user. */
-    String getUserName() {
+    public String getUserName() {
         return userName;
     }
 
