@@ -11,39 +11,39 @@
    <children>
       <AnchorPane layoutX="-2.0" layoutY="-2.0" prefHeight="225.0" prefWidth="634.0">
          <children>
-            <Button layoutX="72.0" layoutY="178.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="66.0" style="-fx-background-color: rgba(19, 173, 243, 0.63);" text="Suspend" textFill="WHITE">
+            <Button layoutX="72.0" layoutY="178.0" mnemonicParsing="false" onAction="#suspend" prefHeight="17.0" prefWidth="66.0" style="-fx-background-color: rgba(19, 173, 243, 0.63);" text="Suspend" textFill="WHITE">
                <font>
                   <Font size="9.0" />
                </font>
             </Button>
-            <Button layoutX="72.0" layoutY="109.0" mnemonicParsing="false" style="-fx-background-color: rgba(19, 173, 243, 0.63);" text="Add Balance" textFill="WHITE">
+            <Button layoutX="72.0" layoutY="109.0" mnemonicParsing="false" onAction="#addBalance" style="-fx-background-color: rgba(19, 173, 243, 0.63);" text="Add Balance" textFill="WHITE">
                <font>
                   <Font size="9.0" />
                </font>
             </Button>
             <Button layoutX="482.0" layoutY="27.0" mnemonicParsing="false" onAction="#goBackPage" style="-fx-background-color: rgba(19, 173, 243, 0.63);" text="Dashboard" textFill="WHITE" />
-            <Label layoutX="66.0" layoutY="24.0" text="Card1">
+            <Label fx:id="cardNum" layoutX="66.0" layoutY="24.0" >
                <font>
                   <Font size="27.0" />
                </font>
             </Label>
             <Label layoutX="69.0" layoutY="69.0" text="Balance: 10" />
-            <Button layoutX="72.0" layoutY="145.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="66.0" style="-fx-background-color: rgba(19, 173, 243, 0.63);" text="Delete Card" textFill="WHITE">
+            <Button layoutX="72.0" layoutY="145.0" mnemonicParsing="false" onAction="#deleteCard" prefHeight="17.0" prefWidth="66.0" style="-fx-background-color: rgba(19, 173, 243, 0.63);" text="Delete Card" textFill="WHITE">
                <font>
                   <Font size="9.0" />
                </font>
             </Button>
-            <CheckBox layoutX="229.0" layoutY="111.0" mnemonicParsing="false" text="10">
+            <CheckBox fx:id="checkbox10" layoutX="230.0" layoutY="111.0" mnemonicParsing="false" onAction="#selectAmount" text="10">
                <font>
                   <Font size="9.0" />
                </font>
             </CheckBox>
-            <CheckBox layoutX="286.0" layoutY="111.0" mnemonicParsing="false" prefHeight="13.0" prefWidth="21.0" text="20">
+            <CheckBox fx:id="checkbox20" layoutX="290.0" layoutY="111.0" mnemonicParsing="false" onAction="#selectAmount" prefHeight="13.0" prefWidth="21.0" text="20">
                <font>
                   <Font size="9.0" />
                </font>
             </CheckBox>
-            <CheckBox layoutX="356.0" layoutY="111.0" mnemonicParsing="false" text="30">
+            <CheckBox fx:id="checkbox30" layoutX="350.0" layoutY="111.0" mnemonicParsing="false" onAction="#selectAmount" text="30">
                <font>
                   <Font size="9.0" />
                </font>

@@ -43,7 +43,8 @@ public class SignUpController extends Controller implements Initializable{
                 alertBox.alertMessage("User with that email already exists, try login.");
             }
             else{
-                new User(signUpUserName.getText(), signUpEmail.getText(), signUpPassword.getText());
+                RegularUser user = new RegularUser(signUpUserName.getText(), signUpEmail.getText(), signUpPassword.getText());
+                user.buyCard();
                 alertBox.alertMessage("User successfully created");
             }
         } else{

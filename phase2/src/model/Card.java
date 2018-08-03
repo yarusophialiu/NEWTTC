@@ -28,7 +28,7 @@ public class Card{
     }
 
     /** Adjust the boolean isSuspended when the card is suspended and the card is retrieved. */
-    void reverseSuspended() {
+    public void reverseSuspended() {
         this.isSuspended = !this.isSuspended;
         if (isSuspended) {
             System.out.println("CardController " + id + " has been suspended.");
@@ -38,7 +38,7 @@ public class Card{
     }
 
     /** Getter for CardController.id. */
-    int getId() {
+    public int getId() {
         return this.id;
     }
 
@@ -51,7 +51,7 @@ public class Card{
      * Add money to card's balance. Exception will be threw if the adding money is not $10 or $20 or
      * $50.
      */
-    void increaseBalance(int i) throws Exception {
+    public void increaseBalance(int i) throws Exception {
         if (i == 10 || i == 20 || i == 50) {
             this.balance += i;
             System.out.println(i + " dollars has been added to card " + id + " New balance: $" + balance);
@@ -88,7 +88,7 @@ public class Card{
         }
     }
 
-    void updateOnTap(String enterOrExit, Station station, Date time, String vehicle, StationFactory stationFactory){
+    public void updateOnTap(String enterOrExit, Station station, Date time, String vehicle, StationFactory stationFactory){
         if (isSuspended){
             System.out.println("You cannot enter because card " + id + " is suspended " + time);
         }
@@ -147,7 +147,7 @@ public class Card{
         }
     }
 
-    String recentTripString() {
+    public String recentTripString() {
         StringBuilder output = new StringBuilder();
         int i = 1;
         for (Trip trip : myTrip) {
@@ -174,6 +174,10 @@ public class Card{
 
     static void setAdminUser(AdminUser newAdminUser){
         adminUser = newAdminUser;
+    }
+
+    public User getUser(){
+        return user;
     }
 }
 
