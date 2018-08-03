@@ -27,7 +27,7 @@
             <Font size="9.0" />
          </font>
       </Button>
-      <GridPane fx:id="buttongrid" layoutX="39.0" layoutY="118.0" prefHeight="30.0" prefWidth="445.0">
+      <GridPane fx:id="buttonGrid" layoutX="39.0" layoutY="118.0" prefHeight="30.0" prefWidth="445.0">
         <columnConstraints>
           <ColumnConstraints hgrow="SOMETIMES" maxWidth="223.0" minWidth="10.0" prefWidth="116.0" />
           <ColumnConstraints hgrow="SOMETIMES" maxWidth="382.0" minWidth="10.0" prefWidth="147.0" />

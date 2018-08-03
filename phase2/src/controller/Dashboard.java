@@ -4,11 +4,10 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
-import model.Card;
-import model.RegularUser;
-import model.User;
+import model.*;
 
 import java.io.IOException;
 import java.net.URL;
@@ -27,6 +26,9 @@ public class Dashboard extends Controller implements Initializable{
     private TextField newUsername;
 
     @FXML
+    private Label userName = new Label();
+
+
     public void goBackPage(javafx.event.ActionEvent event) throws Exception {
         switchScene(event, "login.fxml");
     }
@@ -40,18 +42,19 @@ public class Dashboard extends Controller implements Initializable{
 
     void setUser(User newUser){
         this.user = newUser;
+        this.userName.setText(user.getUserName());
         this.cards = ((RegularUser) user).getMyCard();
     }
+
 
     @FXML
     void addCard(javafx.event.ActionEvent event) throws IOException {
         Button button = new Button();
 //        button.setText(button.getId());
         buttonGrid.add(button, cards.size(), 0);
-        //prolem with it
-//        Card card;
-//        cards.add(card);
-        //setonaction
+        //problem with it
+        ((RegularUser)user).buyCard();
+        //set on action
     }
 
     @FXML
@@ -63,15 +66,15 @@ public class Dashboard extends Controller implements Initializable{
         for (User passenger: users.values()) {
             if (user.getUserName().equals(passenger.getUserName())) {
                 //change name
-//                user.changeName();
+                user.changeName(newUsername.getText());
 
             }
         }
         //change username in user
     }
 
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
+
+    public void loadCard() {
         int col = 0;
         for (Card card : cards) {
             Button button = new Button(Integer.toString(card.getId()));
