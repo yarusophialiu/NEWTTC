@@ -21,7 +21,7 @@ public class Card{
     private ArrayList<Trip> myTrip = new ArrayList<>();
 
     /** Initialize a new card. */
-    Card() {
+    public Card() {
         this.id = idIncrementer;
         idIncrementer++;
         this.balance = 19;
