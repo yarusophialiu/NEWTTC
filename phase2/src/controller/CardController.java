@@ -11,7 +11,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 public class CardController extends Controller{
-    private ArrayList<Card> myCards;
+    private Card myCard;
 
     public void goBackPage(javafx.event.ActionEvent event) throws Exception {
         switchScene(event, "dashboard.fxml");
@@ -35,7 +35,7 @@ public class CardController extends Controller{
         window.show();
     }
 
-    void setCardSet(ArrayList<Card> cards){
-        myCards = cards;
+    void setCardSet(Card card){
+        myCard = card;
     }
 }
