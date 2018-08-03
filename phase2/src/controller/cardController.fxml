@@ -27,7 +27,7 @@
                   <Font size="27.0" />
                </font>
             </Label>
-            <Label layoutX="69.0" layoutY="69.0" text="Balance: 10" />
+            <Label layoutX="69.0" layoutY="69.0" text="Balance:" />
             <Button layoutX="72.0" layoutY="145.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="66.0" style="-fx-background-color: rgba(19, 173, 243, 0.63);" text="Delete Card" textFill="WHITE">
                <font>
                   <Font size="9.0" />
