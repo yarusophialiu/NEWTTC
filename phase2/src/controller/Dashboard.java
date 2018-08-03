@@ -79,7 +79,7 @@ public class Dashboard extends Controller implements Initializable{
             button.setOnAction(event -> {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("cardController.fxml"));
                 CardController cardController = loader.getController();
-                cardController.setCardSet(card);
+                cardController.setCard(card);
                 try {
                     switchScene(event, "cardController.fxml");
                 } catch (Exception e) {

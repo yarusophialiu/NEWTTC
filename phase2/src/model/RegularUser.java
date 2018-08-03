@@ -22,13 +22,13 @@ public class RegularUser extends User {
      * @param emailAddress
      * @param password
      */
-    RegularUser(String userName, String emailAddress, String password) {
+    public RegularUser(String userName, String emailAddress, String password) {
         super(userName, emailAddress, password);
         this.myCards = new ArrayList<>();
     }
 
     /** user buy a new card */
-    void buyCard() {
+    public void buyCard() {
         Card card = new Card();
         addCard(card);
         System.out.println(getUserName() + "bought" + " " + "1 card.");
@@ -122,5 +122,9 @@ public class RegularUser extends User {
 
     public ArrayList<Card> getMyCard(){
         return myCards;
+    }
+
+    public void removeCard(Card card){
+        myCards.remove(card);
     }
 }
