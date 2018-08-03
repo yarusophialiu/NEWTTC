@@ -43,6 +43,16 @@ public class Dashboard extends Controller implements Initializable{
         for (Card card : cards) {
             Button button = new Button(Integer.toString(card.getId()));
             buttonGrid.add(button, col, 0);
+            button.setOnAction(event -> {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("cardController.fxml"));
+                CardController cardController = loader.getController();
+                cardController.setCardSet(cards);
+                try {
+                    switchScene(event, "cardController.fxml");
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            });
             col++;
         }
     }
