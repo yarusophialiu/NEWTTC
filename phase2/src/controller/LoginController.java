@@ -10,15 +10,12 @@ import javafx.scene.Scene;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import model.User;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
 import java.io.IOException;
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.ResourceBundle;
-import model.*;
 
 public class LoginController extends Controller implements Initializable{
     @FXML
@@ -42,6 +39,7 @@ public class LoginController extends Controller implements Initializable{
                     if (user.getEmailAddress().equals(email.getText())){
                         if (user.correctPassword(password.getText())){
                             FXMLLoader loader = new FXMLLoader(getClass().getResource("dashboard.fxml"));
+                            Parent root = loader.load();
                             Dashboard dashboardControl = loader.getController();
                             dashboardControl.setUser(user);
                             switchScene(event, "dashboard.fxml");
