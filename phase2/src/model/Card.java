@@ -38,7 +38,7 @@ public class Card{
     }
 
     /** Getter for CardController.id. */
-    int getId() {
+    public int getId() {
         return this.id;
     }
 
