@@ -41,7 +41,10 @@ public class LoginController extends Controller implements Initializable{
                 for (User user : users.values()){
                     if (user.getEmailAddress().equals(email.getText())){
                         if (user.correctPassword(password.getText())){
-                            nextScene(event, user);
+                            FXMLLoader loader = new FXMLLoader(getClass().getResource("dashboard.fxml"));
+                            Dashboard dashboardControl = loader.getController();
+                            dashboardControl.setUser(user);
+                            switchScene(event, "dashboard.fxml");
                         }
                     }
                 }
@@ -62,10 +65,6 @@ public class LoginController extends Controller implements Initializable{
         window.show();
     }
 
-    // when this method is called, it will change the scene
-    void nextScene(javafx.event.ActionEvent event, User user) throws Exception {
-        switchScene(event, "dashboard.fxml");
-    }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {

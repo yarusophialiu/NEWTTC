@@ -6,7 +6,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import model.User;
+import model.*;
 
 import java.io.IOException;
 
@@ -21,6 +21,9 @@ public class Dashboard extends Controller{
     }
 
     public void goToCard(javafx.event.ActionEvent event) throws Exception {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("cardController.fxml"));
+        CardController cardController = loader.getController();
+        cardController.setCardSet(((RegularUser)user).getMyCard());
         switchScene(event, "cardController.fxml");
     }
 

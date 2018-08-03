@@ -119,4 +119,8 @@ public class RegularUser extends User {
                 return 12;
         }
     }
+
+    public ArrayList<Card> getMyCard(){
+        return myCards;
+    }
 }
