@@ -78,6 +78,7 @@ public class Dashboard extends Controller implements Initializable{
         int col = 0;
         for (Card card : cards) {
             Button button = new Button(Integer.toString(card.getId()));
+            button.setText(Integer.toString(card.getId()));
             buttonGrid.add(button, col, 0);
             button.setOnAction(event -> {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("cardController.fxml"));
