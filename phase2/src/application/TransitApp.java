@@ -5,8 +5,11 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import javafx.scene.Parent;
+import model.AdminUser;
 
 public class TransitApp extends Application{
+    private static AdminUser admin = new AdminUser("adminuser", "adminuser@mail.com", "admin123");
+
 
     @Override
     public void start(Stage primaryStage) throws Exception {
