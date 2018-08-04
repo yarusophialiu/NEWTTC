@@ -14,3 +14,11 @@ bus
 1 Queen neighbour: Museum King
 1 King neighbour: Queen Union_Station
 1 Union_Station neighbour: King
+
+2 Yuxin neighbour: Yunfan
+2 Yunfan neighbour: Yuxin College
+2 College neighbour: Yunfan Xiaolei
+2 Xiaolei neighbour: College Yaru
+2 Yaru neighbour: Xiaolei Frank
+2 Frank neighbour: Yaru Sophia
+2 Sophia neighbour: Frank Union_Station

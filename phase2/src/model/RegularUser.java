@@ -31,7 +31,7 @@ public class RegularUser extends User {
     public int buyCard() {
         Card card = new Card();
         addCard(card);
-        System.out.println(getUserName() + "bought" + " " + "1 card.");
+        System.out.println(getUserName() + " bought" + " " + "1 card.");
         return card.getId();
     }
 
