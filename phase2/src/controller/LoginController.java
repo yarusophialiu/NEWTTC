@@ -43,7 +43,10 @@ public class LoginController extends Controller implements Initializable{
                             Dashboard dashboardControl = loader.getController();
                             dashboardControl.setUser(user);
                             dashboardControl.loadCard();
+<<<<<<< HEAD
+=======
 //                            switchScene(event, "dashboard.fxml");
+>>>>>>> 55bd6f66de7c157b769939bd5a6bdeb875916387
                             Stage stage = new Stage();
                             stage.setScene(new Scene(root, 800, 500));
                             stage.show();

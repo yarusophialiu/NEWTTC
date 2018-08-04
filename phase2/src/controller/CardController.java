@@ -12,6 +12,8 @@ import model.Card;
 import model.RegularUser;
 
 import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
 
 public class CardController extends Controller implements Initializable{
     private Card myCard;
@@ -35,29 +37,30 @@ public class CardController extends Controller implements Initializable{
 
     @FXML
     public void takeSubway(javafx.event.ActionEvent event) throws IOException {
-        Parent subway = FXMLLoader.load(getClass().getResource("subwayController.fxml"));
-        Scene subwayScene = new Scene(subway);
-
-        Stage window = (Stage) ((Node)event.getSource()).getScene().getWindow();
-        window.setScene(subwayScene);
-        window.show();
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("subwayController.fxml"));
+        Parent root = loader.load();
+        SubwayController subwayController = loader.getController();
+        subwayController.setCard(myCard);
+        Stage stage = new Stage();
+        stage.setScene(new Scene(root, 800, 500));
+        stage.show();
     }
 
     @FXML
     public void takeBus(javafx.event.ActionEvent event) throws IOException {
-        Parent bus = FXMLLoader.load(getClass().getResource("busController.fxml"));
-        Scene busScene = new Scene(bus);
-
-        Stage window = (Stage) ((Node)event.getSource()).getScene().getWindow();
-        window.setScene(busScene);
-        window.show();
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("busController.fxml"));
+        Parent root = loader.load();
+        BusController busController = loader.getController();
+        busController.setCard(myCard);
+        Stage stage = new Stage();
+        stage.setScene(new Scene(root, 800, 500));
+        stage.show();
     }
 
     @FXML
-    void setCard(Card card){
+    public void setCard(Card card){
         myCard = card;
-        cardNum.setText("1002");
-
+        cardNum.setText(Integer.toString(card.getId()));
     }
 
     @FXML
