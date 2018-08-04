@@ -1,24 +1,11 @@
 package controller;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.geometry.Pos;
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.VBox;
-import javafx.stage.Modality;
-import javafx.stage.Stage;
-import model.*;
+import model.RegularUser;
+import model.User;
 
-import java.io.BufferedWriter;
-import java.io.FileWriter;
-import java.io.IOException;
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.ResourceBundle;
 
@@ -35,20 +22,23 @@ public class SignUpController extends Controller implements Initializable{
 
     @FXML
     void signUp(javafx.event.ActionEvent event){
-        AlertBox alertBox= new AlertBox();
-        if (signUpEmail.getText().matches("[\\S]+") && signUpUserName.getText().matches("[\\S]+")
-                && signUpPassword.getText().matches("[\\S]+")) {
+        String emailInput = signUpEmail.getText();
+        String passwordInput = signUpPassword.getText();
+        String userNameInput = signUpUserName.getText();
+
+        if (emailInput.matches("[\\S]+") && userNameInput.matches("[\\S]+")
+                && passwordInput.matches("[\\S]+")) {
             HashMap<String, User> users = User.getUsers();
-            if (users.keySet().contains(signUpEmail.getText())){
-                alertBox.alertMessage("User with that email already exists, try login.");
+            if (users.keySet().contains(emailInput)){
+                alert("User with that email already exists, try login.");
             }
             else{
-                RegularUser user = new RegularUser(signUpUserName.getText(), signUpEmail.getText(), signUpPassword.getText());
+                RegularUser user = new RegularUser(userNameInput, emailInput, passwordInput);
                 user.buyCard();
-                alertBox.alertMessage("User successfully created");
+                alert("User successfully created");
             }
         } else{
-            alertBox.alertMessage("At least one of the information input is illegal : empty or contain space. ");
+            alert("At least one of the information input is illegal : empty or contain space. ");
         }
     }
 
