@@ -7,13 +7,13 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
-import model.*;
+import model.Card;
+import model.RegularUser;
+import model.User;
 
 import java.io.IOException;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.ResourceBundle;
 
 public class Dashboard extends Controller implements Initializable{
     private User user;
@@ -41,7 +41,7 @@ public class Dashboard extends Controller implements Initializable{
     }
 
     void setUser(User newUser){
-        this.user = newUser;
+         this.user = newUser;
         this.userName.setText(user.getUserName());
         this.cards = ((RegularUser) user).getMyCard();
     }
@@ -59,18 +59,17 @@ public class Dashboard extends Controller implements Initializable{
 
     @FXML
     void changeUsername(javafx.event.ActionEvent event) throws IOException {
-        //new name
-
         //find user
         HashMap<String, User> users = User.getUsers();
         for (User passenger: users.values()) {
             if (user.getUserName().equals(passenger.getUserName())) {
                 //change name
                 user.changeName(newUsername.getText());
-
+                break;
             }
         }
-        //change username in user
+        AlertBox alertBox= new AlertBox();
+        alertBox.alertMessage("Successfully change username");
     }
 
 
