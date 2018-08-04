@@ -90,7 +90,7 @@ public class CardController extends Controller implements Initializable{
     }
 
     @FXML
-    void selectAmount(javafx.event.ActionEvent event){
+    void selectAmount(){
         if (checkbox10.isSelected()){
             checkbox20.setDisable(true);
             checkbox30.setDisable(true);
