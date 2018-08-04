@@ -50,10 +50,10 @@ public class Dashboard extends Controller implements Initializable{
     @FXML
     void addCard(javafx.event.ActionEvent event) throws IOException {
         Button button = new Button();
-//        button.setText(button.getId());
+        int id = ((RegularUser)user).buyCard();
+        button.setText(Integer.toString(id));
         buttonGrid.add(button, cards.size(), 0);
-        //problem with it
-        ((RegularUser)user).buyCard();
+
         //set on action
     }
 
@@ -70,6 +70,7 @@ public class Dashboard extends Controller implements Initializable{
         }
         AlertBox alertBox= new AlertBox();
         alertBox.alertMessage("Successfully change username");
+
     }
 
 
