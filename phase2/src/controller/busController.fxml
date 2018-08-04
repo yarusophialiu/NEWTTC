@@ -53,9 +53,9 @@
       <Label layoutX="336.0" layoutY="211.0" text="Union_Station" />
       <TextField layoutX="406.0" layoutY="258.0" promptText="StartTime" />
       <TextField layoutX="406.0" layoutY="301.0" promptText="EndTime" />
-      <Button layoutX="443.0" layoutY="343.0" mnemonicParsing="false" text="Confirm Trip" />
-      <Label layoutX="419.0" layoutY="235.0" text="yyyy-MM-dd HH:mm:ss" />
-      <Label layoutX="451.0" layoutY="218.0" text="Time format:" />
+      <Button layoutX="443.0" layoutY="343.0" mnemonicParsing="false" style="-fx-background-color: rgba(19, 173, 243, 0.63);" text="Confirm Trip" textFill="WHITE" />
+      <Label layoutX="417.0" layoutY="227.0" text="yyyy-MM-dd HH:mm:ss" />
+      <Label layoutX="451.0" layoutY="210.0" text="Time format:" />
       <Label layoutX="188.0" layoutY="92.0" text="Yuxin" />
       <Label layoutX="124.0" layoutY="143.0" text="Yunfan" />
       <Label layoutX="125.0" layoutY="243.0" text="Xiaolei" />
