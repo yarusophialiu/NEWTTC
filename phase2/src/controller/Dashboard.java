@@ -3,10 +3,13 @@ package controller;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
+import javafx.stage.Stage;
 import model.Card;
 import model.RegularUser;
 import model.User;
@@ -81,16 +84,23 @@ public class Dashboard extends Controller implements Initializable{
             button.setText(Integer.toString(card.getId()));
             buttonGrid.add(button, col, 0);
             button.setOnAction(event -> {
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("cardController.fxml"));
-                CardController cardController = loader.getController();
-                cardController.setCard(card);
                 try {
-                    switchScene(event, "cardController.fxml");
-                } catch (Exception e) {
+                    helper(card);
+                } catch (IOException e) {
                     e.printStackTrace();
                 }
             });
             col++;
         }
+    }
+
+    private void helper(Card card) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("CardController.fxml"));
+        Parent root = loader.load();
+        CardController cardController = loader.getController();
+        cardController.setCard(card);
+        Stage stage = new Stage();
+        stage.setScene(new Scene(root, 800, 500));
+        stage.show();
     }
 }
