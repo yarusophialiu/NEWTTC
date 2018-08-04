@@ -20,6 +20,11 @@ public class Controller implements Initializable{
         window.show();
     }
 
+    void alert(String messgae) {
+        AlertBox alertBox= new AlertBox();
+        alertBox.alertMessage(messgae);
+    }
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
