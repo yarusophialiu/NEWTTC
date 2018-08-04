@@ -27,19 +27,7 @@
             <Font size="9.0" />
          </font>
       </Button>
-      <GridPane fx:id="buttonGrid" layoutX="39.0" layoutY="118.0" prefHeight="30.0" prefWidth="445.0">
-        <columnConstraints>
-          <ColumnConstraints hgrow="SOMETIMES" maxWidth="223.0" minWidth="10.0" prefWidth="116.0" />
-          <ColumnConstraints hgrow="SOMETIMES" maxWidth="382.0" minWidth="10.0" prefWidth="102.0" />
-            <ColumnConstraints hgrow="SOMETIMES" maxWidth="382.0" minWidth="10.0" prefWidth="110.0" />
-            <ColumnConstraints hgrow="SOMETIMES" maxWidth="382.0" minWidth="10.0" prefWidth="132.0" />
-            <ColumnConstraints hgrow="SOMETIMES" maxWidth="382.0" minWidth="10.0" prefWidth="100.0" />
-        </columnConstraints>
-        <rowConstraints>
-          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-        </rowConstraints>
-      </GridPane>
       <TextField fx:id="newUsername" layoutX="33.0" layoutY="225.0" prefHeight="11.0" prefWidth="117.0" promptText="new username" />
-      <HBox fx:id="hbox" layoutX="180.0" layoutY="268.0" prefHeight="100.0" prefWidth="200.0" spacing="5.0" />
+      <HBox fx:id="hbox" layoutX="33.0" layoutY="105.0" prefHeight="62.0" prefWidth="541.0" spacing="5.0" />
    </children>
 </AnchorPane>
