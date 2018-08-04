@@ -24,6 +24,12 @@ public class LoginController extends Controller implements Initializable{
     @FXML
     private TextField email;
 
+    boolean checkAdmin(String email, String password) {
+        if (email.equals("adminuser@mail.com") && password.equals("admin123")) {
+            return true;
+        }
+        return false;
+    }
 
 
     @FXML
@@ -31,13 +37,20 @@ public class LoginController extends Controller implements Initializable{
         AlertBox alertBox= new AlertBox();
         if (email.getText().matches("[\\S]+") && password.getText().matches("[\\S]+")) {
             HashMap<String, User> users = User.getUsers();
-            if (!users.keySet().contains(email.getText())){
+            String emailInput = email.getText();
+            String passwordInput = password.getText();
+
+            if (checkAdmin(emailInput, passwordInput)) {
+                switchScene(event, "adminuser.fxml");
+            }
+
+            if (!users.keySet().contains(emailInput)){
                 alertBox.alertMessage("User with that email does not exists, try sign up.");
             }
             else{
                 for (User user : users.values()){
-                    if (user.getEmailAddress().equals(email.getText())){
-                        if (user.correctPassword(password.getText())){
+                    if (user.getEmailAddress().equals(emailInput)){
+                        if (user.correctPassword(passwordInput)){
                             FXMLLoader loader = new FXMLLoader(getClass().getResource("dashboard.fxml"));
                             Parent root = loader.load();
                             Dashboard dashboardControl = loader.getController();
