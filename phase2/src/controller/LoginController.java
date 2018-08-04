@@ -51,7 +51,6 @@ public class LoginController extends Controller implements Initializable{
 
     @FXML
     void login(javafx.event.ActionEvent event) throws Exception {
-        AlertBox alertBox= new AlertBox();
         if (email.getText().matches("[\\S]+") && password.getText().matches("[\\S]+")) {
             HashMap<String, User> users = User.getUsers();
             String emailInput = email.getText();
@@ -60,13 +59,13 @@ public class LoginController extends Controller implements Initializable{
             if (checkAdmin(emailInput, passwordInput)) {
                 switchScene(event, "adminuser.fxml");
             } else if (!users.keySet().contains(emailInput)){
-                alertBox.alertMessage("User with that email does not exists, try sign up.");
+                alert("User with that email does not exists, try sign up.");
             }
             else{
                 checkUser(emailInput, passwordInput, users);
             }
         } else{
-            alertBox.alertMessage("At least one of the information input is illegal : empty or contain space. ");
+            alert("At least one of the information input is illegal : empty or contain space. ");
         }
     }
 
