@@ -31,6 +31,23 @@ public class LoginController extends Controller implements Initializable{
         return false;
     }
 
+    void checkUser(String email, String password, HashMap<String, User> users) throws IOException{
+        for (User user : users.values()){
+            if (user.getEmailAddress().equals(email)){
+                if (user.correctPassword(password)){
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("dashboard.fxml"));
+                    Parent root = loader.load();
+                    Dashboard dashboardControl = loader.getController();
+                    dashboardControl.setUser(user);
+                    dashboardControl.loadCard();
+                    Stage stage = new Stage();
+                    stage.setScene(new Scene(root, 800, 500));
+                    stage.show();
+                }
+            }
+        }
+    }
+
 
     @FXML
     void login(javafx.event.ActionEvent event) throws Exception {
@@ -42,26 +59,11 @@ public class LoginController extends Controller implements Initializable{
 
             if (checkAdmin(emailInput, passwordInput)) {
                 switchScene(event, "adminuser.fxml");
-            }
-
-            if (!users.keySet().contains(emailInput)){
+            } else if (!users.keySet().contains(emailInput)){
                 alertBox.alertMessage("User with that email does not exists, try sign up.");
             }
             else{
-                for (User user : users.values()){
-                    if (user.getEmailAddress().equals(emailInput)){
-                        if (user.correctPassword(passwordInput)){
-                            FXMLLoader loader = new FXMLLoader(getClass().getResource("dashboard.fxml"));
-                            Parent root = loader.load();
-                            Dashboard dashboardControl = loader.getController();
-                            dashboardControl.setUser(user);
-                            dashboardControl.loadCard();
-                            Stage stage = new Stage();
-                            stage.setScene(new Scene(root, 800, 500));
-                            stage.show();
-                        }
-                    }
-                }
+                checkUser(emailInput, passwordInput, users);
             }
         } else{
             alertBox.alertMessage("At least one of the information input is illegal : empty or contain space. ");
