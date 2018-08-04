@@ -43,7 +43,9 @@ public class LoginController extends Controller implements Initializable{
                             Dashboard dashboardControl = loader.getController();
                             dashboardControl.setUser(user);
                             dashboardControl.loadCard();
-                            switchScene(event, "dashboard.fxml");
+                            Stage stage = new Stage();
+                            stage.setScene(new Scene(root, 800, 500));
+                            stage.show();
                         }
                     }
                 }
