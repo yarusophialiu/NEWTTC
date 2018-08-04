@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Text fill="#6b6868" layoutX="45.0" layoutY="61.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Admin Dashboard">
+         <font>
+            <Font size="25.0" />
+         </font>
+      </Text>
+      <Text fill="#6b6868" layoutX="45.0" layoutY="105.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Today:">
+         <font>
+            <Font size="17.0" />
+         </font>
+      </Text>
+      <VBox layoutX="72.0" layoutY="123.0" prefHeight="85.0" prefWidth="139.0" spacing="10.0">
+         <children>
+            <Text fill="#6b6868" strokeType="OUTSIDE" strokeWidth="0.0" text="Total Revenue:" />
+            <Text fill="#6b6868" strokeType="OUTSIDE" strokeWidth="0.0" text="Total Num of Stops:" />
+            <Text fill="#6b6868" strokeType="OUTSIDE" strokeWidth="0.0" text="Total Num of Stations:" />
+         </children>
+      </VBox>
+      <VBox layoutX="243.0" layoutY="123.0" prefHeight="85.0" prefWidth="139.0" spacing="10.0">
+         <children>
+            <Text fx:id="totalRev" fill="#6b6868" strokeType="OUTSIDE" strokeWidth="0.0" />
+            <Text fx:id="totalStops" fill="#6b6868" strokeType="OUTSIDE" strokeWidth="0.0" />
+            <Text fx:id="totalStations" fill="#6b6868" strokeType="OUTSIDE" strokeWidth="0.0" />
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>
