@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.*?>
 
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.AdminuserController">
    <children>
       <Text fill="#6b6868" layoutX="45.0" layoutY="61.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Admin Dashboard">
          <font>
@@ -34,5 +34,6 @@
             <Text fx:id="totalStations" fill="#6b6868" strokeType="OUTSIDE" strokeWidth="0.0" />
          </children>
       </VBox>
+      <Button layoutX="430.0" layoutY="38.0" mnemonicParsing="false" onAction="#goBackPage" style="-fx-background-color: rgba(19, 173, 243, 0.63);" text="Log Out" textFill="WHITE" />
    </children>
 </AnchorPane>

@@ -3,7 +3,7 @@ package controller;
 import javafx.fxml.FXML;
 import javafx.scene.text.Text;
 
-public class AdminuserController {
+public class AdminuserController extends Controller{
     @FXML
     private Text totalStations;
 
@@ -12,4 +12,9 @@ public class AdminuserController {
 
     @FXML
     private Text totalRev;
+
+    @FXML
+    public void goBackPage(javafx.event.ActionEvent event) throws Exception {
+        switchScene(event, "login.fxml");
+    }
 }
