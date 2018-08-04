@@ -92,17 +92,28 @@ public class CardController extends Controller implements Initializable{
     @FXML
     void selectAmount(javafx.event.ActionEvent event){
         if (checkbox10.isSelected()){
-            checkbox20.setAllowIndeterminate(true);
-            checkbox30.setAllowIndeterminate(true);
+            checkbox20.setDisable(true);
+            checkbox30.setDisable(true);
+
         }
         else if (checkbox20.isSelected()){
-            checkbox10.setAllowIndeterminate(true);
-            checkbox30.setAllowIndeterminate(true);
+            checkbox10.setDisable(true);
+            checkbox30.setDisable(true);
         }
         else if (checkbox30.isSelected()){
-            checkbox10.setAllowIndeterminate(true);
-            checkbox20.setAllowIndeterminate(true);
+            checkbox10.setDisable(true);
+            checkbox20.setDisable(true);
         }
+        else{
+            checkbox10.setDisable(false);
+            checkbox20.setDisable(false);
+            checkbox30.setDisable(false);
+        }
+    }
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+
     }
 
 }
