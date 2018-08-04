@@ -28,10 +28,11 @@ public class RegularUser extends User {
     }
 
     /** user buy a new card */
-    public void buyCard() {
+    public int buyCard() {
         Card card = new Card();
         addCard(card);
         System.out.println(getUserName() + "bought" + " " + "1 card.");
+        return card.getId();
     }
 
     /** used to check if the card has already existed in the collection of card user has. */
