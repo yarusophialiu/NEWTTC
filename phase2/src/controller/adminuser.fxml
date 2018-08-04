@@ -7,7 +7,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.LoginController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.AdminuserController">
    <children>
       <Text fill="#6b6868" layoutX="45.0" layoutY="61.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Admin Dashboard">
          <font>
@@ -22,8 +22,7 @@
       <VBox layoutX="72.0" layoutY="123.0" prefHeight="85.0" prefWidth="139.0" spacing="10.0">
          <children>
             <Text fill="#6b6868" strokeType="OUTSIDE" strokeWidth="0.0" text="Total Revenue:" />
-            <Text fill="#6b6868" strokeType="OUTSIDE" strokeWidth="0.0" text="Total Num of Stops:" />
-            <Text fill="#6b6868" strokeType="OUTSIDE" strokeWidth="0.0" text="Total Num of Stations:" />
+            <Text fill="#6b6868" strokeType="OUTSIDE" strokeWidth="0.0" text="Total Num of Stops/Stations:" />
          </children>
       </VBox>
       <VBox layoutX="243.0" layoutY="123.0" prefHeight="85.0" prefWidth="139.0" spacing="10.0">
