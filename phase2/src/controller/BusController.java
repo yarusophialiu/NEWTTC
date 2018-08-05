@@ -12,6 +12,7 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import model.*;
 import java.io.IOException;
+import java.lang.reflect.Array;
 import java.net.URL;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -41,6 +42,8 @@ public class BusController extends Controller implements Initializable{
 
     private Stage previousStage;
 
+    private ArrayList<ArrayList<CheckBox>> lines = new ArrayList<>();
+
     public void setCard(Card card){
         this.card = card;
     }
@@ -59,59 +62,61 @@ public class BusController extends Controller implements Initializable{
     private void disable(CheckBox box){
         selected.add(box);
         if (selected.size() == 2){
-            for (CheckBox aSelected : line1) {
-                if (!aSelected.equals(selected.get(0)) && !aSelected.equals(selected.get(1))) {
-                    aSelected.setDisable(true);
-                }
-            }
-            for (CheckBox aSelected : line2) {
-                if (!aSelected.equals(selected.get(0)) && !aSelected.equals(selected.get(1))) {
-                    aSelected.setDisable(true);
-                }
-            }
-        }
-        else{
-            if (! line1.contains(box)){
-                for (CheckBox item : line1){
-                    if (!line2.contains(item)) {
+            for (ArrayList<CheckBox> line : lines){
+                for (CheckBox item: line){
+                    if (! item.equals(box) & ! item.equals(selected.get(0))){
                         item.setDisable(true);
                     }
                 }
             }
-            else if (! line2.contains(box)){
-                for (CheckBox item : line2){
-                     if (!line1.contains(item)) {
-                         item.setDisable(true);
-                     }
-                }
+    } else {
+      ArrayList<CheckBox> list = new ArrayList<>();
+      for (ArrayList<CheckBox> line : lines) {
+        if (line.contains(box)) {
+          list.addAll(line);
+        }
+      }
+      for (ArrayList<CheckBox> line : lines) {
+        if (!line.contains(box)) {
+          for (CheckBox item : line) {
+            if (!list.contains(item)) {
+              item.setDisable(true);
             }
+          }
+        }
+      }
         }
     }
 
     private void enable(CheckBox box){
         selected.remove(box);
         if (selected.size() == 0){
-            for (CheckBox item : line1){
-                item.setDisable(false);
-            }
-            for (CheckBox item1 : line2) {
-                item1.setDisable(false);
+            for (ArrayList<CheckBox> line : lines){
+                for (CheckBox item : line){
+                    item.setDisable(false);
+                }
             }
         }
         else{
             CheckBox start = selected.get(0);
-            if (line1.contains(start)){
-                for (CheckBox item : line1){
-                    if(!item.equals(start)){
-                        item.setDisable(false);
-                    }
+            for (ArrayList<CheckBox> line : lines){
+                for (CheckBox item : line){
+                    item.setDisable(false);
                 }
             }
-            if (line2.contains(start)){
-                for (CheckBox item1 : line2) {
-                    if (!item1.equals(start)) {
-                        item1.setDisable(false);
-                     }
+            ArrayList<CheckBox> list = new ArrayList<>();
+            for (ArrayList<CheckBox> line : lines) {
+                if (line.contains(start)) {
+                    list.addAll(line);
+                }
+            }
+            for (ArrayList<CheckBox> line : lines) {
+                if (!line.contains(start)) {
+                    for (CheckBox item : line) {
+                        if (!list.contains(item)) {
+                            item.setDisable(true);
+                        }
+                    }
                 }
             }
         }
@@ -144,6 +149,9 @@ public class BusController extends Controller implements Initializable{
         line2.add(stop13);
         line2.add(stop6);
         line2.add(stop14);
+
+        lines.add(line1);
+        lines.add(line2);
 
         boxToString.put(stop1, "Bloor-Yonge");
         boxToString.put(stop2, "Queens_Park");
@@ -187,14 +195,17 @@ public class BusController extends Controller implements Initializable{
                 "bus", stationFactory);
         card.updateOnTap("exits", endStation, endDate,
                 "bus", stationFactory);
-<<<<<<< HEAD
         for (ArrayList<CheckBox> checkBoxes : lines){
             for(CheckBox item : checkBoxes){
                 item.setDisable(false);
             }
-=======
->>>>>>> 101558078e5da299199eb9b61a011f68d9d066e4
         }
+        selected.get(0).setSelected(false);
+        selected.get(1).setSelected(false);
+        selected.clear();
+        startTime.clear();
+        endTime.clear();
+    }
 
 
 }
