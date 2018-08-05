@@ -70,7 +70,7 @@ public class RegularUser extends User {
     }
 
     /** A getter for the averageMonthlyFare. */
-    double getAverageMonthlyFare() {
+    public double getAverageMonthlyFare() {
         return this.averageMonthlyFare;
     }
 
