@@ -46,10 +46,14 @@ public class Dashboard extends Controller implements Initializable{
 
     @FXML
     void addCard(javafx.event.ActionEvent event) throws IOException {
-        Button button = new Button();
-        int id = ((RegularUser)user).buyCard();
-        button.setText(Integer.toString(id));
-        hBox.getChildren().add(button);
+        ConfirmBox confirmBox = new ConfirmBox();
+        if (confirmBox.confirm("Do you want to buy a new card?")){
+            Button button = new Button();
+            int id = ((RegularUser)user).buyCard();
+            button.setText(Integer.toString(id));
+            hBox.getChildren().add(button);
+        }
+
     }
 
     @FXML
