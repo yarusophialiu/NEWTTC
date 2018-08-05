@@ -32,6 +32,8 @@ public class SubwayController extends Controller implements Initializable {
 
     private HashMap<CheckBox, String> boxToString = new HashMap<>();
 
+    ArrayList<CheckBox> selected = new ArrayList<>();
+
     public void setCard(Card card){
         this.card = card;
     }
@@ -53,7 +55,6 @@ public class SubwayController extends Controller implements Initializable {
         line1.add(stop4);
         line1.add(stop5);
         line1.add(stop6);
-        line1.add(stop7);
 
         line2.add(stop7);
         line2.add(stop8);
@@ -77,11 +78,19 @@ public class SubwayController extends Controller implements Initializable {
 
     @FXML
     void selectedBoxAmount(){
-        ArrayList<CheckBox> selected = new ArrayList<>();
+        ArrayList<CheckBox> newSelected = new ArrayList<>();
         for (CheckBox cb: boxToString.keySet()){
             if (cb.isSelected()){
-                selected.add(cb);
+                newSelected.add(cb);
             }
+        }
+        for (CheckBox cbx: newSelected){
+            if (!selected.contains(cbx)){
+                selected.add(cbx);
+            }
+        }
+        if (selected.size() > newSelected.size()){
+            selected = newSelected;
         }
         if (selected.size() == 0 | selected.size() == 1){
             for (CheckBox cb: boxToString.keySet()){

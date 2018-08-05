@@ -26,7 +26,6 @@
       <Line endX="75.0" layoutX="147.0" layoutY="275.0" rotate="90.0" startX="25.0" />
       <Line endX="75.0" layoutX="147.0" layoutY="125.0" rotate="90.0" startX="25.0" />
       <Line endX="150.0" layoutX="147.0" layoutY="100.0" startX="50.0" />
-      <Line endX="100.0" layoutX="247.0" layoutY="150.0" rotate="90.0" />
       <CheckBox fx:id="stop4" layoutX="189.0" layoutY="193.0" mnemonicParsing="false" onAction="#selectedBoxAmount" />
       <CheckBox fx:id="stop5" layoutX="239.0" layoutY="193.0" mnemonicParsing="false" onAction="#selectedBoxAmount" />
       <CheckBox fx:id="stop6" layoutX="289.0" layoutY="193.0" mnemonicParsing="false" onAction="#selectedBoxAmount" />
