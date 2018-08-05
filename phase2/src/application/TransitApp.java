@@ -6,6 +6,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import javafx.scene.Parent;
 import model.AdminUser;
+import model.Card;
 
 public class TransitApp extends Application{
 
@@ -19,6 +20,7 @@ public class TransitApp extends Application{
         primaryStage.setTitle("Presto System App");
         primaryStage.setScene(new Scene(root, 800, 500 ));
         primaryStage.setResizable(false);
+        Card.setAdminUser(admin);
         primaryStage.show();
     }
 

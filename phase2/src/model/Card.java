@@ -172,7 +172,7 @@ public class Card{
         return output.toString();
     }
 
-    static void setAdminUser(AdminUser newAdminUser){
+    public static void setAdminUser(AdminUser newAdminUser){
         adminUser = newAdminUser;
     }
 
