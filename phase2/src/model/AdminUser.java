@@ -28,21 +28,11 @@ public class AdminUser extends User{
         this.totalStations += numStations;
     }
 
-    public double getTotalFare() {
-        return totalFare;
-    }
-
-    public int getTotalStations() {
-        return totalStations;
-    }
-
-
     /**
      * used to print a report for adminUser about the profit and the totalStation reached each day.
      */
-    void report() {
-        System.out.println(
-                totalFare + " dollars were collected " + "from " + totalStations + " stations today.");
+    public String report() {
+        return Double.toString(totalFare) + " dollars were collected " + "from " + Integer.toString(totalStations) + " stations today.";
     }
 
     /** used to clear data for each day to start recording information for a new day. */
