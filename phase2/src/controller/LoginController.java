@@ -24,12 +24,6 @@ public class LoginController extends Controller implements Initializable{
     @FXML
     private TextField email;
 
-    boolean checkAdmin(String email, String password) {
-        if (email.equals("adminuser@mail.com") && password.equals("admin123")) {
-            return true;
-        }
-        return false;
-    }
 
     void checkUser(String email, String password, HashMap<String, User> users) throws IOException{
         for (User user : users.values()){
@@ -56,12 +50,12 @@ public class LoginController extends Controller implements Initializable{
             String emailInput = email.getText();
             String passwordInput = password.getText();
 
-            if (checkAdmin(emailInput, passwordInput)) {
+            if (emailInput.equals("adminuser@mail.com") && passwordInput.equals("admin123")) {
 //                switchScene(event, "adminuser.fxml");
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("adminuser.fxml"));
                 Parent root = loader.load();
-                AdminuserController adminuserController = loader.getController();
-                adminuserController.loadInfo();
+                AdminUserController adminUserController = loader.getController();
+                adminUserController.loadInfo();
                 Stage stage = new Stage();
                 stage.setScene(new Scene(root, 800, 500));
                 stage.show();

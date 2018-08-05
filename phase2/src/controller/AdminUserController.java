@@ -3,8 +3,9 @@ package controller;
 import application.TransitApp;
 import javafx.fxml.FXML;
 import javafx.scene.text.Text;
+import model.*;
 
-public class AdminuserController extends Controller{
+public class AdminUserController extends Controller{
 
     @FXML
     private Text dailyReport;
@@ -15,7 +16,11 @@ public class AdminuserController extends Controller{
     }
 
     public void loadInfo() {
-        dailyReport.setText(TransitApp.getAdmin().report());
+        for (User user : User.getUsers().values()){
+            if (user.getEmailAddress().equals("adminuser@mail.com")){
+                dailyReport.setText(((AdminUser)user).report());
+            }
+        }
     }
 
 }

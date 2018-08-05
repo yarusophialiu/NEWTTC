@@ -9,7 +9,7 @@ import model.AdminUser;
 
 public class TransitApp extends Application{
 
-    private static AdminUser admin = new AdminUser("adminuser", "adminuser@mail.com", "admin123");
+    private AdminUser admin = new AdminUser("adminuser", "adminuser@mail.com", "admin123");
 
 
     @Override
@@ -21,9 +21,6 @@ public class TransitApp extends Application{
         primaryStage.show();
     }
 
-    public static AdminUser getAdmin() {
-        return admin;
-    }
 
   public static void main(String[] args) {
         launch(args);
