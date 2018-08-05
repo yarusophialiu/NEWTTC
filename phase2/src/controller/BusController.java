@@ -33,8 +33,82 @@ public class BusController extends Controller implements Initializable{
 
     private Card card;
 
+    private ArrayList<CheckBox> selected = new ArrayList<>();
+
     public void setCard(Card card){
         this.card = card;
+    }
+
+    public void selectBox (javafx.event.ActionEvent event){
+        CheckBox newSelect = ((CheckBox) event.getSource());
+        if (newSelect.isSelected()){
+            disable(newSelect);
+        }
+        else{
+            enable(newSelect);
+
+        }
+    }
+
+    private void disable(CheckBox box){
+        selected.add(box);
+        if (selected.size() == 2){
+            for (CheckBox aSelected : line1) {
+                if (!aSelected.equals(selected.get(0)) && !aSelected.equals(selected.get(1))) {
+                    aSelected.setDisable(true);
+                }
+            }
+            for (CheckBox aSelected : line2) {
+                if (!aSelected.equals(selected.get(0)) && !aSelected.equals(selected.get(1))) {
+                    aSelected.setDisable(true);
+                }
+            }
+        }
+        else{
+            if (! line1.contains(box)){
+                for (CheckBox item : line1){
+                    if (!line2.contains(item)) {
+                        item.setDisable(true);
+                    }
+                }
+            }
+            else if (! line2.contains(box)){
+                for (CheckBox item : line2){
+                     if (!line1.contains(item)) {
+                         item.setDisable(true);
+                     }
+                }
+            }
+        }
+    }
+
+    private void enable(CheckBox box){
+        selected.remove(box);
+        if (selected.size() == 0){
+            for (CheckBox item : line1){
+                item.setDisable(false);
+            }
+            for (CheckBox item1 : line2) {
+                item1.setDisable(false);
+            }
+        }
+        else{
+            CheckBox start = selected.get(0);
+            if (line1.contains(start)){
+                for (CheckBox item : line1){
+                    if(!item.equals(start)){
+                        item.setDisable(false);
+                    }
+                }
+            }
+            if (line2.contains(start)){
+                for (CheckBox item1 : line2) {
+                    if (!item1.equals(start)) {
+                        item1.setDisable(false);
+                     }
+                }
+            }
+        }
     }
 
 
