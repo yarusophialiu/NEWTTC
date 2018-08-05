@@ -22,7 +22,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.ResourceBundle;
 
-public class SubwayController extends Controller implements Initializable {
+public class SubwayController extends Controller implements Initializable, SelectStation {
 
     private Card card;
 
@@ -91,7 +91,7 @@ public class SubwayController extends Controller implements Initializable {
     }
 
     @FXML
-    void selectBox(){
+    public void selectBox(javafx.event.ActionEvent event){
         ArrayList<CheckBox> newSelected = new ArrayList<>();
         for (CheckBox checkBox: boxToString.keySet()){
             if (checkBox.isSelected()){
