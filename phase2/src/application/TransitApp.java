@@ -17,7 +17,8 @@ public class TransitApp extends Application{
 
         Parent root = FXMLLoader.load(getClass().getResource("../controller/login.fxml"));
         primaryStage.setTitle("Presto System App");
-        primaryStage.setScene(new Scene(root, 800, 500 ));
+        primaryStage.setScene(new Scene(root, 800, 600 ));
+        primaryStage.setResizable(false);
         primaryStage.show();
     }
 

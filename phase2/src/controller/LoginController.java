@@ -31,6 +31,7 @@ public class LoginController extends Controller implements Initializable{
         adminUserController.loadInfo();
         Stage stage = new Stage();
         stage.setScene(new Scene(root, 800, 500));
+        stage.setResizable(false);
         stage.show();
     }
 
