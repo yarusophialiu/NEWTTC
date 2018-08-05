@@ -57,7 +57,14 @@ public class LoginController extends Controller implements Initializable{
             String passwordInput = password.getText();
 
             if (checkAdmin(emailInput, passwordInput)) {
-                switchScene(event, "adminuser.fxml");
+//                switchScene(event, "adminuser.fxml");
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("adminuser.fxml"));
+                Parent root = loader.load();
+                AdminuserController adminuserController = loader.getController();
+                adminuserController.loadInfo();
+                Stage stage = new Stage();
+                stage.setScene(new Scene(root, 800, 500));
+                stage.show();
             } else if (!users.keySet().contains(emailInput)){
                 alert("User with that email does not exists, try sign up.");
             }
