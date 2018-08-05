@@ -33,7 +33,7 @@ public class TransitApp extends Application{
         BufferedReader fileReader =
         new BufferedReader(
             new FileReader(
-                "C:\\留学的东西\\2018 Summer\\CSC207\\project phase1\\group_0165\\phase2\\stations.txt"));
+                "phase2/stations.txt"));
         String vehicle = fileReader.readLine();
         String info = fileReader.readLine();
         StationFactory stationFactory = new StationFactory();
