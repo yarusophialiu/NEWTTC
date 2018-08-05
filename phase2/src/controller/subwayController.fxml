@@ -8,9 +8,9 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.SubwayController">
+<AnchorPane prefHeight="500.0" prefWidth="800.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.SubwayController">
    <children>
-      <Button layoutX="460.0" layoutY="43.0" mnemonicParsing="false" onAction="#goBackPage" style="-fx-background-color: rgba(19, 173, 243, 0.63);" text="go back" textFill="WHITE" />
+      <Button layoutX="578.0" layoutY="37.0" mnemonicParsing="false" onAction="#goBackPage" style="-fx-background-color: rgba(19, 173, 243, 0.63);" text="go back" textFill="WHITE" />
       <Label layoutX="53.0" layoutY="35.0" prefHeight="30.0" prefWidth="116.0" text="Subway">
          <font>
             <Font size="25.0" />
@@ -38,21 +38,21 @@
       <CheckBox fx:id="stop10" layoutX="189.0" layoutY="243.0" mnemonicParsing="false" onAction="#selectedBoxAmount" />
       <CheckBox fx:id="stop11" layoutX="189.0" layoutY="293.0" mnemonicParsing="false" onAction="#selectedBoxAmount" />
       <CheckBox fx:id="stop7" layoutX="289.0" layoutY="93.0" mnemonicParsing="false" onAction="#selectedBoxAmount" />
-      <Label layoutX="10.0" layoutY="209.0" text="Bloor-Yonge" />
+      <Label layoutX="8.0" layoutY="217.0" text="Bloor-Yonge" />
       <Label layoutX="70.0" layoutY="175.0" text="Wellesley" />
-      <Label layoutX="126.0" layoutY="209.0" text="College" />
+      <Label layoutX="124.0" layoutY="218.0" text="College" />
       <Label layoutX="200.0" layoutY="175.0" text="Dundus" />
-      <Label layoutX="230.0" layoutY="209.0" text="Queen" />
-      <Label layoutX="310.0" layoutY="183.0" text="King" />
-      <Label layoutX="150.0" layoutY="294.0" text="Xiaolei" />
-      <Label layoutX="207.0" layoutY="244.0" text="Yunfan" />
+      <Label layoutX="231.0" layoutY="217.0" text="Queen" />
+      <Label layoutX="313.0" layoutY="175.0" text="King" />
+      <Label layoutX="143.0" layoutY="303.0" text="Xiaolei" />
+      <Label layoutX="209.0" layoutY="259.0" text="Yunfan" />
       <Label layoutX="152.0" layoutY="144.0" text="Yuxin" />
       <Label layoutX="182.0" layoutY="78.0" text="Yaru" />
       <Label layoutX="260.0" layoutY="78.0" text="Terminal165" />
-      <TextField layoutX="411.0" layoutY="264.0" promptText="StartTime" />
-      <TextField layoutX="411.0" layoutY="309.0" promptText="EndTime" />
-      <Button layoutX="447.0" layoutY="350.0" mnemonicParsing="false" style="-fx-background-color: rgba(19, 173, 243, 0.63);" text="Confirm Trip" textFill="WHITE" />
-      <Label layoutX="458.0" layoutY="209.0" text="Time format:" />
-      <Label layoutX="424.0" layoutY="235.0" text="yyyy-MM-dd HH:mm:ss" />
+      <TextField layoutX="495.0" layoutY="267.0" promptText="StartTime" />
+      <TextField layoutX="495.0" layoutY="311.0" promptText="EndTime" />
+      <Button layoutX="531.0" layoutY="353.0" mnemonicParsing="false" style="-fx-background-color: rgba(19, 173, 243, 0.63);" text="Confirm Trip" textFill="WHITE" />
+      <Label layoutX="539.0" layoutY="203.0" text="Time format:" />
+      <Label layoutX="505.0" layoutY="235.0" text="yyyy-MM-dd HH:mm:ss" />
    </children>
 </AnchorPane>
