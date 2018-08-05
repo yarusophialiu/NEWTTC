@@ -7,6 +7,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.CheckBox;
+import javafx.scene.control.Label;
 import javafx.stage.Stage;
 import model.Card;
 import model.RegularUser;
@@ -17,6 +18,9 @@ import java.util.ResourceBundle;
 
 public class CardController extends Controller implements Initializable{
     private Card myCard;
+
+    @FXML
+    Label balance;
 
     @FXML
     javafx.scene.control.Label cardNum;
@@ -71,6 +75,7 @@ public class CardController extends Controller implements Initializable{
     public void setCard(Card card){
         myCard = card;
         cardNum.setText(Integer.toString(card.getId()));
+        helpShowBalance(card.getBalance());
     }
 
     @FXML
@@ -87,6 +92,7 @@ public class CardController extends Controller implements Initializable{
             checkbox30.setSelected(false);
             myCard.increaseBalance(30);
         }
+        helpShowBalance(myCard.getBalance());
     }
 
     @FXML
@@ -128,6 +134,10 @@ public class CardController extends Controller implements Initializable{
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
+    }
+
+    private void helpShowBalance(double newBalance){
+        balance.setText("Balance: " + newBalance);
     }
 
 }

@@ -179,5 +179,9 @@ public class Card{
     public User getUser(){
         return user;
     }
+
+    public double getBalance(){
+        return this.balance;
+    }
 }
 
