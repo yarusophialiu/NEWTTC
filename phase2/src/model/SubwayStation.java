@@ -2,7 +2,7 @@ package model;
 
 import java.util.ArrayList;
 
-class SubwayStation extends Station{
+public class SubwayStation extends Station{
     /** stores the neighbouring stations of this station */
     private ArrayList<SubwayStation> neighbours = new ArrayList<>();
 
@@ -23,7 +23,7 @@ class SubwayStation extends Station{
     }
 
     /** add neighbours to this station. */
-    void addNeighbours(SubwayStation neighbour) {
+    public void addNeighbours(SubwayStation neighbour) {
         this.neighbours.add(neighbour);
     }
 

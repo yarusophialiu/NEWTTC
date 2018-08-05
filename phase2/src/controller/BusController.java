@@ -187,8 +187,7 @@ public class BusController extends Controller implements Initializable{
                 "bus", stationFactory);
         card.updateOnTap("exits", endStation, endDate,
                 "bus", stationFactory);
-
-    }
+        }
 
 
 }
