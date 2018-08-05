@@ -91,16 +91,16 @@ public class SubwayController extends Controller implements Initializable {
     }
 
     @FXML
-    void selectedBoxAmount(){
+    void selectBox(){
         ArrayList<CheckBox> newSelected = new ArrayList<>();
-        for (CheckBox cb: boxToString.keySet()){
-            if (cb.isSelected()){
-                newSelected.add(cb);
+        for (CheckBox checkBox: boxToString.keySet()){
+            if (checkBox.isSelected()){
+                newSelected.add(checkBox);
             }
         }
-        for (CheckBox cbx: newSelected){
-            if (!selected.contains(cbx)){
-                selected.add(cbx);
+        for (CheckBox checkBox: newSelected){
+            if (!selected.contains(checkBox)){
+                selected.add(checkBox);
             }
         }
         if (selected.size() > newSelected.size()){
@@ -111,25 +111,6 @@ public class SubwayController extends Controller implements Initializable {
                 cb.setDisable(false);
             }
         }
-//        if (selected.size() == 1){
-//            CheckBox fistSelect = selected.get(0);
-//            if (!line1.contains(fistSelect)){
-//                for (CheckBox cb: line1){
-//                    cb.setDisable(true);
-//
-//                }
-//                for (CheckBox cb: line2){
-//                    cb.setDisable(false);
-//                }
-//            }else if (!line2.contains(fistSelect)){
-//                for (CheckBox cb: line2){
-//                    cb.setDisable(true);
-//                }
-//                for (CheckBox cb: line1){
-//                    cb.setDisable(false);
-//                }
-//            }
-//        }
         if (selected.size() == 2){
             for (CheckBox cb: boxToString.keySet()){
                 if (!cb.isSelected()){

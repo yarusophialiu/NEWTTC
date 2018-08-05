@@ -26,17 +26,17 @@
       <Line endX="75.0" layoutX="147.0" layoutY="275.0" rotate="90.0" startX="25.0" />
       <Line endX="75.0" layoutX="147.0" layoutY="125.0" rotate="90.0" startX="25.0" />
       <Line endX="150.0" layoutX="147.0" layoutY="100.0" startX="50.0" />
-      <CheckBox fx:id="stop4" layoutX="189.0" layoutY="193.0" mnemonicParsing="false" onAction="#selectedBoxAmount" />
-      <CheckBox fx:id="stop5" layoutX="239.0" layoutY="193.0" mnemonicParsing="false" onAction="#selectedBoxAmount" />
-      <CheckBox fx:id="stop6" layoutX="289.0" layoutY="193.0" mnemonicParsing="false" onAction="#selectedBoxAmount" />
-      <CheckBox fx:id="stop3" layoutX="139.0" layoutY="193.0" mnemonicParsing="false" onAction="#selectedBoxAmount" />
-      <CheckBox fx:id="stop2" layoutX="89.0" layoutY="193.0" mnemonicParsing="false" onAction="#selectedBoxAmount" />
-      <CheckBox fx:id="stop1" layoutX="39.0" layoutY="193.0" mnemonicParsing="false" onAction="#selectedBoxAmount" />
-      <CheckBox fx:id="stop9" layoutX="189.0" layoutY="143.0" mnemonicParsing="false" onAction="#selectedBoxAmount" />
-      <CheckBox fx:id="stop8" layoutX="189.0" layoutY="93.0" mnemonicParsing="false" onAction="#selectedBoxAmount" />
-      <CheckBox fx:id="stop10" layoutX="189.0" layoutY="243.0" mnemonicParsing="false" onAction="#selectedBoxAmount" />
-      <CheckBox fx:id="stop11" layoutX="189.0" layoutY="293.0" mnemonicParsing="false" onAction="#selectedBoxAmount" />
-      <CheckBox fx:id="stop7" layoutX="289.0" layoutY="93.0" mnemonicParsing="false" onAction="#selectedBoxAmount" />
+      <CheckBox fx:id="stop4" layoutX="189.0" layoutY="193.0" mnemonicParsing="false" onAction="#selectBox" />
+      <CheckBox fx:id="stop5" layoutX="239.0" layoutY="193.0" mnemonicParsing="false" onAction="#selectBox" />
+      <CheckBox fx:id="stop6" layoutX="289.0" layoutY="193.0" mnemonicParsing="false" onAction="#selectBox" />
+      <CheckBox fx:id="stop3" layoutX="139.0" layoutY="193.0" mnemonicParsing="false" onAction="#selectBox" />
+      <CheckBox fx:id="stop2" layoutX="89.0" layoutY="193.0" mnemonicParsing="false" onAction="#selectBox" />
+      <CheckBox fx:id="stop1" layoutX="39.0" layoutY="193.0" mnemonicParsing="false" onAction="#selectBox" />
+      <CheckBox fx:id="stop9" layoutX="189.0" layoutY="143.0" mnemonicParsing="false" onAction="#selectBox" />
+      <CheckBox fx:id="stop8" layoutX="189.0" layoutY="93.0" mnemonicParsing="false" onAction="#selectBox" />
+      <CheckBox fx:id="stop10" layoutX="189.0" layoutY="243.0" mnemonicParsing="false" onAction="#selectBox" />
+      <CheckBox fx:id="stop11" layoutX="189.0" layoutY="293.0" mnemonicParsing="false" onAction="#selectBox" />
+      <CheckBox fx:id="stop7" layoutX="289.0" layoutY="93.0" mnemonicParsing="false" onAction="#selectBox" />
       <Label layoutX="8.0" layoutY="217.0" text="Bloor-Yonge" />
       <Label layoutX="70.0" layoutY="175.0" text="Wellesley" />
       <Label layoutX="124.0" layoutY="218.0" text="College" />
