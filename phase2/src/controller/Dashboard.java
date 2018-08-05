@@ -33,6 +33,17 @@ public class Dashboard extends Controller implements Initializable{
     @FXML
     private HBox hBox;
 
+    @FXML
+    private Label averageMonthlyCost;
+
+    @FXML
+    private Label preferredVehicle;
+
+    @FXML
+    private Label timeOnTransit;
+
+
+
 
     public void goBackPage(javafx.event.ActionEvent event) throws Exception {
         switchScene(event, "login.fxml");
@@ -40,8 +51,11 @@ public class Dashboard extends Controller implements Initializable{
 
     void setUser(User newUser){
         this.user = newUser;
-        this.userName.setText(user  .getUserName());
+        this.userName.setText(user.getUserName());
         this.cards = ((RegularUser) user).getMyCard();
+        this.averageMonthlyCost.setText (String.valueOf(((RegularUser) user).getAverageMonthlyFare()));
+        this.preferredVehicle.setText("None");
+        this.timeOnTransit.setText("0.00");
     }
 
 
@@ -124,6 +138,7 @@ public class Dashboard extends Controller implements Initializable{
         newStage(root);
         dashboard.close();
     }
+
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {

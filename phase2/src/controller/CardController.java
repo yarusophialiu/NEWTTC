@@ -149,7 +149,7 @@ public class CardController extends Controller implements Initializable{
 
     }
 
-    private void helpShowBalance(double newBalance){
+    void helpShowBalance(double newBalance){
         balance.setText("Balance: " + newBalance);
     }
 
