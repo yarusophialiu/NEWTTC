@@ -43,6 +43,7 @@ public class BusController extends Controller implements Initializable{
     private Stage previousStage;
 
     private ArrayList<ArrayList<CheckBox>> lines = new ArrayList<>();
+    private CardController cardController;
 
     public void setCard(Card card){
         this.card = card;
@@ -205,6 +206,11 @@ public class BusController extends Controller implements Initializable{
         selected.clear();
         startTime.clear();
         endTime.clear();
+        cardController.helpShowBalance(card.getBalance());
+    }
+
+    void setPreviousController(CardController cardController){
+        this.cardController = cardController;
     }
 
 
