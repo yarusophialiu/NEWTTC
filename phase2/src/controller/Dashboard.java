@@ -30,7 +30,7 @@ public class Dashboard extends Controller implements Initializable{
     private Label userName = new Label();
 
     @FXML
-    private HBox hbox;
+    private HBox hBox;
 
 
     public void goBackPage(javafx.event.ActionEvent event) throws Exception {
@@ -49,7 +49,7 @@ public class Dashboard extends Controller implements Initializable{
         Button button = new Button();
         int id = ((RegularUser)user).buyCard();
         button.setText(Integer.toString(id));
-        hbox.getChildren().add(button);
+        hBox.getChildren().add(button);
     }
 
     @FXML
@@ -71,7 +71,7 @@ public class Dashboard extends Controller implements Initializable{
         for (Card card : cards) {
             Button button = new Button(Integer.toString(card.getId()));
             button.setText(Integer.toString(card.getId()));
-            hbox.getChildren().add(button);
+            hBox.getChildren().add(button);
             button.setOnAction(event -> {
                 try {
                     helper(card, event);
