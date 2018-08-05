@@ -195,8 +195,8 @@ public class BusController extends Controller implements Initializable{
                 "bus", stationFactory);
         card.updateOnTap("exits", endStation, endDate,
                 "bus", stationFactory);
-        for (ArrayList<CheckBox> aine : lines){
-            for(CheckBox item : aine){
+        for (ArrayList<CheckBox> item : lines){
+            for(CheckBox item : item){
                 item.setDisable(false);
             }
         }
