@@ -77,15 +77,19 @@ public class BusController extends Controller implements Initializable{
           list.addAll(line);
         }
       }
-      for (ArrayList<CheckBox> line : lines) {
-        if (!line.contains(box)) {
-          for (CheckBox item : line) {
-            if (!list.contains(item)) {
-              item.setDisable(true);
+            helpSetDisable(box, list);
+        }
+    }
+
+    private void helpSetDisable(CheckBox box, ArrayList<CheckBox> list) {
+        for (ArrayList<CheckBox> line : lines) {
+          if (!line.contains(box)) {
+            for (CheckBox item : line) {
+              if (!list.contains(item)) {
+                item.setDisable(true);
+              }
             }
           }
-        }
-      }
         }
     }
 
@@ -111,15 +115,7 @@ public class BusController extends Controller implements Initializable{
                     list.addAll(line);
                 }
             }
-            for (ArrayList<CheckBox> line : lines) {
-                if (!line.contains(start)) {
-                    for (CheckBox item : line) {
-                        if (!list.contains(item)) {
-                            item.setDisable(true);
-                        }
-                    }
-                }
-            }
+            helpSetDisable(start, list);
         }
     }
 
