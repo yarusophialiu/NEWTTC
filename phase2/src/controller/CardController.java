@@ -7,6 +7,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.CheckBox;
+import javafx.scene.control.Label;
 import javafx.stage.Stage;
 import model.Card;
 import model.RegularUser;
@@ -17,6 +18,9 @@ import java.util.ResourceBundle;
 
 public class CardController extends Controller implements Initializable{
     private Card myCard;
+
+    @FXML
+    Label balance;
 
     @FXML
     javafx.scene.control.Label cardNum;
@@ -30,37 +34,48 @@ public class CardController extends Controller implements Initializable{
     @FXML
     CheckBox checkbox30;
 
+    private Stage previousStage;
+
     @FXML
     public void goBackPage(javafx.event.ActionEvent event) throws Exception {
-        switchScene(event, "dashboard.fxml");
+        Stage cardController = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        previousStage.show();
+        cardController.close();
     }
 
     @FXML
     public void takeSubway(javafx.event.ActionEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("subwayController.fxml"));
+        Stage cardController = (Stage) ((Node) event.getSource()).getScene().getWindow();
         Parent root = loader.load();
         SubwayController subwayController = loader.getController();
         subwayController.setCard(myCard);
+        subwayController.setPreviousStage(cardController);
         Stage stage = new Stage();
         stage.setScene(new Scene(root, 800, 500));
         stage.show();
+        cardController.close();
     }
 
     @FXML
     public void takeBus(javafx.event.ActionEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("busController.fxml"));
+        Stage cardController = (Stage) ((Node) event.getSource()).getScene().getWindow();
         Parent root = loader.load();
         BusController busController = loader.getController();
         busController.setCard(myCard);
+        busController.setPreviousStage(cardController);
         Stage stage = new Stage();
         stage.setScene(new Scene(root, 800, 500));
         stage.show();
+        cardController.close();
     }
 
     @FXML
     public void setCard(Card card){
         myCard = card;
         cardNum.setText(Integer.toString(card.getId()));
+        helpShowBalance(card.getBalance());
     }
 
     @FXML
@@ -77,6 +92,7 @@ public class CardController extends Controller implements Initializable{
             checkbox30.setSelected(false);
             myCard.increaseBalance(30);
         }
+        helpShowBalance(myCard.getBalance());
     }
 
     @FXML
@@ -111,9 +127,17 @@ public class CardController extends Controller implements Initializable{
         }
     }
 
+    void setPreviousStage(Stage stage){
+        this.previousStage = stage;
+    }
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
+    }
+
+    private void helpShowBalance(double newBalance){
+        balance.setText("Balance: " + newBalance);
     }
 
 }

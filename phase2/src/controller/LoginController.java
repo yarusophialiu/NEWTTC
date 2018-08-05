@@ -13,7 +13,9 @@ import javafx.stage.Stage;
 import model.User;
 
 import java.io.IOException;
+import java.net.URL;
 import java.util.HashMap;
+import java.util.ResourceBundle;
 
 public class LoginController extends Controller implements Initializable{
     @FXML
@@ -22,25 +24,17 @@ public class LoginController extends Controller implements Initializable{
     @FXML
     private TextField email;
 
-    boolean checkAdmin(String email, String password) {
-        if (email.equals("adminuser@mail.com") && password.equals("admin123")) {
-            return true;
-        }
-        return false;
-    }
-
-    void loadAdmin() throws IOException {
+    void loginAdminUser() throws IOException{
         FXMLLoader loader = new FXMLLoader(getClass().getResource("adminuser.fxml"));
         Parent root = loader.load();
-        AdminUserController adminuserController = loader.getController();
-        adminuserController.loadInfo();
+        AdminUserController adminUserController = loader.getController();
+        adminUserController.loadInfo();
         Stage stage = new Stage();
         stage.setScene(new Scene(root, 800, 500));
         stage.show();
     }
 
-
-    void loadUser(String email, String password, HashMap<String, User> users) throws IOException{
+    void loginRegularUser(String email, String password, HashMap<String, User> users, Stage loginWindow) throws IOException{
         for (User user : users.values()){
             if (user.getEmailAddress().equals(email)){
                 if (user.correctPassword(password)){
@@ -52,6 +46,7 @@ public class LoginController extends Controller implements Initializable{
                     Stage stage = new Stage();
                     stage.setScene(new Scene(root, 800, 500));
                     stage.show();
+                    loginWindow.close();
                 }
             }
         }
@@ -64,14 +59,16 @@ public class LoginController extends Controller implements Initializable{
             HashMap<String, User> users = User.getUsers();
             String emailInput = email.getText();
             String passwordInput = password.getText();
+            Stage loginWindow = (Stage) ((Node) event.getSource()).getScene().getWindow();
 
-            if (checkAdmin(emailInput, passwordInput)) {
-                loadAdmin();
+            if (emailInput.equals("adminuser@mail.com") && passwordInput.equals("admin123")) {
+                loginAdminUser();
+                loginWindow.close();
             } else if (!users.keySet().contains(emailInput)){
                 alert("User with that email does not exists, try sign up.");
             }
             else{
-                loadUser(emailInput, passwordInput, users);
+                loginRegularUser(emailInput, passwordInput, users, loginWindow);
             }
         } else{
             alert("At least one of the information input is illegal : empty or contain space. ");
@@ -87,5 +84,11 @@ public class LoginController extends Controller implements Initializable{
         Stage window = (Stage) ((Node)event.getSource()).getScene().getWindow();
         window.setScene(dashboardScene);
         window.show();
+    }
+
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+
     }
 }
