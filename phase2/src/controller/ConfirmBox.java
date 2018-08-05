@@ -14,7 +14,7 @@ public class ConfirmBox {
 
     private boolean answer;
 
-    public boolean confirm(String message){
+    boolean confirm(String message){
         Stage window = new Stage();
         window.initModality(Modality.APPLICATION_MODAL);
         window.setTitle("Confirm Box");

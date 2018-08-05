@@ -49,9 +49,17 @@ public class Dashboard extends Controller implements Initializable{
         ConfirmBox confirmBox = new ConfirmBox();
         if (confirmBox.confirm("Do you want to buy a new card?")){
             Button button = new Button();
-            int id = ((RegularUser)user).buyCard();
+            Card newCard = ((RegularUser)user).buyCard();
+            int id = newCard.getId();
             button.setText(Integer.toString(id));
             hBox.getChildren().add(button);
+            button.setOnAction(e -> {
+                try {
+                    helper(newCard, e);
+                } catch (IOException e1) {
+                    e1.printStackTrace();
+                }
+            });
         }
 
     }
@@ -72,17 +80,23 @@ public class Dashboard extends Controller implements Initializable{
     }
 
     void loadCard() {
-        for (Card card : cards) {
-            Button button = new Button(Integer.toString(card.getId()));
-            button.setText(Integer.toString(card.getId()));
-            hBox.getChildren().add(button);
-            button.setOnAction(event -> {
-                try {
-                    helper(card, event);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            });
+        if (cards.isEmpty()){
+            hBox.getChildren().clear();
+        }
+        else{
+            for (Card card : cards) {
+                Button button = new Button(Integer.toString(card.getId()));
+                button.setText(Integer.toString(card.getId()));
+                hBox.getChildren().clear();
+                hBox.getChildren().add(button);
+                button.setOnAction(event -> {
+                    try {
+                        helper(card, event);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                });
+            }
         }
     }
 
@@ -92,7 +106,7 @@ public class Dashboard extends Controller implements Initializable{
         Parent root = loader.load();
         CardController cardController = loader.getController();
         cardController.setCard(card);
-        cardController.setPreviousStage(dashboard);
+        cardController.setPrevious(dashboard, this);
         Stage stage = new Stage();
         stage.setScene(new Scene(root, 800, 500));
         stage.show();

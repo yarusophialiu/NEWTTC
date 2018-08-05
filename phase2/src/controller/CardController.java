@@ -36,10 +36,13 @@ public class CardController extends Controller implements Initializable{
 
     private Stage previousStage;
 
+    private Dashboard dashboard;
+
     @FXML
     public void goBackPage(javafx.event.ActionEvent event) throws Exception {
         Stage cardController = (Stage) ((Node) event.getSource()).getScene().getWindow();
         previousStage.show();
+        dashboard.loadCard();
         cardController.close();
     }
 
@@ -80,24 +83,30 @@ public class CardController extends Controller implements Initializable{
 
     @FXML
     void addBalance(javafx.event.ActionEvent event) throws Exception {
+        ConfirmBox confirmBox = new ConfirmBox();
         if (checkbox10.isSelected()){
             checkbox10.setSelected(false);
             myCard.increaseBalance(10);
+            confirmBox.confirm("Add $10 to your balance?");
         }
         else if (checkbox20.isSelected()){
             checkbox20.setSelected(false);
             myCard.increaseBalance(20);
+            confirmBox.confirm("Add $20 to your balance?");
         }
         else if (checkbox30.isSelected()){
             checkbox30.setSelected(false);
             myCard.increaseBalance(30);
+            confirmBox.confirm("Add $30 to your balance?");
         }
         helpShowBalance(myCard.getBalance());
+        helpSetAble();
     }
 
     @FXML
-    void deleteCard(javafx.event.ActionEvent event){
+    void deleteCard(javafx.event.ActionEvent event) throws Exception {
         ((RegularUser)myCard.getUser()).removeCard(myCard);
+        goBackPage(event);
     }
 
     @FXML
@@ -121,14 +130,13 @@ public class CardController extends Controller implements Initializable{
             checkbox20.setDisable(true);
         }
         else{
-            checkbox10.setDisable(false);
-            checkbox20.setDisable(false);
-            checkbox30.setDisable(false);
+            helpSetAble();
         }
     }
 
-    void setPreviousStage(Stage stage){
+    void setPrevious(Stage stage, Dashboard dashboard){
         this.previousStage = stage;
+        this.dashboard = dashboard;
     }
 
     @Override
@@ -138,6 +146,12 @@ public class CardController extends Controller implements Initializable{
 
     private void helpShowBalance(double newBalance){
         balance.setText("Balance: " + newBalance);
+    }
+
+    private void helpSetAble(){
+        checkbox10.setDisable(false);
+        checkbox20.setDisable(false);
+        checkbox30.setDisable(false);
     }
 
 }
