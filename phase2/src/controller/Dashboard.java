@@ -113,8 +113,8 @@ public class Dashboard extends Controller implements Initializable{
     }
 
     void helpLoadCard(Card card, javafx.event.ActionEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("CardController.fxml"));
         Stage dashboard = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("cardController.fxml"));
         Parent root = loader.load();
         CardController cardController = loader.getController();
         cardController.setCard(card);

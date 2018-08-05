@@ -25,11 +25,9 @@ public class LoginController extends Controller implements Initializable{
     private TextField email;
 
     void loginAdminUser() throws IOException{
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("adminuser.fxml"));
-        Parent root = loader.load();
+        FXMLLoader loader = loader("adminuser.fxml");
         AdminUserController adminUserController = loader.getController();
         adminUserController.loadInfo();
-        newStage(root);
     }
 
     void loginRegularUser(String email, String password, HashMap<String, User> users) throws IOException{
