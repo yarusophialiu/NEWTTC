@@ -34,7 +34,7 @@ public class LoginController extends Controller implements Initializable{
         stage.show();
     }
 
-    void loginRegularUser(String email, String password, HashMap<String, User> users, Stage loginWindow) throws IOException{
+    void loginRegularUser(String email, String password, HashMap<String, User> users) throws IOException{
         for (User user : users.values()){
             if (user.getEmailAddress().equals(email)){
                 if (user.correctPassword(password)){
@@ -46,7 +46,6 @@ public class LoginController extends Controller implements Initializable{
                     Stage stage = new Stage();
                     stage.setScene(new Scene(root, 800, 500));
                     stage.show();
-                    loginWindow.close();
                 }
             }
         }
@@ -68,7 +67,8 @@ public class LoginController extends Controller implements Initializable{
                 alert("User with that email does not exists, try sign up.");
             }
             else{
-                loginRegularUser(emailInput, passwordInput, users, loginWindow);
+                loginRegularUser(emailInput, passwordInput, users);
+                loginWindow.close();
             }
         } else{
             alert("At least one of the information input is illegal : empty or contain space. ");
