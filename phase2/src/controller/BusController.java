@@ -121,7 +121,7 @@ public class BusController extends Controller implements Initializable, SelectSt
 
 
     @FXML
-    public void goBackPage(javafx.event.ActionEvent event) throws Exception {
+    public void goBackPage(javafx.event.ActionEvent event){
         Stage busController = (Stage) ((Node) event.getSource()).getScene().getWindow();
         previousStage.show();
         busController.close();
@@ -166,7 +166,7 @@ public class BusController extends Controller implements Initializable, SelectSt
         boxToString.put(stop14, "Steven");
     }
 
-    void setPreviousStage(Stage stage){
+    public void setPreviousStage(Stage stage){
         this.previousStage = stage;
     }
 

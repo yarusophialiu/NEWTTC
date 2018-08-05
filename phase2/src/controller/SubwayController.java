@@ -52,13 +52,13 @@ public class SubwayController extends Controller implements Initializable, Selec
         this.card = card;
     }
 
-    public void goBackPage(javafx.event.ActionEvent event) throws Exception {
+    public void goBackPage(javafx.event.ActionEvent event){
         Stage subwayController = (Stage) ((Node) event.getSource()).getScene().getWindow();
         previousStage.show();
         subwayController.close();
     }
 
-    void setPreviousStage(Stage stage){
+    public void setPreviousStage(Stage stage){
         this.previousStage = stage;
     }
 
