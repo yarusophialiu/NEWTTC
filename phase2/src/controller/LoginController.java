@@ -25,7 +25,7 @@ public class LoginController extends Controller implements Initializable{
     private TextField email;
 
 
-    void checkUser(String email, String password, HashMap<String, User> users) throws IOException{
+    void loginRegularUser(String email, String password, HashMap<String, User> users, Stage loginWindow) throws IOException{
         for (User user : users.values()){
             if (user.getEmailAddress().equals(email)){
                 if (user.correctPassword(password)){
@@ -37,6 +37,7 @@ public class LoginController extends Controller implements Initializable{
                     Stage stage = new Stage();
                     stage.setScene(new Scene(root, 800, 500));
                     stage.show();
+                    loginWindow.close();
                 }
             }
         }
@@ -49,6 +50,7 @@ public class LoginController extends Controller implements Initializable{
             HashMap<String, User> users = User.getUsers();
             String emailInput = email.getText();
             String passwordInput = password.getText();
+            Stage loginWindow = (Stage) ((Node) event.getSource()).getScene().getWindow();
 
             if (emailInput.equals("adminuser@mail.com") && passwordInput.equals("admin123")) {
 //                switchScene(event, "adminuser.fxml");
@@ -59,11 +61,12 @@ public class LoginController extends Controller implements Initializable{
                 Stage stage = new Stage();
                 stage.setScene(new Scene(root, 800, 500));
                 stage.show();
+                loginWindow.close();
             } else if (!users.keySet().contains(emailInput)){
                 alert("User with that email does not exists, try sign up.");
             }
             else{
-                checkUser(emailInput, passwordInput, users);
+                loginRegularUser(emailInput, passwordInput, users, loginWindow);
             }
         } else{
             alert("At least one of the information input is illegal : empty or contain space. ");

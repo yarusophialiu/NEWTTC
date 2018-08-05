@@ -12,12 +12,19 @@ import java.io.IOException;
 public class SubwayController extends Controller {
 
     private Card card;
+    private Stage previousStage;
 
     public void setCard(Card card){
         this.card = card;
     }
 
     public void goBackPage(javafx.event.ActionEvent event) throws Exception {
-        switchScene(event, "cardController.fxml");
+        Stage subwayController = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        previousStage.show();
+        subwayController.close();
+    }
+
+    void setPreviousStage(Stage stage){
+        this.previousStage = stage;
     }
 }

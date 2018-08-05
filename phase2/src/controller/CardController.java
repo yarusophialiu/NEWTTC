@@ -30,31 +30,41 @@ public class CardController extends Controller implements Initializable{
     @FXML
     CheckBox checkbox30;
 
+    private Stage previousStage;
+
     @FXML
     public void goBackPage(javafx.event.ActionEvent event) throws Exception {
-        switchScene(event, "dashboard.fxml");
+        Stage cardController = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        previousStage.show();
+        cardController.close();
     }
 
     @FXML
     public void takeSubway(javafx.event.ActionEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("subwayController.fxml"));
+        Stage cardController = (Stage) ((Node) event.getSource()).getScene().getWindow();
         Parent root = loader.load();
         SubwayController subwayController = loader.getController();
         subwayController.setCard(myCard);
+        subwayController.setPreviousStage(cardController);
         Stage stage = new Stage();
         stage.setScene(new Scene(root, 800, 500));
         stage.show();
+        cardController.close();
     }
 
     @FXML
     public void takeBus(javafx.event.ActionEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("busController.fxml"));
+        Stage cardController = (Stage) ((Node) event.getSource()).getScene().getWindow();
         Parent root = loader.load();
         BusController busController = loader.getController();
         busController.setCard(myCard);
+        busController.setPreviousStage(cardController);
         Stage stage = new Stage();
         stage.setScene(new Scene(root, 800, 500));
         stage.show();
+        cardController.close();
     }
 
     @FXML
@@ -109,6 +119,10 @@ public class CardController extends Controller implements Initializable{
             checkbox20.setDisable(false);
             checkbox30.setDisable(false);
         }
+    }
+
+    void setPreviousStage(Stage stage){
+        this.previousStage = stage;
     }
 
     @Override

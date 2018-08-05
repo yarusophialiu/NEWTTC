@@ -34,6 +34,7 @@ public class BusController extends Controller implements Initializable{
     private Card card;
 
     private ArrayList<CheckBox> selected = new ArrayList<>();
+    private Stage previousStage;
 
     public void setCard(Card card){
         this.card = card;
@@ -114,7 +115,9 @@ public class BusController extends Controller implements Initializable{
 
     @FXML
     public void goBackPage(javafx.event.ActionEvent event) throws Exception {
-        switchScene(event, "cardController.fxml");
+        Stage busController = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        previousStage.show();
+        busController.close();
     }
 
     @Override
@@ -151,6 +154,10 @@ public class BusController extends Controller implements Initializable{
         boxToString.put(stop12, "Frank");
         boxToString.put(stop13, "Sophia");
         boxToString.put(stop14, "Steven");
+    }
+
+    void setPreviousStage(Stage stage){
+        this.previousStage = stage;
     }
 
 

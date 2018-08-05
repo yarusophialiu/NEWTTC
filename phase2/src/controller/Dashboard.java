@@ -3,6 +3,7 @@ package controller;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -68,14 +69,14 @@ public class Dashboard extends Controller implements Initializable{
     }
 
 
-    public void loadCard() {
+    void loadCard() {
         for (Card card : cards) {
             Button button = new Button(Integer.toString(card.getId()));
             button.setText(Integer.toString(card.getId()));
             hbox.getChildren().add(button);
             button.setOnAction(event -> {
                 try {
-                    helper(card);
+                    helper(card, event);
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -83,13 +84,16 @@ public class Dashboard extends Controller implements Initializable{
         }
     }
 
-    private void helper(Card card) throws IOException {
+    private void helper(Card card, javafx.event.ActionEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("CardController.fxml"));
+        Stage dashboard = (Stage) ((Node) event.getSource()).getScene().getWindow();
         Parent root = loader.load();
         CardController cardController = loader.getController();
         cardController.setCard(card);
+        cardController.setPreviousStage(dashboard);
         Stage stage = new Stage();
         stage.setScene(new Scene(root, 800, 500));
         stage.show();
+        dashboard.close();
     }
 }
