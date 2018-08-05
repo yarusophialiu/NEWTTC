@@ -7,6 +7,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -23,6 +24,13 @@ public class Controller implements Initializable{
     void alert(String messgae) {
         AlertBox alertBox= new AlertBox();
         alertBox.alertMessage(messgae);
+    }
+
+    void newStage(Parent root) throws IOException{
+        Stage stage = new Stage();
+        stage.setScene(new Scene(root, 800, 500));
+        stage.setResizable(false);
+        stage.show();
     }
 
     @Override
