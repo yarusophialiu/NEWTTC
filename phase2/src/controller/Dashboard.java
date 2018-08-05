@@ -37,7 +37,7 @@ public class Dashboard extends Controller implements Initializable{
     }
 
     void setUser(User newUser){
-         this.user = newUser;
+        this.user = newUser;
         this.userName.setText(user.getUserName());
         this.cards = ((RegularUser) user).getMyCard();
     }
@@ -62,11 +62,9 @@ public class Dashboard extends Controller implements Initializable{
                 break;
             }
         }
-        AlertBox alertBox= new AlertBox();
-        alertBox.alertMessage("Successfully change username");
+        alert("Successfully change username");
 
     }
-
 
     public void loadCard() {
         for (Card card : cards) {
