@@ -1,6 +1,6 @@
 package model;
 
-class Station {
+public class Station {
     /** store name of the user. */
     private String name;
     /** store if its a bus or subway */

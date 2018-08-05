@@ -2,11 +2,11 @@ package model;
 
 import java.util.HashMap;
 
-class StationFactory {
+public class StationFactory {
     private static HashMap<String, SubwayStation> subwayStationHashMap = new HashMap<>();
     private static HashMap<String, BusStation> busStationHashMap = new HashMap<>();
 
-    Station newStation(String stationID, String vehicle, String lineNumber) {
+    public Station newStation(String stationID, String vehicle, String lineNumber) {
         Integer lineNum = Integer.parseInt(lineNumber);
         if (vehicle.equals("subway")){
             if (subwayStationHashMap.keySet().contains(stationID)) {

@@ -8,16 +8,14 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.CheckBox;
+import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-import model.Card;
-
-import java.awt.*;
+import model.*;
 import java.io.IOException;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.ResourceBundle;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
 public class BusController extends Controller implements Initializable{
 
@@ -34,6 +32,13 @@ public class BusController extends Controller implements Initializable{
     private Card card;
 
     private ArrayList<CheckBox> selected = new ArrayList<>();
+
+    @FXML
+    private TextField startTime;
+
+    @FXML
+    private TextField endTime;
+
     private Stage previousStage;
 
     public void setCard(Card card){
@@ -158,6 +163,31 @@ public class BusController extends Controller implements Initializable{
 
     void setPreviousStage(Stage stage){
         this.previousStage = stage;
+    }
+
+    public void confirmTrip() throws ParseException {
+        StationFactory stationFactory = new StationFactory();
+        String start = boxToString.get(selected.get(0));
+        String end = boxToString.get(selected.get(1));
+        String line;
+        if (line1.contains(selected.get(0)) & line1.contains(selected.get(1))){
+            line = "1";
+        }else{
+            line = "2";
+        }
+
+        Station startStation = stationFactory.newStation(start, "bus", line);
+        Station endStation = stationFactory.newStation(end, "bus", line);
+
+        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        Date startDate = df.parse(startTime.getText() + ":00");
+        Date endDate = df.parse(endTime.getText() + ":00");
+
+        card.updateOnTap("enters", startStation, startDate,
+                "bus", stationFactory);
+        card.updateOnTap("exits", endStation, endDate,
+                "bus", stationFactory);
+
     }
 
 
