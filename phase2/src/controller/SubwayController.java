@@ -7,12 +7,18 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.CheckBox;
+import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import model.Card;
+import model.Station;
+import model.StationFactory;
 
 import java.io.IOException;
 import java.net.URL;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.ResourceBundle;
 
@@ -32,7 +38,15 @@ public class SubwayController extends Controller implements Initializable {
 
     private HashMap<CheckBox, String> boxToString = new HashMap<>();
 
+    private CardController cardController;
+
     ArrayList<CheckBox> selected = new ArrayList<>();
+
+    @FXML
+    private TextField startTime;
+
+    @FXML
+    private TextField endTime;
 
     public void setCard(Card card){
         this.card = card;
@@ -123,6 +137,42 @@ public class SubwayController extends Controller implements Initializable {
                 }
             }
         }
+    }
+
+    public void confirmTrip() throws ParseException {
+        StationFactory stationFactory = new StationFactory();
+        String start = boxToString.get(selected.get(0));
+        String end = boxToString.get(selected.get(1));
+        String line;
+        if (line1.contains(selected.get(0)) & line1.contains(selected.get(1))){
+            line = "1";
+        }else{
+            line = "2";
+        }
+
+        Station startStation = stationFactory.newStation(start, "subway", line);
+        Station endStation = stationFactory.newStation(end, "subway", line);
+
+        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        Date startDate = df.parse(startTime.getText() + ":00");
+        Date endDate = df.parse(endTime.getText() + ":00");
+
+        card.updateOnTap("enters", startStation, startDate,
+                "subway", stationFactory);
+        card.updateOnTap("exits", endStation, endDate,
+                "subway", stationFactory);
+        for (CheckBox cb: boxToString.keySet()){
+            cb.setDisable(false);
+            cb.setSelected(false);
+        }
+        selected.clear();
+        startTime.clear();
+        endTime.clear();
+        cardController.helpShowBalance(card.getBalance());
+    }
+
+    void setPreviousController(CardController cardController){
+        this.cardController = cardController;
     }
 
 }
