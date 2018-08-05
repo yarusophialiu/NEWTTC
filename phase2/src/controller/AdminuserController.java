@@ -4,7 +4,7 @@ import application.TransitApp;
 import javafx.fxml.FXML;
 import javafx.scene.text.Text;
 
-public class AdminuserController extends Controller{
+public class AdminUserController extends Controller{
 
     @FXML
     private Text dailyReport;
