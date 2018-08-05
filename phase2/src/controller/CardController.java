@@ -16,6 +16,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 public class CardController extends Controller implements Initializable{
+
     private Card myCard;
 
     @FXML
@@ -107,7 +108,8 @@ public class CardController extends Controller implements Initializable{
     @FXML
     void suspend(javafx.event.ActionEvent event) throws Exception {
         myCard.reverseSuspended();
-        goBackPage(event);
+        AlertBox alertBox = new AlertBox();
+        alertBox.alertMessage("This card has been suspended.");
     }
 
     @FXML
