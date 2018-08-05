@@ -55,7 +55,7 @@ public class Dashboard extends Controller implements Initializable{
             hBox.getChildren().add(button);
             button.setOnAction(e -> {
                 try {
-                    helper(newCard, e);
+                    helpSetUp(newCard, e);
                 } catch (IOException e1) {
                     e1.printStackTrace();
                 }
@@ -91,7 +91,7 @@ public class Dashboard extends Controller implements Initializable{
                 hBox.getChildren().add(button);
                 button.setOnAction(event -> {
                     try {
-                        helper(card, event);
+                        helpSetUp(card, event);
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
@@ -100,7 +100,20 @@ public class Dashboard extends Controller implements Initializable{
         }
     }
 
-    private void helper(Card card, javafx.event.ActionEvent event) throws IOException {
+    private void helpSetUp(Card card, javafx.event.ActionEvent event) throws IOException {
+        ConfirmBox confirmBox = new ConfirmBox();
+        if (card.getSuspended()){
+            boolean answer = confirmBox.confirm("This card is suspended, do you still want to access?");
+            if (answer){
+                helpLoadCard(card, event);
+            }
+        }
+        else{
+            helpLoadCard(card, event);
+        }
+    }
+
+    void helpLoadCard(Card card, javafx.event.ActionEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("CardController.fxml"));
         Stage dashboard = (Stage) ((Node) event.getSource()).getScene().getWindow();
         Parent root = loader.load();
@@ -112,4 +125,5 @@ public class Dashboard extends Controller implements Initializable{
         stage.show();
         dashboard.close();
     }
+
 }

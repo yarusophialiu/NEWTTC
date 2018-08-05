@@ -110,8 +110,9 @@ public class CardController extends Controller implements Initializable{
     }
 
     @FXML
-    void suspend(javafx.event.ActionEvent event){
+    void suspend(javafx.event.ActionEvent event) throws Exception {
         myCard.reverseSuspended();
+        goBackPage(event);
     }
 
     @FXML

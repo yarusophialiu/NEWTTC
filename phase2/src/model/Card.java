@@ -183,5 +183,9 @@ public class Card{
     public double getBalance(){
         return this.balance;
     }
+
+    public boolean getSuspended(){
+        return this.isSuspended;
+    }
 }
 
