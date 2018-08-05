@@ -38,7 +38,7 @@ public class Dashboard extends Controller implements Initializable{
 
     void setUser(User newUser){
         this.user = newUser;
-        this.userName.setText(user.getUserName());
+        this.userName.setText(user  .getUserName());
         this.cards = ((RegularUser) user).getMyCard();
     }
 

@@ -101,15 +101,22 @@ public class CardController extends Controller implements Initializable{
 
     @FXML
     void deleteCard(javafx.event.ActionEvent event) throws Exception {
-        ((RegularUser)myCard.getUser()).removeCard(myCard);
-        goBackPage(event);
+        ConfirmBox confirmBox = new ConfirmBox();
+        boolean answer = confirmBox.confirm("Are you sure you want to delete this card?");
+        if (answer){
+            ((RegularUser)myCard.getUser()).removeCard(myCard);
+            goBackPage(event);
+        }
+
     }
 
     @FXML
     void suspend(javafx.event.ActionEvent event) throws Exception {
-        myCard.reverseSuspended();
-        AlertBox alertBox = new AlertBox();
-        alertBox.alertMessage("This card has been suspended.");
+        ConfirmBox confirmBox = new ConfirmBox();
+        boolean answer = confirmBox.confirm("Are you sure you want to suspend this card?");
+        if (answer){
+            myCard.reverseSuspended();
+        }
     }
 
     @FXML
