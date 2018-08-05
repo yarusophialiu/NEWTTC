@@ -15,8 +15,10 @@ import model.RegularUser;
 import model.User;
 
 import java.io.IOException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.ResourceBundle;
 
 public class Dashboard extends Controller implements Initializable{
     private User user;
@@ -121,6 +123,11 @@ public class Dashboard extends Controller implements Initializable{
         cardController.setPrevious(dashboard, this);
         newStage(root);
         dashboard.close();
+    }
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+
     }
 
 }

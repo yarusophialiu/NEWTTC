@@ -9,7 +9,9 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import javafx.stage.Window;
 import model.User;
 
 import java.io.IOException;
@@ -23,6 +25,7 @@ public class LoginController extends Controller implements Initializable{
 
     @FXML
     private TextField email;
+
 
     void loginAdminUser() throws IOException{
         FXMLLoader loader = loader("adminuser.fxml");
@@ -71,12 +74,10 @@ public class LoginController extends Controller implements Initializable{
 
     @FXML
     void signUp(javafx.event.ActionEvent event) throws IOException{
-        Parent dashboard = FXMLLoader.load(getClass().getResource("signUp.fxml"));
-        Scene dashboardScene = new Scene(dashboard);
-
-        //get stage information
+        Parent signUp = FXMLLoader.load(getClass().getResource("signUp.fxml"));
+        Scene signUpScene = new Scene(signUp);
         Stage window = (Stage) ((Node)event.getSource()).getScene().getWindow();
-        window.setScene(dashboardScene);
+        window.setScene(signUpScene);
         window.setResizable(false);
         window.show();
     }
@@ -84,6 +85,5 @@ public class LoginController extends Controller implements Initializable{
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-
     }
 }
