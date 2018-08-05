@@ -8,6 +8,7 @@ import javafx.scene.Parent;
 import model.AdminUser;
 
 public class TransitApp extends Application{
+
     private static AdminUser admin = new AdminUser("adminuser", "adminuser@mail.com", "admin123");
 
 
@@ -18,6 +19,10 @@ public class TransitApp extends Application{
         primaryStage.setTitle("Presto System App");
         primaryStage.setScene(new Scene(root, 800, 500 ));
         primaryStage.show();
+    }
+
+    public static AdminUser getAdmin() {
+        return admin;
     }
 
   public static void main(String[] args) {
