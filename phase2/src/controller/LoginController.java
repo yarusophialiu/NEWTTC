@@ -13,9 +13,7 @@ import javafx.stage.Stage;
 import model.User;
 
 import java.io.IOException;
-import java.net.URL;
 import java.util.HashMap;
-import java.util.ResourceBundle;
 
 public class LoginController extends Controller implements Initializable{
     @FXML
@@ -31,7 +29,18 @@ public class LoginController extends Controller implements Initializable{
         return false;
     }
 
-    void checkUser(String email, String password, HashMap<String, User> users) throws IOException{
+    void loadAdmin() throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("adminuser.fxml"));
+        Parent root = loader.load();
+        AdminUserController adminuserController = loader.getController();
+        adminuserController.loadInfo();
+        Stage stage = new Stage();
+        stage.setScene(new Scene(root, 800, 500));
+        stage.show();
+    }
+
+
+    void loadUser(String email, String password, HashMap<String, User> users) throws IOException{
         for (User user : users.values()){
             if (user.getEmailAddress().equals(email)){
                 if (user.correctPassword(password)){
@@ -57,19 +66,12 @@ public class LoginController extends Controller implements Initializable{
             String passwordInput = password.getText();
 
             if (checkAdmin(emailInput, passwordInput)) {
-//                switchScene(event, "adminuser.fxml");
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("adminuser.fxml"));
-                Parent root = loader.load();
-                AdminuserController adminuserController = loader.getController();
-                adminuserController.loadInfo();
-                Stage stage = new Stage();
-                stage.setScene(new Scene(root, 800, 500));
-                stage.show();
+                loadAdmin();
             } else if (!users.keySet().contains(emailInput)){
                 alert("User with that email does not exists, try sign up.");
             }
             else{
-                checkUser(emailInput, passwordInput, users);
+                loadUser(emailInput, passwordInput, users);
             }
         } else{
             alert("At least one of the information input is illegal : empty or contain space. ");
@@ -85,11 +87,5 @@ public class LoginController extends Controller implements Initializable{
         Stage window = (Stage) ((Node)event.getSource()).getScene().getWindow();
         window.setScene(dashboardScene);
         window.show();
-    }
-
-
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
-
     }
 }
