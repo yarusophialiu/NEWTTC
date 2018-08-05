@@ -5,7 +5,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
@@ -54,9 +53,7 @@ public class CardController extends Controller implements Initializable{
         SubwayController subwayController = loader.getController();
         subwayController.setCard(myCard);
         subwayController.setPreviousStage(cardController);
-        Stage stage = new Stage();
-        stage.setScene(new Scene(root, 800, 500));
-        stage.show();
+        newStage(root);
         cardController.close();
     }
 
@@ -68,9 +65,7 @@ public class CardController extends Controller implements Initializable{
         BusController busController = loader.getController();
         busController.setCard(myCard);
         busController.setPreviousStage(cardController);
-        Stage stage = new Stage();
-        stage.setScene(new Scene(root, 800, 500));
-        stage.show();
+        newStage(root);
         cardController.close();
     }
 

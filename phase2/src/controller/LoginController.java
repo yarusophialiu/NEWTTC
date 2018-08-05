@@ -29,10 +29,7 @@ public class LoginController extends Controller implements Initializable{
         Parent root = loader.load();
         AdminUserController adminUserController = loader.getController();
         adminUserController.loadInfo();
-        Stage stage = new Stage();
-        stage.setScene(new Scene(root, 800, 500));
-        stage.setResizable(false);
-        stage.show();
+        newStage(root);
     }
 
     void loginRegularUser(String email, String password, HashMap<String, User> users) throws IOException{
@@ -44,9 +41,7 @@ public class LoginController extends Controller implements Initializable{
                     Dashboard dashboardControl = loader.getController();
                     dashboardControl.setUser(user);
                     dashboardControl.loadCard();
-                    Stage stage = new Stage();
-                    stage.setScene(new Scene(root, 800, 500));
-                    stage.show();
+                    newStage(root);
                 }
             }
         }
@@ -84,6 +79,7 @@ public class LoginController extends Controller implements Initializable{
         //get stage information
         Stage window = (Stage) ((Node)event.getSource()).getScene().getWindow();
         window.setScene(dashboardScene);
+        window.setResizable(false);
         window.show();
     }
 

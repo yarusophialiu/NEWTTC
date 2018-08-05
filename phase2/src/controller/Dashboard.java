@@ -5,7 +5,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -120,9 +119,7 @@ public class Dashboard extends Controller implements Initializable{
         CardController cardController = loader.getController();
         cardController.setCard(card);
         cardController.setPrevious(dashboard, this);
-        Stage stage = new Stage();
-        stage.setScene(new Scene(root, 800, 500));
-        stage.show();
+        newStage(root);
         dashboard.close();
     }
 
