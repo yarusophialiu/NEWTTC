@@ -50,6 +50,7 @@ public class Dashboard extends Controller implements Initializable{
     @FXML
     private PasswordField currentPassword;
 
+    private HelpSerialize helpSerialize = new HelpSerialize();
 
     public void goBackPage(javafx.event.ActionEvent event) throws Exception {
         switchScene(event, "login.fxml");
@@ -81,6 +82,7 @@ public class Dashboard extends Controller implements Initializable{
                     e1.printStackTrace();
                 }
             });
+            helpSerialize.serializeUser(User.getUsers());
         }
 
     }
@@ -97,7 +99,7 @@ public class Dashboard extends Controller implements Initializable{
             }
         }
         alert("Successfully change username");
-
+        helpSerialize.serializeUser(User.getUsers());
     }
 
     void loadCard() {
@@ -134,7 +136,7 @@ public class Dashboard extends Controller implements Initializable{
         }
     }
 
-    void helpLoadCard(Card card, javafx.event.ActionEvent event) throws IOException {
+    private void helpLoadCard(Card card, javafx.event.ActionEvent event) throws IOException {
         Stage dashboard = (Stage) ((Node) event.getSource()).getScene().getWindow();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("cardController.fxml"));
         Parent root = loader.load();
@@ -152,7 +154,7 @@ public class Dashboard extends Controller implements Initializable{
     }
 
     @FXML
-    public void changePassword(ActionEvent event) {
+    public void changePassword(ActionEvent event) throws IOException {
         if (user.correctPassword(currentPassword.getText())) {
             String newPass = newPassword.getText();
       System.out.println(newPass.trim().equals(""));
@@ -161,6 +163,7 @@ public class Dashboard extends Controller implements Initializable{
             } else {
                 user.setPassword(newPassword.getText());
                 alert("successfully change password");
+                helpSerialize.serializeUser(User.getUsers());
             }
         } else {
             alert("current password doesn't match");

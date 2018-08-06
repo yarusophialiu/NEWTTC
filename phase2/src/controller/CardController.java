@@ -10,6 +10,7 @@ import javafx.scene.control.Label;
 import javafx.stage.Stage;
 import model.Card;
 import model.RegularUser;
+import model.User;
 
 import java.io.IOException;
 import java.net.URL;
@@ -37,6 +38,8 @@ public class CardController extends Controller implements Initializable{
     private Stage previousStage;
 
     private Dashboard dashboard;
+
+    private HelpSerialize helpSerialize = new HelpSerialize();
 
     @FXML
     public void goBackPage(javafx.event.ActionEvent event) throws Exception {
@@ -99,6 +102,7 @@ public class CardController extends Controller implements Initializable{
         }
         helpShowBalance(myCard.getBalance());
         helpSetAble();
+        helpSerialize.serializeUser(User.getUsers());
     }
 
     @FXML
@@ -108,6 +112,7 @@ public class CardController extends Controller implements Initializable{
         if (answer){
             ((RegularUser)myCard.getUser()).removeCard(myCard);
             goBackPage(event);
+            helpSerialize.serializeUser(User.getUsers());
         }
 
     }
@@ -118,6 +123,7 @@ public class CardController extends Controller implements Initializable{
         boolean answer = confirmBox.confirm("Are you sure you want to suspend this card?");
         if (answer){
             myCard.reverseSuspended();
+            helpSerialize.serializeUser(User.getUsers());
         }
     }
 

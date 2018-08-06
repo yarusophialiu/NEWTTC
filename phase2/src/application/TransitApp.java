@@ -1,5 +1,6 @@
 package application;
 
+import controller.*;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -13,8 +14,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 public class TransitApp extends Application{
-
-    private AdminUser admin = new AdminUser("adminuser", "adminuser@mail.com", "admin123");
 
 
     private void vehicleCase(ArrayList<String> dataArray,  StationFactory stationFactory, String vehicle, int index) {
@@ -37,11 +36,14 @@ public class TransitApp extends Application{
 
     @Override
     public void start(Stage primaryStage) throws Exception {
+        AdminUser admin = new AdminUser("adminuser", "adminuser@mail.com", "admin123");
+        Card.setAdminUser(admin);
+        HelpSerialize helpSerialize = new HelpSerialize();
+        User.setUsers(helpSerialize.deserializeUser());
         Parent root = FXMLLoader.load(getClass().getResource("../controller/login.fxml"));
         primaryStage.setTitle("Presto System App");
         primaryStage.setScene(new Scene(root, 800, 500 ));
         primaryStage.setResizable(false);
-        Card.setAdminUser(admin);
         primaryStage.show();
 
         BufferedReader fileReader =
