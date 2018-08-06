@@ -52,4 +52,7 @@ public class User implements Serializable {
         this.password = password;
     }
 
+    public static void setUsers(HashMap<String, User> users) {
+        User.users = users;
+    }
 }
