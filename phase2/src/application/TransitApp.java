@@ -17,19 +17,34 @@ public class TransitApp extends Application{
 
 
     private void vehicleCase(ArrayList<String> dataArray,  StationFactory stationFactory, String vehicle, int index) {
-        Station subwayStation = stationFactory.newStation(dataArray.get(index), vehicle, "1");
-        for (int i = 3; i < dataArray.size(); i++) {
-            Station newNeighbour = stationFactory.newStation(dataArray.get(i), vehicle, "1");
-            ((SubwayStation)subwayStation).addNeighbours((SubwayStation) newNeighbour);
+        if (index == 1) {
+            Station subwayStation = stationFactory.newStation(dataArray.get(index), vehicle, "1");
+            for (int i = 3; i < dataArray.size(); i++) {
+                Station newNeighbour = stationFactory.newStation(dataArray.get(i), vehicle, "1");
+                ((SubwayStation)subwayStation).addNeighbours((SubwayStation) newNeighbour);
+            }
+        }
+
+        if (index == 0) {
+            Station busStation = stationFactory.newStation(dataArray.get(index), vehicle, "1");
+            for (int i = 3; i < dataArray.size(); i++) {
+                Station newNeighbour = stationFactory.newStation(dataArray.get(i), vehicle, "1");
+                ((BusStation)busStation).addNeighbours((BusStation) newNeighbour);
+            }
         }
     }
+
 
     @Override
     public void start(Stage primaryStage) throws Exception {
         AdminUser admin = new AdminUser("adminuser", "adminuser@mail.com", "admin123");
         Card.setAdminUser(admin);
         HelpSerialize helpSerialize = new HelpSerialize();
-        User.setUsers(helpSerialize.deserializeUser());
+
+        BufferedReader tryToRead = new BufferedReader(new FileReader("/Users/ShellyWu/Desktop/group_0165/phase2/serializedUser.ser"));
+        if (! (tryToRead.readLine() == null)) {
+            User.setUsers(helpSerialize.deserializeUser());
+        }
         Parent root = FXMLLoader.load(getClass().getResource("../controller/login.fxml"));
         primaryStage.setTitle("Presto System App");
         primaryStage.setScene(new Scene(root, 800, 500 ));
@@ -39,7 +54,7 @@ public class TransitApp extends Application{
         BufferedReader fileReader =
         new BufferedReader(
             new FileReader(
-                "stations.txt"));
+                "phase2/stations.txt"));
         String vehicle = fileReader.readLine();
         String info = fileReader.readLine();
         StationFactory stationFactory = new StationFactory();
