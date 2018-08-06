@@ -2,27 +2,31 @@ package application;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import javafx.scene.Parent;
 import model.*;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.ResourceBundle;
 
 public class TransitApp extends Application{
 
     private AdminUser admin = new AdminUser("adminuser", "adminuser@mail.com", "admin123");
 
 
+    private void vehicleCase(ArrayList<String> dataArray,  StationFactory stationFactory, String vehicle, int index) {
+        Station subwayStation = stationFactory.newStation(dataArray.get(index), vehicle, "1");
+        for (int i = 3; i < dataArray.size(); i++) {
+            Station newNeighbour = stationFactory.newStation(dataArray.get(i), vehicle, "1");
+            ((SubwayStation)subwayStation).addNeighbours((SubwayStation) newNeighbour);
+        }
+    }
+
     @Override
     public void start(Stage primaryStage) throws Exception {
-
         Parent root = FXMLLoader.load(getClass().getResource("../controller/login.fxml"));
         primaryStage.setTitle("Presto System App");
         primaryStage.setScene(new Scene(root, 800, 500 ));
@@ -33,7 +37,7 @@ public class TransitApp extends Application{
         BufferedReader fileReader =
         new BufferedReader(
             new FileReader(
-                "phase2/stations.txt"));
+                "stations.txt"));
         String vehicle = fileReader.readLine();
         String info = fileReader.readLine();
         StationFactory stationFactory = new StationFactory();
@@ -50,19 +54,11 @@ public class TransitApp extends Application{
                     ArrayList<String> dataArray = new ArrayList<>(Arrays.asList(info.split(" ")));
                     switch (vehicle){
                         case "subway":
-                            Station subwayStation = stationFactory.newStation(dataArray.get(1), vehicle, "1");
-                            for (int i = 3; i < dataArray.size(); i++) {
-                                Station newNeighbour = stationFactory.newStation(dataArray.get(i), vehicle, "1");
-                                ((SubwayStation)subwayStation).addNeighbours((SubwayStation) newNeighbour);
-                            }
+                            vehicleCase(dataArray, stationFactory, vehicle, 1);
                             info = fileReader.readLine();
                             break;
                         case "bus":
-                            Station busStation = stationFactory.newStation(dataArray.get(1), vehicle, dataArray.get(0));
-                            for (int i = 3; i < dataArray.size(); i++){
-                                Station newNeighbour = stationFactory.newStation(dataArray.get(i), vehicle, dataArray.get(0));
-                                ((BusStation) busStation).addNeighbours((BusStation) newNeighbour);
-                            }
+                            vehicleCase(dataArray, stationFactory, vehicle, 0);
                             info = fileReader.readLine();
                             break;
                     }
