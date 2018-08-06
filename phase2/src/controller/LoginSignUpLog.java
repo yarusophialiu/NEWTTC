@@ -1,6 +1,7 @@
 package controller;
 
 
+import java.io.File;
 import java.io.IOException;
 import java.util.logging.FileHandler;
 import java.util.logging.Level;
@@ -11,20 +12,22 @@ class LoginSignUpLog {
 
     private static final Logger logger = Logger.getLogger(LoginSignUpLog.class.getName());
 
+
     LoginSignUpLog(){
-//        logger.setLevel(Level.ALL);
-//        try {
-//            FileHandler fileHandler = new FileHandler("phase2/CardAndUserLog.log", true);
-//            logger.addHandler(fileHandler);
-//            SimpleFormatter simpleFormatter= new SimpleFormatter();
-//            fileHandler.setFormatter(simpleFormatter);
-//            logger.setUseParentHandlers(false);
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
+        logger.setLevel(Level.ALL);
     }
 
     void helpLog(Level level, String message){
-//        logger.log(level, message);
+        try{
+            FileHandler fileHandler = new FileHandler("phase2/CardAndUserLog.log", true);
+            logger.addHandler(fileHandler);
+            SimpleFormatter simpleFormatter= new SimpleFormatter();
+            fileHandler.setFormatter(simpleFormatter);
+            logger.setUseParentHandlers(false);
+            logger.log(level, message);
+            fileHandler.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

@@ -16,21 +16,24 @@ public class CardHandler {
 
     static AdminUser adminUser;
 
+    private FileHandler thisFileHandler;
+
     CardHandler(){
         logger.setLevel(Level.ALL);
-        try {
+    }
+
+    public void helpLog(Level level, String message){
+        try{
             FileHandler fileHandler = new FileHandler("phase2/CardAndUserLog.log", true);
             logger.addHandler(fileHandler);
             SimpleFormatter simpleFormatter= new SimpleFormatter();
             fileHandler.setFormatter(simpleFormatter);
             logger.setUseParentHandlers(false);
+            logger.log(level, message);
+            fileHandler.close();
         } catch (IOException e) {
             e.printStackTrace();
         }
-    }
-
-    public void helpLog(Level level, String message){
-        logger.log(level, message);
     }
 
     String recentTripString() {

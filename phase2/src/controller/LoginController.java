@@ -34,7 +34,7 @@ public class LoginController extends Controller implements Initializable{
         adminUserController.loadInfo();
     }
 
-    void loginRegularUser(String email, String password, HashMap<String, User> users) throws IOException{
+    void loginRegularUser(String email, String password, HashMap<String, User> users, Stage loginWindow) throws IOException{
         LoginSignUpLog loginSignUpLog = new LoginSignUpLog();
         for (User user : users.values()){
             if (user.getEmailAddress().equals(email)){
@@ -46,6 +46,11 @@ public class LoginController extends Controller implements Initializable{
                     dashboardControl.setUser(user);
                     dashboardControl.loadCard();
                     newStage(root);
+                    loginWindow.close();
+                }
+                else {
+                    alert("Trying to login with wrong password.");
+                    loginSignUpLog.helpLog(Level.WARNING, "user " + user.getEmailAddress() + " trying to login but failed: wrong password.");
                 }
             }
         }
@@ -72,8 +77,8 @@ public class LoginController extends Controller implements Initializable{
 
             }
             else{
-                loginRegularUser(emailInput, passwordInput, users);
-                loginWindow.close();
+                loginRegularUser(emailInput, passwordInput, users, loginWindow);
+
 
             }
         } else{
