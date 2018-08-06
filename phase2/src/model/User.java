@@ -16,6 +16,8 @@ public class User implements Serializable {
     private String password;
     private static HashMap<String, User> users = new HashMap<>();
 
+    private Long timeSpendOnTransitToday;
+
 
     /** initialize a new User instance. */
     public User(String userName, String emailAddress, String password) {
@@ -52,5 +54,13 @@ public class User implements Serializable {
 
     public static void setUsers(HashMap<String, User> users) {
         User.users = users;
+    }
+
+    void addTime(long time){
+        this.timeSpendOnTransitToday += time;
+    }
+
+    public Long getTimeSpendOnTransitToday(){
+        return timeSpendOnTransitToday;
     }
 }

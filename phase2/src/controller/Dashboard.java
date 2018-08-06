@@ -62,7 +62,7 @@ public class Dashboard extends Controller implements Initializable{
         this.cards = ((RegularUser) user).getMyCard();
         this.averageMonthlyCost.setText (String.valueOf(((RegularUser) user).getAverageMonthlyFare()));
         this.preferredVehicle.setText("None");
-        this.timeOnTransit.setText("0.00");
+        this.timeOnTransit.setText(String.valueOf(user.getTimeSpendOnTransitToday()));
     }
 
 
@@ -77,7 +77,7 @@ public class Dashboard extends Controller implements Initializable{
             hBox.getChildren().add(button);
             button.setOnAction(e -> {
                 try {
-                    helpSetUp(newCard, e);
+                    cardButtonAction(newCard, e);
                 } catch (IOException e1) {
                     e1.printStackTrace();
                 }
@@ -114,7 +114,7 @@ public class Dashboard extends Controller implements Initializable{
                 hBox.getChildren().add(button);
                 button.setOnAction(event -> {
                     try {
-                        helpSetUp(card, event);
+                        cardButtonAction(card, event);
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
@@ -123,7 +123,7 @@ public class Dashboard extends Controller implements Initializable{
         }
     }
 
-    private void helpSetUp(Card card, javafx.event.ActionEvent event) throws IOException {
+    private void cardButtonAction(Card card, javafx.event.ActionEvent event) throws IOException {
         ConfirmBox confirmBox = new ConfirmBox();
         if (card.getSuspended()){
             boolean answer = confirmBox.confirm("This card is suspended, do you still want to access?");
@@ -168,5 +168,10 @@ public class Dashboard extends Controller implements Initializable{
         } else {
             alert("current password doesn't match");
         }
+    }
+
+    void helpUpdateInfo(){
+        averageMonthlyCost.setText(String.valueOf(((RegularUser)user).getAverageMonthlyFare()));
+        timeOnTransit.setText(String.valueOf(user.getTimeSpendOnTransitToday()));
     }
 }

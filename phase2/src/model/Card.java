@@ -145,25 +145,26 @@ public class Card extends CardHandler implements Serializable {
         }
     }
 
-    private void helpExit(Station station, Date time, String vehicle, Trip previousTrip, StationFactory stationFactory){
-        if (!(previousTrip.getExit() == null)){
+    private void helpExit(Station station, Date time, String vehicle, Trip trip, StationFactory stationFactory){
+        if (!(trip.getExit() == null)){
             System.out.println("exit without enter, 6 dollars deducted from your balance.");
             this.balance -= 6;
         }else{
-            previousTrip.setExit(station, time);
-            previousTrip.updateContinuity(previousTrip);
-            if (previousTrip.getTransportation()){
+            trip.setExit(station, time);
+            trip.updateContinuity(trip);
+            if (trip.getTransportation()){
                 FareCalculator fareCalculator = new SubwayFareCalculator(stationFactory, adminUser);
-                double fare = fareCalculator.calculateFare(previousTrip);
+                double fare = fareCalculator.calculateFare(trip);
                 deductFare(fare, "exits");
                 adminUser.updateTotalFare(fare);
-                user.updateAverageMonthlyFare(previousTrip.getEnterTime().toString().split(" ")[1], fare);
+                user.updateAverageMonthlyFare(trip.getEnterTime().toString().split(" ")[1], fare);
             }
             else{
                 MinDistance busMinDistance = new BusMinDistance(stationFactory);
-                int numStations = busMinDistance.minDistance(previousTrip.getEntrance(), previousTrip.getExit());
+                int numStations = busMinDistance.minDistance(trip.getEntrance(), trip.getExit());
                 adminUser.updateTotalStation(numStations);
             }
+            user.addTime(trip.tripTime());
         }
     }
 
