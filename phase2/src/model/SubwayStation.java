@@ -23,7 +23,7 @@ public class SubwayStation extends Station{
     }
 
     /** add neighbours to this station. */
-    public void addNeighbours(SubwayStation neighbour) {
+     public void addNeighbours(SubwayStation neighbour) {
         this.neighbours.add(neighbour);
     }
 
