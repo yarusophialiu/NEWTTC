@@ -1,8 +1,9 @@
 package model;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class Trip{
+public class Trip implements Serializable {
     /** The start station of the trip. */
     private Station entrance;
     /** The end station of the trip. */
