@@ -41,7 +41,7 @@ public class TransitApp extends Application{
         Card.setAdminUser(admin);
         HelpSerialize helpSerialize = new HelpSerialize();
 
-        BufferedReader tryToRead = new BufferedReader(new FileReader("/Users/ShellyWu/Desktop/group_0165/phase2/serializedUser.ser"));
+        BufferedReader tryToRead = new BufferedReader(new FileReader("/Users/yaruliu/Desktop/group_0165/phase2/serializedUser.ser"));
         if (! (tryToRead.readLine() == null)) {
             User.setUsers(helpSerialize.deserializeUser());
         }
@@ -54,7 +54,7 @@ public class TransitApp extends Application{
         BufferedReader fileReader =
         new BufferedReader(
             new FileReader(
-                "phase2/stations.txt"));
+                "stations.txt"));
         String vehicle = fileReader.readLine();
         String info = fileReader.readLine();
         StationFactory stationFactory = new StationFactory();
