@@ -15,13 +15,6 @@ public class RegularUser extends User {
     /** stores average monthly cost for the user for all cards. */
     private double averageMonthlyFare = 0.0;
 
-    /**
-     * initialize a new User instance.
-     *
-     * @param userName
-     * @param emailAddress
-     * @param password
-     */
     public RegularUser(String userName, String emailAddress, String password) {
         super(userName, emailAddress, password);
         this.myCards = new ArrayList<>();
