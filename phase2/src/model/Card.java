@@ -1,10 +1,9 @@
 package model;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 
-public class Card implements Serializable {
+public class Card{
     /** A boolean to indicate whether the card is suspended or not. */
     private boolean isSuspended = false;
     /** An int to represent card number. */
@@ -116,19 +115,24 @@ public class Card implements Serializable {
                 }
             }
             else if (enterOrExit.equals("exits")){
-                previousTrip.setExit(station, time);
-                previousTrip.updateContinuity(previousTrip);
-                if (previousTrip.getTransportation()){
-                    FareCalculator fareCalculator = new SubwayFareCalculator(stationFactory, adminUser);
-                    double fare = fareCalculator.calculateFare(previousTrip);
-                    deductFare(fare, "exits");
-                    adminUser.updateTotalFare(fare);
-                    user.updateAverageMonthlyFare(previousTrip.getEnterTime().toString().split(" ")[1], fare);
-                }
-                else{
-                    MinDistance busMinDistance = new BusMinDistance(stationFactory);
-                    int numStations = busMinDistance.minDistance(previousTrip.getEntrance(), previousTrip.getExit());
-                    adminUser.updateTotalStation(numStations);
+                if (!(previousTrip.getExit() == null)){
+                    System.out.println("exit without enter, 6 dollars deducted from your balance.");
+                    this.balance -= 6;
+                }else{
+                    previousTrip.setExit(station, time);
+                    previousTrip.updateContinuity(previousTrip);
+                    if (previousTrip.getTransportation()){
+                        FareCalculator fareCalculator = new SubwayFareCalculator(stationFactory, adminUser);
+                        double fare = fareCalculator.calculateFare(previousTrip);
+                        deductFare(fare, "exits");
+                        adminUser.updateTotalFare(fare);
+                        user.updateAverageMonthlyFare(previousTrip.getEnterTime().toString().split(" ")[1], fare);
+                    }
+                    else{
+                        MinDistance busMinDistance = new BusMinDistance(stationFactory);
+                        int numStations = busMinDistance.minDistance(previousTrip.getEntrance(), previousTrip.getExit());
+                        adminUser.updateTotalStation(numStations);
+                    }
                 }
             }
         }

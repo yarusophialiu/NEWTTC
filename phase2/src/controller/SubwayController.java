@@ -13,7 +13,7 @@ import model.Card;
 import model.Station;
 import model.StationFactory;
 
-import java.io.IOException;
+import java.io.*;
 import java.net.URL;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -122,29 +122,46 @@ public class SubwayController extends Controller implements Initializable, Selec
 
     public void confirmTrip() throws ParseException {
         StationFactory stationFactory = new StationFactory();
-        String start = boxToString.get(selected.get(0));
-        String end = boxToString.get(selected.get(1));
-        String line;
-        if (line1.contains(selected.get(0)) & line1.contains(selected.get(1))){
-            line = "1";
-        }else{
-            line = "2";
+        if (selected.size() == 1){
+            if (startTime.getText().isEmpty()){
+                String end = boxToString.get(selected.get(0));
+                String line;
+                if (line1.contains(selected.get(0))){
+                    line = "1";
+                }else{
+                    line = "2";
+                }
+                SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+                Station endStation = stationFactory.newStation(end, "subway", line);
+
+                Date endDate = df.parse(endTime.getText() + ":00");
+                card.updateOnTap("exits", endStation, endDate,
+                        "subway", stationFactory);
+            }
+        }else {
+            String start = boxToString.get(selected.get(0));
+            String end = boxToString.get(selected.get(1));
+            String line;
+            if (line1.contains(selected.get(0)) & line1.contains(selected.get(1))){
+                line = "1";
+            }else{
+                line = "2";
+            }
+
+            Station startStation = stationFactory.newStation(start, "subway", line);
+            Station endStation = stationFactory.newStation(end, "subway", line);
+
+            SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            Date startDate = df.parse(startTime.getText() + ":00");
+            Date endDate = df.parse(endTime.getText() + ":00");
+            card.updateOnTap("enters", startStation, startDate,
+                    "subway", stationFactory);
+            card.updateOnTap("exits", endStation, endDate,
+                    "subway", stationFactory);
         }
-
-        Station startStation = stationFactory.newStation(start, "subway", line);
-        Station endStation = stationFactory.newStation(end, "subway", line);
-
-        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        Date startDate = df.parse(startTime.getText() + ":00");
-        Date endDate = df.parse(endTime.getText() + ":00");
-
-        card.updateOnTap("enters", startStation, startDate,
-                "subway", stationFactory);
-        card.updateOnTap("exits", endStation, endDate,
-                "subway", stationFactory);
-        for (CheckBox cb: boxToString.keySet()){
-            cb.setDisable(false);
-            cb.setSelected(false);
+        for (CheckBox checkBox: boxToString.keySet()){
+            checkBox.setDisable(false);
+            checkBox.setSelected(false);
         }
         selected.clear();
         startTime.clear();
