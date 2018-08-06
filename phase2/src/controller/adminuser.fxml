@@ -25,5 +25,6 @@
             <Font size="15.0" />
          </font>
       </Text>
+      <Button layoutX="585.0" layoutY="135.0" mnemonicParsing="false" onAction="#goToYesterday" style="-fx-background-color: rgba(19, 173, 243, 0.63);" text="Yesterday" textFill="WHITE" />
    </children>
 </AnchorPane>

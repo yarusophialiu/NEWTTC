@@ -1,9 +1,10 @@
 package controller;
 
-import application.TransitApp;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.text.Text;
-import model.*;
+import model.AdminUser;
+import model.User;
 
 public class AdminUserController extends Controller{
 
@@ -23,4 +24,7 @@ public class AdminUserController extends Controller{
         }
     }
 
+    public void goToYesterday(ActionEvent event) throws Exception{
+        switchScene(event, "yesterday.fxml");
+    }
 }
