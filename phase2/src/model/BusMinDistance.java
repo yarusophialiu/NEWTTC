@@ -5,7 +5,6 @@ import java.util.Collection;
 
 public class BusMinDistance implements MinDistance {
     private StationFactory stationFactory;
-
     BusMinDistance(StationFactory stationFactory){
         this.stationFactory = stationFactory;
     }

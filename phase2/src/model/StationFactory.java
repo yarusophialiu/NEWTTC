@@ -19,22 +19,26 @@ public class StationFactory {
         return station;
     }
 
+    private Station newBus(String stationID, String vehicle, Integer lineNum) {
+        if (busStationHashMap.keySet().contains(stationID)) {
+            for (BusStation stop : busStationHashMap.values()) {
+                if (stop.getName().equals(stationID) && stop.getLineNumber() == lineNum) {
+                    return stop;
+                }
+            }
+        }
+        Station station = new BusStation(stationID, vehicle, lineNum);
+        busStationHashMap.put(stationID, (BusStation) station);
+        return station;
+    }
+
     public Station newStation(String stationID, String vehicle, String lineNumber) {
         Integer lineNum = Integer.parseInt(lineNumber);
         if (vehicle.equals("subway")){
             return newSub(stationID, vehicle);
         }
        else{
-            if (busStationHashMap.keySet().contains(stationID)) {
-                for (BusStation stop : busStationHashMap.values()) {
-                    if (stop.getName().equals(stationID) && stop.getLineNumber() == lineNum) {
-                        return stop;
-                    }
-                }
-            }
-            Station station = new BusStation(stationID, vehicle, lineNum);
-            busStationHashMap.put(stationID, (BusStation) station);
-            return station;
+            return newBus(stationID, vehicle, lineNum);
         }
     }
 

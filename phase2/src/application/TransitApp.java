@@ -18,10 +18,20 @@ public class TransitApp extends Application{
 
 
     private void vehicleCase(ArrayList<String> dataArray,  StationFactory stationFactory, String vehicle, int index) {
-        Station subwayStation = stationFactory.newStation(dataArray.get(index), vehicle, "1");
-        for (int i = 3; i < dataArray.size(); i++) {
-            Station newNeighbour = stationFactory.newStation(dataArray.get(i), vehicle, "1");
-            ((SubwayStation)subwayStation).addNeighbours((SubwayStation) newNeighbour);
+        if (index == 1) {
+            Station subwayStation = stationFactory.newStation(dataArray.get(index), vehicle, "1");
+            for (int i = 3; i < dataArray.size(); i++) {
+                Station newNeighbour = stationFactory.newStation(dataArray.get(i), vehicle, "1");
+                ((SubwayStation)subwayStation).addNeighbours((SubwayStation) newNeighbour);
+            }
+        }
+
+        if (index == 0) {
+            Station busStation = stationFactory.newStation(dataArray.get(index), vehicle, "1");
+            for (int i = 3; i < dataArray.size(); i++) {
+                Station newNeighbour = stationFactory.newStation(dataArray.get(i), vehicle, "1");
+                ((BusStation)busStation).addNeighbours((BusStation) newNeighbour);
+            }
         }
     }
 
