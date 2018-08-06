@@ -216,8 +216,9 @@ public class BusController extends Controller implements Initializable, SelectSt
                 item.setDisable(false);
             }
         }
-        selected.get(0).setSelected(false);
-        selected.get(1).setSelected(false);
+        for (CheckBox item : selected){
+            item.setSelected(false);
+        }
         selected.clear();
         startTime.clear();
         endTime.clear();
