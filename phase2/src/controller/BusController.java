@@ -1,21 +1,15 @@
 package controller;
 
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import model.*;
 import java.io.IOException;
-import java.lang.reflect.Array;
 import java.net.URL;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.*;
 
 public class BusController extends Controller implements Initializable, SelectStation{
@@ -24,9 +18,8 @@ public class BusController extends Controller implements Initializable, SelectSt
     private CheckBox stop1,stop2,stop3,stop4,stop5,stop6,stop7,stop8,stop9,
             stop10,stop11,stop12,stop13,stop14;
 
-    private ArrayList<CheckBox> line1 = new ArrayList<>();
 
-    private ArrayList<CheckBox> line2 = new ArrayList<>();
+    private BusConfirmTrip helper = new BusConfirmTrip();
 
     private HashMap<CheckBox, String> boxToString = new HashMap<>();
 
@@ -42,7 +35,6 @@ public class BusController extends Controller implements Initializable, SelectSt
 
     private Stage previousStage;
 
-    private ArrayList<ArrayList<CheckBox>> lines = new ArrayList<>();
     private CardController cardController;
 
     public void setCard(Card card){
@@ -52,72 +44,14 @@ public class BusController extends Controller implements Initializable, SelectSt
     public void selectBox (javafx.event.ActionEvent event){
         CheckBox newSelect = ((CheckBox) event.getSource());
         if (newSelect.isSelected()){
-            disable(newSelect);
+            helper.disable(newSelect, selected);
         }
         else{
-            enable(newSelect);
+            helper.enable(newSelect, selected);
 
         }
     }
 
-    private void disable(CheckBox box){
-        selected.add(box);
-        if (selected.size() == 2){
-            for (ArrayList<CheckBox> line : lines){
-                for (CheckBox item: line){
-                    if (! item.equals(box) & ! item.equals(selected.get(0))){
-                        item.setDisable(true);
-                    }
-                }
-            }
-    } else {
-      ArrayList<CheckBox> list = new ArrayList<>();
-      for (ArrayList<CheckBox> line : lines) {
-        if (line.contains(box)) {
-          list.addAll(line);
-        }
-      }
-            helpSetDisable(box, list);
-        }
-    }
-
-    private void helpSetDisable(CheckBox box, ArrayList<CheckBox> list) {
-        for (ArrayList<CheckBox> line : lines) {
-          if (!line.contains(box)) {
-            for (CheckBox item : line) {
-              if (!list.contains(item)) {
-                item.setDisable(true);
-              }
-            }
-          }
-        }
-    }
-
-    private void enable(CheckBox box){
-        selected.remove(box);
-        if (selected.size() == 0){
-            for (ArrayList<CheckBox> line : lines){
-                for (CheckBox item : line){
-                    item.setDisable(false);
-                }
-            }
-        }
-        else{
-            CheckBox start = selected.get(0);
-            for (ArrayList<CheckBox> line : lines){
-                for (CheckBox item : line){
-                    item.setDisable(false);
-                }
-            }
-            ArrayList<CheckBox> list = new ArrayList<>();
-            for (ArrayList<CheckBox> line : lines) {
-                if (line.contains(start)) {
-                    list.addAll(line);
-                }
-            }
-            helpSetDisable(start, list);
-        }
-    }
 
 
     @FXML
@@ -129,6 +63,7 @@ public class BusController extends Controller implements Initializable, SelectSt
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        ArrayList<CheckBox> line1 = new ArrayList<>();
         line1.add(stop1);
         line1.add(stop2);
         line1.add(stop3);
@@ -137,6 +72,7 @@ public class BusController extends Controller implements Initializable, SelectSt
         line1.add(stop6);
         line1.add(stop7);
 
+        ArrayList<CheckBox> line2 = new ArrayList<>();
         line2.add(stop8);
         line2.add(stop9);
         line2.add(stop3);
@@ -147,8 +83,10 @@ public class BusController extends Controller implements Initializable, SelectSt
         line2.add(stop6);
         line2.add(stop14);
 
+        ArrayList<ArrayList<CheckBox>> lines = new ArrayList<>();
         lines.add(line1);
         lines.add(line2);
+        helper.setLines(lines);
 
         boxToString.put(stop1, "Bloor-Yonge");
         boxToString.put(stop2, "Queens_Park");
@@ -170,60 +108,8 @@ public class BusController extends Controller implements Initializable, SelectSt
         this.previousStage = stage;
     }
 
-    public void confirmTrip() throws ParseException, IOException {
-        HelpSerialize helpSerialize = new HelpSerialize();
-        StationFactory stationFactory = new StationFactory();
-        if (selected.size() == 1){
-            if (startTime.getText().isEmpty()){
-                String end = boxToString.get(selected.get(0));
-                String line = "";
-                for (int i = 0; i < lines.size(); i++){
-                    if (lines.get(i).contains(selected.get(0))){
-                        Integer lineNum = 1 + i;
-                        line = lineNum.toString();
-                    }
-                }
-                SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-                Station endStation = stationFactory.newStation(end, "bus", line);
-
-                Date endDate = df.parse(endTime.getText() + ":00");
-                card.updateOnTap("exits", endStation, endDate,
-                        "bus", stationFactory);
-            }
-        }else {
-            String start = boxToString.get(selected.get(0));
-            String end = boxToString.get(selected.get(1));
-            String line = "";
-            for (int i = 0; i < lines.size(); i++){
-                if (lines.get(i).contains(selected.get(0)) & lines.get(i).contains(selected.get(1))){
-                    Integer lineNum = 1 + i;
-                    line = lineNum.toString();
-                }
-            }
-            Station startStation = stationFactory.newStation(start, "bus", line);
-            Station endStation = stationFactory.newStation(end, "bus", line);
-
-            SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-            Date startDate = df.parse(startTime.getText() + ":00");
-            Date endDate = df.parse(endTime.getText() + ":00");
-            card.updateOnTap("enters", startStation, startDate,
-                    "bus", stationFactory);
-            card.updateOnTap("exits", endStation, endDate,
-                    "bus", stationFactory);
-        }
-        for (ArrayList<CheckBox> checkBoxes : lines){
-            for(CheckBox item : checkBoxes){
-                item.setDisable(false);
-            }
-        }
-        for (CheckBox item : selected){
-            item.setSelected(false);
-        }
-        selected.clear();
-        startTime.clear();
-        endTime.clear();
-        cardController.helpShowBalance(card.getBalance());
-        helpSerialize.serializeUser(User.getUsers());
+    public void confirmTrip()throws ParseException, IOException{
+        helper.confirm(selected, boxToString, card, startTime, endTime, cardController);
     }
 
     void setPreviousController(CardController cardController){
