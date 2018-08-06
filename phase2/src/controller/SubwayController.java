@@ -7,16 +7,22 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.CheckBox;
+import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import model.Card;
+import model.Station;
+import model.StationFactory;
 
 import java.io.IOException;
 import java.net.URL;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.ResourceBundle;
 
-public class SubwayController extends Controller implements Initializable {
+public class SubwayController extends Controller implements Initializable, SelectStation {
 
     private Card card;
 
@@ -32,17 +38,27 @@ public class SubwayController extends Controller implements Initializable {
 
     private HashMap<CheckBox, String> boxToString = new HashMap<>();
 
+    private CardController cardController;
+
+    ArrayList<CheckBox> selected = new ArrayList<>();
+
+    @FXML
+    private TextField startTime;
+
+    @FXML
+    private TextField endTime;
+
     public void setCard(Card card){
         this.card = card;
     }
 
-    public void goBackPage(javafx.event.ActionEvent event) throws Exception {
+    public void goBackPage(javafx.event.ActionEvent event){
         Stage subwayController = (Stage) ((Node) event.getSource()).getScene().getWindow();
         previousStage.show();
         subwayController.close();
     }
 
-    void setPreviousStage(Stage stage){
+    public void setPreviousStage(Stage stage){
         this.previousStage = stage;
     }
 
@@ -53,7 +69,6 @@ public class SubwayController extends Controller implements Initializable {
         line1.add(stop4);
         line1.add(stop5);
         line1.add(stop6);
-        line1.add(stop7);
 
         line2.add(stop7);
         line2.add(stop8);
@@ -76,37 +91,26 @@ public class SubwayController extends Controller implements Initializable {
     }
 
     @FXML
-    void selectedBoxAmount(){
-        ArrayList<CheckBox> selected = new ArrayList<>();
-        for (CheckBox cb: boxToString.keySet()){
-            if (cb.isSelected()){
-                selected.add(cb);
+    public void selectBox(javafx.event.ActionEvent event){
+        ArrayList<CheckBox> newSelected = new ArrayList<>();
+        for (CheckBox checkBox: boxToString.keySet()){
+            if (checkBox.isSelected()){
+                newSelected.add(checkBox);
             }
+        }
+        for (CheckBox checkBox: newSelected){
+            if (!selected.contains(checkBox)){
+                selected.add(checkBox);
+            }
+        }
+        if (selected.size() > newSelected.size()){
+            selected = newSelected;
         }
         if (selected.size() == 0 | selected.size() == 1){
             for (CheckBox cb: boxToString.keySet()){
                 cb.setDisable(false);
             }
         }
-//        if (selected.size() == 1){
-//            CheckBox fistSelect = selected.get(0);
-//            if (!line1.contains(fistSelect)){
-//                for (CheckBox cb: line1){
-//                    cb.setDisable(true);
-//
-//                }
-//                for (CheckBox cb: line2){
-//                    cb.setDisable(false);
-//                }
-//            }else if (!line2.contains(fistSelect)){
-//                for (CheckBox cb: line2){
-//                    cb.setDisable(true);
-//                }
-//                for (CheckBox cb: line1){
-//                    cb.setDisable(false);
-//                }
-//            }
-//        }
         if (selected.size() == 2){
             for (CheckBox cb: boxToString.keySet()){
                 if (!cb.isSelected()){
@@ -114,6 +118,42 @@ public class SubwayController extends Controller implements Initializable {
                 }
             }
         }
+    }
+
+    public void confirmTrip() throws ParseException {
+        StationFactory stationFactory = new StationFactory();
+        String start = boxToString.get(selected.get(0));
+        String end = boxToString.get(selected.get(1));
+        String line;
+        if (line1.contains(selected.get(0)) & line1.contains(selected.get(1))){
+            line = "1";
+        }else{
+            line = "2";
+        }
+
+        Station startStation = stationFactory.newStation(start, "subway", line);
+        Station endStation = stationFactory.newStation(end, "subway", line);
+
+        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        Date startDate = df.parse(startTime.getText() + ":00");
+        Date endDate = df.parse(endTime.getText() + ":00");
+
+        card.updateOnTap("enters", startStation, startDate,
+                "subway", stationFactory);
+        card.updateOnTap("exits", endStation, endDate,
+                "subway", stationFactory);
+        for (CheckBox cb: boxToString.keySet()){
+            cb.setDisable(false);
+            cb.setSelected(false);
+        }
+        selected.clear();
+        startTime.clear();
+        endTime.clear();
+        cardController.helpShowBalance(card.getBalance());
+    }
+
+    void setPreviousController(CardController cardController){
+        this.cardController = cardController;
     }
 
 }

@@ -12,12 +12,13 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import model.*;
 import java.io.IOException;
+import java.lang.reflect.Array;
 import java.net.URL;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
-public class BusController extends Controller implements Initializable{
+public class BusController extends Controller implements Initializable, SelectStation{
 
     @FXML
     private CheckBox stop1,stop2,stop3,stop4,stop5,stop6,stop7,stop8,stop9,
@@ -41,6 +42,9 @@ public class BusController extends Controller implements Initializable{
 
     private Stage previousStage;
 
+    private ArrayList<ArrayList<CheckBox>> lines = new ArrayList<>();
+    private CardController cardController;
+
     public void setCard(Card card){
         this.card = card;
     }
@@ -59,67 +63,65 @@ public class BusController extends Controller implements Initializable{
     private void disable(CheckBox box){
         selected.add(box);
         if (selected.size() == 2){
-            for (CheckBox aSelected : line1) {
-                if (!aSelected.equals(selected.get(0)) && !aSelected.equals(selected.get(1))) {
-                    aSelected.setDisable(true);
-                }
-            }
-            for (CheckBox aSelected : line2) {
-                if (!aSelected.equals(selected.get(0)) && !aSelected.equals(selected.get(1))) {
-                    aSelected.setDisable(true);
-                }
-            }
-        }
-        else{
-            if (! line1.contains(box)){
-                for (CheckBox item : line1){
-                    if (!line2.contains(item)) {
+            for (ArrayList<CheckBox> line : lines){
+                for (CheckBox item: line){
+                    if (! item.equals(box) & ! item.equals(selected.get(0))){
                         item.setDisable(true);
                     }
                 }
             }
-            else if (! line2.contains(box)){
-                for (CheckBox item : line2){
-                     if (!line1.contains(item)) {
-                         item.setDisable(true);
-                     }
-                }
+    } else {
+      ArrayList<CheckBox> list = new ArrayList<>();
+      for (ArrayList<CheckBox> line : lines) {
+        if (line.contains(box)) {
+          list.addAll(line);
+        }
+      }
+            helpSetDisable(box, list);
+        }
+    }
+
+    private void helpSetDisable(CheckBox box, ArrayList<CheckBox> list) {
+        for (ArrayList<CheckBox> line : lines) {
+          if (!line.contains(box)) {
+            for (CheckBox item : line) {
+              if (!list.contains(item)) {
+                item.setDisable(true);
+              }
             }
+          }
         }
     }
 
     private void enable(CheckBox box){
         selected.remove(box);
         if (selected.size() == 0){
-            for (CheckBox item : line1){
-                item.setDisable(false);
-            }
-            for (CheckBox item1 : line2) {
-                item1.setDisable(false);
+            for (ArrayList<CheckBox> line : lines){
+                for (CheckBox item : line){
+                    item.setDisable(false);
+                }
             }
         }
         else{
             CheckBox start = selected.get(0);
-            if (line1.contains(start)){
-                for (CheckBox item : line1){
-                    if(!item.equals(start)){
-                        item.setDisable(false);
-                    }
+            for (ArrayList<CheckBox> line : lines){
+                for (CheckBox item : line){
+                    item.setDisable(false);
                 }
             }
-            if (line2.contains(start)){
-                for (CheckBox item1 : line2) {
-                    if (!item1.equals(start)) {
-                        item1.setDisable(false);
-                     }
+            ArrayList<CheckBox> list = new ArrayList<>();
+            for (ArrayList<CheckBox> line : lines) {
+                if (line.contains(start)) {
+                    list.addAll(line);
                 }
             }
+            helpSetDisable(start, list);
         }
     }
 
 
     @FXML
-    public void goBackPage(javafx.event.ActionEvent event) throws Exception {
+    public void goBackPage(javafx.event.ActionEvent event){
         Stage busController = (Stage) ((Node) event.getSource()).getScene().getWindow();
         previousStage.show();
         busController.close();
@@ -145,6 +147,9 @@ public class BusController extends Controller implements Initializable{
         line2.add(stop6);
         line2.add(stop14);
 
+        lines.add(line1);
+        lines.add(line2);
+
         boxToString.put(stop1, "Bloor-Yonge");
         boxToString.put(stop2, "Queens_Park");
         boxToString.put(stop3, "College");
@@ -161,7 +166,7 @@ public class BusController extends Controller implements Initializable{
         boxToString.put(stop14, "Steven");
     }
 
-    void setPreviousStage(Stage stage){
+    public void setPreviousStage(Stage stage){
         this.previousStage = stage;
     }
 
@@ -187,7 +192,21 @@ public class BusController extends Controller implements Initializable{
                 "bus", stationFactory);
         card.updateOnTap("exits", endStation, endDate,
                 "bus", stationFactory);
+        for (ArrayList<CheckBox> checkBoxes : lines){
+            for(CheckBox item : checkBoxes){
+                item.setDisable(false);
+            }
+        }
+        selected.get(0).setSelected(false);
+        selected.get(1).setSelected(false);
+        selected.clear();
+        startTime.clear();
+        endTime.clear();
+        cardController.helpShowBalance(card.getBalance());
+    }
 
+    void setPreviousController(CardController cardController){
+        this.cardController = cardController;
     }
 
 

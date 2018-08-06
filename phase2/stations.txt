@@ -4,15 +4,15 @@ subway
 1 College neighbour: Wellesley Dundus
 1 Dundus neighbour: College Queen Yuxin Yunfan
 1 Queen neighbour: Dundus King
-1 King neighbour: Queen Terminal165
-1 Terminal165 neighbour: King Yaru
+1 King neighbour: Queen
+
 
 2 Xiaolei neighbour: Yunfan
 2 Yunfan neighbour: Xiaolei Dundus
 2 Dundus neighbour: Yuxin Yunfan College Queen
 2 Yuxin neighbour: Dundus Yaru
 2 Yaru neighbour: Yuxin Terminal165
-2 Terminal165 neighbour: Yaru King
+2 Terminal165 neighbour: Yaru
 
 bus
 1 Bloor-Yonge neighbour: Queens_Park
