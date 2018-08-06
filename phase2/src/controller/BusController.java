@@ -175,11 +175,12 @@ public class BusController extends Controller implements Initializable, SelectSt
         if (selected.size() == 1){
             if (startTime.getText().isEmpty()){
                 String end = boxToString.get(selected.get(0));
-                String line;
-                if (line1.contains(selected.get(0))){
-                    line = "1";
-                }else{
-                    line = "2";
+                String line = "";
+                for (int i = 0; i < lines.size(); i++){
+                    if (lines.get(i).contains(selected.get(0))){
+                        Integer lineNum = 1 + i;
+                        line = lineNum.toString();
+                    }
                 }
                 SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
                 Station endStation = stationFactory.newStation(end, "bus", line);
@@ -191,13 +192,13 @@ public class BusController extends Controller implements Initializable, SelectSt
         }else {
             String start = boxToString.get(selected.get(0));
             String end = boxToString.get(selected.get(1));
-            String line;
-            if (line1.contains(selected.get(0)) & line1.contains(selected.get(1))){
-                line = "1";
-            }else{
-                line = "2";
+            String line = "";
+            for (int i = 0; i < lines.size(); i++){
+                if (lines.get(i).contains(selected.get(0)) & lines.get(i).contains(selected.get(1))){
+                    Integer lineNum = 1 + i;
+                    line = lineNum.toString();
+                }
             }
-
             Station startStation = stationFactory.newStation(start, "bus", line);
             Station endStation = stationFactory.newStation(end, "bus", line);
 
