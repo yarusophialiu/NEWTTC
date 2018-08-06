@@ -1,11 +1,12 @@
 package model;
+import java.io.Serializable;
 import java.util.HashMap;
 
 /**
  * Class User is to store information about the User and all sort of actions a user may take when
  * using the card.
  */
-public class User {
+public class User implements Serializable {
     /** store the name of the user. */
     private String userName;
     /** stores the email address of the user. */
