@@ -48,9 +48,7 @@ public class User implements Serializable {
         return password.equals(verifyPassword);
     }
 
-    public void setPassword(String password) {
-        this.password = password;
-    }
+    public void setPassword(String password) { this.password = password; }
 
     public static void setUsers(HashMap<String, User> users) {
         User.users = users;
