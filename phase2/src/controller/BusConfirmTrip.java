@@ -11,6 +11,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.logging.Level;
 
 class BusConfirmTrip {
     private ArrayList<ArrayList<CheckBox>> lines;
@@ -71,6 +72,7 @@ class BusConfirmTrip {
         endTime.clear();
         cardController.helpShowBalance(card.getBalance());
         helpSerialize.serializeUser(User.getUsers());
+        card.helpLog(Level.INFO, "information in log."); // 改一下这个地方的String
     }
 
     void disable(CheckBox box, ArrayList<CheckBox> selected){

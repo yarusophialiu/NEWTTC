@@ -22,6 +22,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
 
 public class SubwayController extends Controller implements Initializable, SelectStation {
 
@@ -170,6 +171,7 @@ public class SubwayController extends Controller implements Initializable, Selec
         endTime.clear();
         cardController.helpShowBalance(card.getBalance());
         helpSerialize.serializeUser(User.getUsers());
+        card.helpLog(Level.INFO, "information in log."); // 改一下这个地方的String
     }
 
     void setPreviousController(CardController cardController){

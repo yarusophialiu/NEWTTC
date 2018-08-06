@@ -4,7 +4,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.logging.*;
 
-class CardHandler {
+public class CardHandler {
 
     private static final Logger logger = Logger.getLogger(CardHandler.class.getName());
 
@@ -29,7 +29,7 @@ class CardHandler {
         }
     }
 
-    void helpLog(Level level, String message){
+    public void helpLog(Level level, String message){
         logger.log(level, message);
     }
 
