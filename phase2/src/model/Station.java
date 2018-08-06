@@ -1,6 +1,9 @@
 package model;
 
-public class Station {
+import java.awt.*;
+import java.io.Serializable;
+
+public class Station implements Serializable {
     /** store name of the user. */
     private String name;
     /** store if its a bus or subway */

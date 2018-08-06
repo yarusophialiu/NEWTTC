@@ -170,7 +170,8 @@ public class BusController extends Controller implements Initializable, SelectSt
         this.previousStage = stage;
     }
 
-    public void confirmTrip() throws ParseException {
+    public void confirmTrip() throws ParseException, IOException {
+        HelpSerialize helpSerialize = new HelpSerialize();
         StationFactory stationFactory = new StationFactory();
         if (selected.size() == 1){
             if (startTime.getText().isEmpty()){
@@ -221,6 +222,7 @@ public class BusController extends Controller implements Initializable, SelectSt
         startTime.clear();
         endTime.clear();
         cardController.helpShowBalance(card.getBalance());
+        helpSerialize.serializeUser(User.getUsers());
     }
 
     void setPreviousController(CardController cardController){

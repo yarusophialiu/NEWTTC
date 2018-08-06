@@ -1,8 +1,9 @@
 package model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class SubwayStation extends Station{
+public class SubwayStation extends Station implements Serializable {
     /** stores the neighbouring stations of this station */
     private ArrayList<SubwayStation> neighbours = new ArrayList<>();
 

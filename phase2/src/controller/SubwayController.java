@@ -12,6 +12,7 @@ import javafx.stage.Stage;
 import model.Card;
 import model.Station;
 import model.StationFactory;
+import model.User;
 
 import java.io.*;
 import java.net.URL;
@@ -120,7 +121,8 @@ public class SubwayController extends Controller implements Initializable, Selec
         }
     }
 
-    public void confirmTrip() throws ParseException {
+    public void confirmTrip() throws ParseException, IOException {
+        HelpSerialize helpSerialize = new HelpSerialize();
         StationFactory stationFactory = new StationFactory();
         if (selected.size() == 1){
             if (startTime.getText().isEmpty()){
@@ -167,6 +169,7 @@ public class SubwayController extends Controller implements Initializable, Selec
         startTime.clear();
         endTime.clear();
         cardController.helpShowBalance(card.getBalance());
+        helpSerialize.serializeUser(User.getUsers());
     }
 
     void setPreviousController(CardController cardController){

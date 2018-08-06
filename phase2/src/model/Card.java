@@ -1,9 +1,11 @@
 package model;
 
+import java.awt.*;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 
-public class Card{
+public class Card implements Serializable {
     /** A boolean to indicate whether the card is suspended or not. */
     private boolean isSuspended = false;
     /** An int to represent card number. */
