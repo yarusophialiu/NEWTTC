@@ -10,6 +10,7 @@ public class User {
     private String userName;
     /** stores the email address of the user. */
     private String emailAddress;
+
     /** store the password for the user when login into the system(for phase 2) */
     private String password;
     private static HashMap<String, User> users = new HashMap<>();
@@ -44,6 +45,10 @@ public class User {
 
     public boolean correctPassword(String verifyPassword){
         return password.equals(verifyPassword);
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
 }
