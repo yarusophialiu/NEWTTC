@@ -9,7 +9,6 @@ import java.util.logging.Logger;
 class CardHandler {
 
     private static final Logger logger = Logger.getLogger(CardHandler.class.getName());
-    private static final Handler consoleHandler = new ConsoleHandler();
 
     /** An array list to store the 3 most recent trips. */
     ArrayList<Trip> myTrip = new ArrayList<>();
@@ -21,8 +20,6 @@ class CardHandler {
 
     CardHandler(){
         logger.setLevel(Level.ALL);
-        consoleHandler.setLevel(Level.ALL);
-        logger.addHandler(consoleHandler);
     }
 
     void helpLog(Level level, String message){

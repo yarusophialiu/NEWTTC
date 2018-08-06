@@ -87,18 +87,23 @@ public class CardController extends Controller implements Initializable{
         ConfirmBox confirmBox = new ConfirmBox();
         if (checkbox10.isSelected()){
             checkbox10.setSelected(false);
-            myCard.increaseBalance(10);
-            confirmBox.confirm("Add $10 to your balance?");
+            if (confirmBox.confirm("Add $10 to your balance?")){
+                myCard.increaseBalance(10);
+            }
         }
         else if (checkbox20.isSelected()){
             checkbox20.setSelected(false);
             myCard.increaseBalance(20);
-            confirmBox.confirm("Add $20 to your balance?");
+            if (confirmBox.confirm("Add $20 to your balance?")){
+                myCard.increaseBalance(10);
+            }
         }
         else if (checkbox30.isSelected()){
             checkbox30.setSelected(false);
             myCard.increaseBalance(30);
-            confirmBox.confirm("Add $30 to your balance?");
+            if (confirmBox.confirm("Add $30 to your balance?")){
+                myCard.increaseBalance(10);
+            }
         }
         helpShowBalance(myCard.getBalance());
         helpSetAble();
