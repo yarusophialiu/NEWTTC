@@ -10,14 +10,10 @@ public class BusFareCalculator implements FareCalculator {
                 trip.setCurrentFare(6);
                 return fare;
             }
-            else{
-                trip.setCurrentFare(currentFare + 2);
-                return 2;
-            }
-        }
-        else{
-            trip.setCurrentFare(2);
+            trip.setCurrentFare(currentFare + 2);
             return 2;
         }
+        trip.setCurrentFare(2);
+        return 2;
     }
 }
