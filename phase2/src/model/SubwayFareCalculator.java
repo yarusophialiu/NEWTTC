@@ -16,19 +16,16 @@ public class SubwayFareCalculator implements FareCalculator{
         adminUser.updateTotalStation(minDistance);
         double fare = minDistance * 0.5;
         double currentFare = trip.getCurrentFare();
+        
         if (trip.getIsContinuous()){
             if (currentFare + fare >= 6){
                 trip.setCurrentFare(6);
                 return 6 - currentFare;
             }
-            else{
-                trip.setCurrentFare(currentFare + fare);
-                return fare;
-            }
-        }
-        else{
-            trip.setCurrentFare(fare);
+            trip.setCurrentFare(currentFare + fare);
             return fare;
         }
+        trip.setCurrentFare(fare);
+        return fare;
     }
 }
