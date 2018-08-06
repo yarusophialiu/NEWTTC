@@ -1,5 +1,6 @@
 package controller;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -7,6 +8,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
@@ -42,7 +44,11 @@ public class Dashboard extends Controller implements Initializable{
     @FXML
     private Label timeOnTransit;
 
+    @FXML
+    private PasswordField newPassword;
 
+    @FXML
+    private PasswordField currentPassword;
 
 
     public void goBackPage(javafx.event.ActionEvent event) throws Exception {
@@ -145,4 +151,19 @@ public class Dashboard extends Controller implements Initializable{
 
     }
 
+    @FXML
+    public void changePassword(ActionEvent event) {
+        if (user.correctPassword(currentPassword.getText())) {
+            String newPass = newPassword.getText();
+      System.out.println(newPass.trim().equals(""));
+            if (newPass.trim().equals("")) {
+                alert("new password needed");
+            } else {
+                user.setPassword(newPassword.getText());
+                alert("successfully change password");
+            }
+        } else {
+            alert("current password doesn't match");
+        }
+    }
 }
