@@ -1,26 +1,23 @@
 package model;
 
-import java.awt.*;
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.Date;
+import java.util.logging.Level;
 
-public class Card implements Serializable {
+public class Card extends CardHandler implements Serializable {
     /** A boolean to indicate whether the card is suspended or not. */
     private boolean isSuspended = false;
+
     /** An int to represent card number. */
     private int id;
-    /** The card's owner. */
-    private RegularUser user;
-    private static AdminUser adminUser;
+
     /** The card's balance. */
     private double balance;
     /**
      * CardController number starts from 1000 and will be increased by 1 each time when a new card is generated.
      */
     private static int idIncrementer = 1000;
-    /** An array list to store the 3 most recent trips. */
-    private ArrayList<Trip> myTrip = new ArrayList<>();
+
 
     /** Initialize a new card. */
     public Card() {
@@ -30,12 +27,14 @@ public class Card implements Serializable {
     }
 
     /** Adjust the boolean isSuspended when the card is suspended and the card is retrieved. */
-    public void reverseSuspended() {
+    public void reverseSuspended() { ;
         this.isSuspended = !this.isSuspended;
         if (isSuspended) {
             System.out.println("CardController " + id + " has been suspended.");
+            helpLog(Level.WARNING, "Card " + id + " has been suspended.");
         } else {
             System.out.println("CardController " + id + " has been retrieved.");
+            helpLog(Level.WARNING, "Card " + id + " has been retrieved.");
         }
     }
 
@@ -44,10 +43,6 @@ public class Card implements Serializable {
         return this.id;
     }
 
-    /** Setter for CardController.user. */
-    void setUser(RegularUser user) {
-        this.user = user;
-    }
 
     /**
      * Add money to card's balance. Exception will be threw if the adding money is not $10 or $20 or
@@ -57,7 +52,9 @@ public class Card implements Serializable {
         if (i == 10 || i == 20 || i == 50) {
             this.balance += i;
             System.out.println(i + " dollars has been added to card " + id + " New balance: $" + balance);
+            helpLog(Level.INFO, i + " dollars has been added to card " + id + " New balance: $" + balance);
         } else {
+            helpLog(Level.SEVERE, "You can only add $10, $20 or $50");
             throw new Exception("You can only add $10, $20 or $50");
         }
     }
@@ -67,6 +64,7 @@ public class Card implements Serializable {
         if (balance <= 0){
             System.out.println(
                     "CardController " + id + " balance is not enough at " + trip.getEnterTime());
+            helpLog(Level.WARNING, "Card " + id + " balance is not enough at " + trip.getEnterTime());
         }
         else if(enterOrExit.equals("enters")){
             balance -= fare;
@@ -77,6 +75,7 @@ public class Card implements Serializable {
                             + balance
                             + " at "
                             + trip.getEnterTime());
+            helpLog(Level.INFO, "Card " + id + " new balance: $" + balance + " at " + trip.getEnterTime());
         }
         else if (enterOrExit.equals("exits")){
             balance -= fare;
@@ -87,58 +86,26 @@ public class Card implements Serializable {
                             + balance
                             + " at "
                             + trip.getExitTime());
+            helpLog(Level.INFO, "Card " + id + " new balance: $" + balance + " at " + trip.getExitTime());
         }
     }
+
+
 
     public void updateOnTap(String enterOrExit, Station station, Date time, String vehicle, StationFactory stationFactory){
         if (isSuspended){
             System.out.println("You cannot enter because card " + id + " is suspended " + time);
         }
-        else if (myTrip.size() >= 1){
+        else if (myTrip.size() >= 1){ //since the size of myTrip is greater than one, therefore it must be either exiting the first trip for starting a new trip.
             Trip previousTrip = this.myTrip.get(this.myTrip.size() - 1);
             if (enterOrExit.equals("enters")){
-                if (balance <= 0){
-                    System.out.println("CardController " + id + " balance is not enough at " + time);
-                }
-                else{
-                    Trip trip = new Trip(station, time, vehicle);
-                    if(myTrip.size() >= 3){
-                        this.myTrip.remove(0);
-                    }
-                    this.myTrip.add(trip);
-                    trip.updateContinuity(previousTrip);
-                    if (!trip.getTransportation()){
-                        FareCalculator fareCalculator = new BusFareCalculator();
-                        double fare = fareCalculator.calculateFare(trip);
-                        deductFare(fare, "enters");
-                        adminUser.updateTotalFare(fare);
-                        user.updateAverageMonthlyFare(trip.getEnterTime().toString().split(" ")[1], fare);
-                    }
-                }
+                helpEnter(station, time, vehicle, previousTrip);
             }
             else if (enterOrExit.equals("exits")){
-                if (!(previousTrip.getExit() == null)){
-                    System.out.println("exit without enter, 6 dollars deducted from your balance.");
-                    this.balance -= 6;
-                }else{
-                    previousTrip.setExit(station, time);
-                    previousTrip.updateContinuity(previousTrip);
-                    if (previousTrip.getTransportation()){
-                        FareCalculator fareCalculator = new SubwayFareCalculator(stationFactory, adminUser);
-                        double fare = fareCalculator.calculateFare(previousTrip);
-                        deductFare(fare, "exits");
-                        adminUser.updateTotalFare(fare);
-                        user.updateAverageMonthlyFare(previousTrip.getEnterTime().toString().split(" ")[1], fare);
-                    }
-                    else{
-                        MinDistance busMinDistance = new BusMinDistance(stationFactory);
-                        int numStations = busMinDistance.minDistance(previousTrip.getEntrance(), previousTrip.getExit());
-                        adminUser.updateTotalStation(numStations);
-                    }
-                }
+                helpExit(station, time, vehicle, previousTrip, stationFactory);
             }
         }
-        else if (enterOrExit.equals("enters")){
+        else if (enterOrExit.equals("enters")){  //this is the case where this trip is the first trip of that card.
             Trip trip = new Trip(station, time, vehicle);
             myTrip.add(trip);
             if (vehicle.equals("bus")){
@@ -148,43 +115,56 @@ public class Card implements Serializable {
                 user.updateAverageMonthlyFare(trip.getEnterTime().toString().split(" ")[1], 2);
             }
         }
-        else {
+        else {  //since this is the case of the first trip of the card, and its exiting, therefore must be entered the station without tapping.
             System.out.println("exit without enter, 6 dollars deducted from your balance.");
             this.balance -= 6; //allow to be negative       // haven't calculate the average monthly fare here.
+            helpLog(Level.INFO, "exit without enter, 6 dollars deducted from your balance.");
         }
     }
 
-    public String recentTripString() {
-        StringBuilder output = new StringBuilder();
-        int i = 1;
-        for (Trip trip : myTrip) {
-            String tripInfo =
-                    "Trip "
-                            + i
-                            + ": begin at "
-                            + trip.getEntrance().getName()
-                            + " "
-                            + trip.getEnterTime()
-                            + " end at "
-                            + trip.getExit().getName()
-                            + " using "
-                            + trip.getTransportation()
-                            + " "
-                            + trip.getExitTime()
-                            + " "
-                            + "\n";
-            output.append(tripInfo);
-            i++;
+
+
+    private void helpEnter(Station station, Date time, String vehicle, Trip previousTrip){
+        if (balance <= 0){
+            System.out.println("CardController " + id + " balance is not enough at " + time);
         }
-        return output.toString();
+        else{
+            Trip trip = new Trip(station, time, vehicle);
+            if(myTrip.size() >= 3){
+                this.myTrip.remove(0);
+            }
+            this.myTrip.add(trip);
+            trip.updateContinuity(previousTrip);
+            if (!trip.getTransportation()){
+                FareCalculator fareCalculator = new BusFareCalculator();
+                double fare = fareCalculator.calculateFare(trip);
+                deductFare(fare, "enters");
+                adminUser.updateTotalFare(fare);
+                user.updateAverageMonthlyFare(trip.getEnterTime().toString().split(" ")[1], fare);
+            }
+        }
     }
 
-    public static void setAdminUser(AdminUser newAdminUser){
-        adminUser = newAdminUser;
-    }
-
-    public User getUser(){
-        return user;
+    private void helpExit(Station station, Date time, String vehicle, Trip previousTrip, StationFactory stationFactory){
+        if (!(previousTrip.getExit() == null)){
+            System.out.println("exit without enter, 6 dollars deducted from your balance.");
+            this.balance -= 6;
+        }else{
+            previousTrip.setExit(station, time);
+            previousTrip.updateContinuity(previousTrip);
+            if (previousTrip.getTransportation()){
+                FareCalculator fareCalculator = new SubwayFareCalculator(stationFactory, adminUser);
+                double fare = fareCalculator.calculateFare(previousTrip);
+                deductFare(fare, "exits");
+                adminUser.updateTotalFare(fare);
+                user.updateAverageMonthlyFare(previousTrip.getEnterTime().toString().split(" ")[1], fare);
+            }
+            else{
+                MinDistance busMinDistance = new BusMinDistance(stationFactory);
+                int numStations = busMinDistance.minDistance(previousTrip.getEntrance(), previousTrip.getExit());
+                adminUser.updateTotalStation(numStations);
+            }
+        }
     }
 
     public double getBalance(){
