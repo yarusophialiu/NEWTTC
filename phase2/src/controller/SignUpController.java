@@ -5,7 +5,10 @@ import javafx.scene.control.TextField;
 import model.RegularUser;
 import model.User;
 
+import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.net.URL;
 import java.util.HashMap;
 import java.util.ResourceBundle;
@@ -37,8 +40,16 @@ public class SignUpController extends Controller implements Initializable{
                 RegularUser user = new RegularUser(userNameInput, emailInput, passwordInput);
                 user.buyCard();
                 alert("User successfully created");
-                HelpSerialize helpSerialize = new HelpSerialize();
-                helpSerialize.serializeUser(User.getUsers());
+                try{
+                    File f = new File("/Users/ShellyWu/Desktop/group_0165/phase2/serializedUser.ser");
+                    FileOutputStream fos =new FileOutputStream(f);
+                    ObjectOutputStream oos = new ObjectOutputStream(fos);
+                    oos.writeObject(users);
+                }
+                catch (Exception e){
+                    e.printStackTrace();
+                }
+
             }
         } else{
             alert("At least one of the information input is illegal : empty or contain space. ");

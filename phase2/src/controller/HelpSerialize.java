@@ -8,16 +8,17 @@ import java.util.HashMap;
 
 public class HelpSerialize {
     void serializeUser(HashMap<String, User> users) throws IOException {
-        File f = new File("../phase2/test.txt");
+        File f = new File("/Users/ShellyWu/Desktop/group_0165/phase2/serializedUser.ser");
         FileOutputStream fos =new FileOutputStream(f);
         ObjectOutputStream oos = new ObjectOutputStream(fos);
         oos.writeObject(users);
     }
 
     public HashMap<String, User> deserializeUser() throws IOException, ClassNotFoundException {
-        File f = new File("../phase2/test.txt");
+        File f = new File("/Users/ShellyWu/Desktop/group_0165/phase2/serializedUser.ser");
         FileInputStream fis = new FileInputStream(f);
         ObjectInputStream ois = new ObjectInputStream(fis);
-        return (HashMap<String, User>) ois.readObject();
+        HashMap hashMap =  (HashMap) ois.readObject();
+        return (HashMap<String, User>) hashMap;
     }
 }
