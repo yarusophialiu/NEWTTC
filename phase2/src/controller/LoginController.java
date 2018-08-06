@@ -18,6 +18,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.HashMap;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
 
 public class LoginController extends Controller implements Initializable{
     @FXML
@@ -34,9 +35,11 @@ public class LoginController extends Controller implements Initializable{
     }
 
     void loginRegularUser(String email, String password, HashMap<String, User> users) throws IOException{
+        LoginSignUpLog loginSignUpLog = new LoginSignUpLog();
         for (User user : users.values()){
             if (user.getEmailAddress().equals(email)){
                 if (user.correctPassword(password)){
+                    loginSignUpLog.helpLog(Level.INFO, "Regular User " + user.getEmailAddress() + " login in.");
                     FXMLLoader loader = new FXMLLoader(getClass().getResource("dashboard.fxml"));
                     Parent root = loader.load();
                     Dashboard dashboardControl = loader.getController();
@@ -51,6 +54,7 @@ public class LoginController extends Controller implements Initializable{
 
     @FXML
     void login(javafx.event.ActionEvent event) throws Exception {
+        LoginSignUpLog loginSignUpLog = new LoginSignUpLog();
         if (email.getText().matches("[\\S]+") && password.getText().matches("[\\S]+")) {
             HashMap<String, User> users = User.getUsers();
             String emailInput = email.getText();
@@ -59,13 +63,18 @@ public class LoginController extends Controller implements Initializable{
 
             if (emailInput.equals("adminuser@mail.com") && passwordInput.equals("admin123")) {
                 loginAdminUser();
+                loginSignUpLog.helpLog(Level.INFO, "Admin User login in.");
                 loginWindow.close();
+
             } else if (!users.keySet().contains(emailInput)){
                 alert("User with that email does not exists, try sign up.");
+                loginSignUpLog.helpLog(Level.WARNING, "Trying to login with email that does not exist.");
+
             }
             else{
                 loginRegularUser(emailInput, passwordInput, users);
                 loginWindow.close();
+
             }
         } else{
             alert("At least one of the information input is illegal : empty or contain space. ");

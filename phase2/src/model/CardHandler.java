@@ -1,10 +1,8 @@
 package model;
 
+import java.io.IOException;
 import java.util.ArrayList;
-import java.util.logging.ConsoleHandler;
-import java.util.logging.Handler;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.util.logging.*;
 
 class CardHandler {
 
@@ -20,6 +18,15 @@ class CardHandler {
 
     CardHandler(){
         logger.setLevel(Level.ALL);
+        try {
+            FileHandler fileHandler = new FileHandler("phase2/CardAndUserLog.log", true);
+            logger.addHandler(fileHandler);
+            SimpleFormatter simpleFormatter= new SimpleFormatter();
+            fileHandler.setFormatter(simpleFormatter);
+            logger.setUseParentHandlers(false);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     void helpLog(Level level, String message){
