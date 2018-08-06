@@ -56,7 +56,7 @@ public class CardController extends Controller implements Initializable{
         Parent root = loader.load();
         SubwayController subwayController = loader.getController();
         subwayController.setCard(myCard);
-        subwayController.setPreviousController(this);
+        subwayController.setPreviousController(this, dashboard);
         subwayController.setPreviousStage(cardController);
         newStage(root);
         cardController.close();
@@ -69,7 +69,7 @@ public class CardController extends Controller implements Initializable{
         Parent root = loader.load();
         BusController busController = loader.getController();
         busController.setCard(myCard);
-        busController.setPreviousController(this);
+        busController.setPreviousController(this, dashboard);
         busController.setPreviousStage(cardController);
         newStage(root);
         cardController.close();

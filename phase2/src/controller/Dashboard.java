@@ -21,6 +21,7 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.ResourceBundle;
+import java.util.concurrent.TimeUnit;
 
 public class Dashboard extends Controller implements Initializable{
     private User user;
@@ -62,7 +63,13 @@ public class Dashboard extends Controller implements Initializable{
         this.cards = ((RegularUser) user).getMyCard();
         this.averageMonthlyCost.setText (String.valueOf(((RegularUser) user).getAverageMonthlyFare()));
         this.preferredVehicle.setText("None");
-        this.timeOnTransit.setText(String.valueOf(user.getTimeSpendOnTransitToday()));
+        long millis = user.getTimeSpendOnTransitToday();
+        String time = String.format("%d min, %d sec",
+                TimeUnit.MILLISECONDS.toMinutes(millis),
+                TimeUnit.MILLISECONDS.toSeconds(millis) -
+                        TimeUnit.MINUTES.toSeconds(TimeUnit.MILLISECONDS.toMinutes(millis))
+        );
+        timeOnTransit.setText(String.valueOf(time));
     }
 
 
@@ -172,6 +179,12 @@ public class Dashboard extends Controller implements Initializable{
 
     void helpUpdateInfo(){
         averageMonthlyCost.setText(String.valueOf(((RegularUser)user).getAverageMonthlyFare()));
-        timeOnTransit.setText(String.valueOf(user.getTimeSpendOnTransitToday()));
+        long millis = user.getTimeSpendOnTransitToday();
+        String time = String.format("%d min, %d sec",
+                TimeUnit.MILLISECONDS.toMinutes(millis),
+                TimeUnit.MILLISECONDS.toSeconds(millis) -
+                        TimeUnit.MINUTES.toSeconds(TimeUnit.MILLISECONDS.toMinutes(millis))
+        );
+        timeOnTransit.setText(String.valueOf(time));
     }
 }

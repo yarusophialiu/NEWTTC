@@ -49,6 +49,7 @@ public class SubwayController extends Controller implements Initializable, Selec
 
     @FXML
     private TextField endTime;
+    private Dashboard dashboard;
 
     public void setCard(Card card){
         this.card = card;
@@ -172,10 +173,12 @@ public class SubwayController extends Controller implements Initializable, Selec
         cardController.helpShowBalance(card.getBalance());
         helpSerialize.serializeUser(User.getUsers());
         card.helpLog(Level.INFO, "information in log."); // 改一下这个地方的String
+        dashboard.helpUpdateInfo();
     }
 
-    void setPreviousController(CardController cardController){
+    void setPreviousController(CardController cardController, Dashboard dashboard){
         this.cardController = cardController;
+        this.dashboard = dashboard;
     }
 
 }

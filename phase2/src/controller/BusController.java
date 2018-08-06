@@ -37,6 +37,8 @@ public class BusController extends Controller implements Initializable, SelectSt
 
     private CardController cardController;
 
+    private Dashboard dashboard;
+
     public void setCard(Card card){
         this.card = card;
     }
@@ -110,10 +112,13 @@ public class BusController extends Controller implements Initializable, SelectSt
 
     public void confirmTrip()throws ParseException, IOException{
         helper.confirm(selected, boxToString, card, startTime, endTime, cardController);
+        dashboard.helpUpdateInfo();
+
     }
 
-    void setPreviousController(CardController cardController){
+    void setPreviousController(CardController cardController, Dashboard dashboard){
         this.cardController = cardController;
+        this.dashboard = dashboard;
     }
 
 
