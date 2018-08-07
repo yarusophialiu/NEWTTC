@@ -13,11 +13,12 @@ public class MonthlyStats implements SystemStats, Serializable {
         }
     }
 
-    HashMap<Integer, Double> getMonthlyStats(){
+    public HashMap<Integer, Double> getMonthlyStats(){
         return monthlyStats;
     }
 
     void updateMonthlyStats(int month, double fare){
         monthlyStats.replace(month, monthlyStats.get(month) + fare);
     }
+
 }

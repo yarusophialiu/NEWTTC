@@ -15,12 +15,21 @@ import java.util.HashMap;
 import java.util.logging.Level;
 
 class BusConfirmTrip {
-    /** An ArrayList containing different bus operating line.*/
-    private ArrayList<ArrayList<CheckBox>> lines;
 
+  /** An ArrayList containing different bus operating line. */
+  private ArrayList<ArrayList<CheckBox>> lines;
+
+  /** An ArrayList containing selected Checkboxes.*/
+  ArrayList<CheckBox> selected;
+
+  private HashMap<CheckBox, String> boxToString;
+
+  BusConfirmTrip(HashMap<CheckBox, String> boxToString){
+      this.selected = new ArrayList<>();
+      this.boxToString = boxToString;
+  }
     /** Confirm special case selected by user and start a Trip.*/
-    void confirm (ArrayList<CheckBox> selected, HashMap<CheckBox, String> boxToString , Card card,
-                  TextField startTime, TextField endTime, CardController cardController)
+    void confirm (Card card, TextField startTime, TextField endTime, CardController cardController)
                     throws ParseException, IOException {
         HelpSerialize helpSerialize = new HelpSerialize();
         StationFactory stationFactory = new StationFactory();
@@ -43,13 +52,13 @@ class BusConfirmTrip {
             }else {
                 String start = boxToString.get(selected.get(0));
                 SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-                Station endStation = stationFactory.newStation(start, "bus", line);
-                Date startDate = df.parse(endTime.getText() + ":00");
-                card.updateOnTap("enters", endStation, startDate,
+                Station startStation = stationFactory.newStation(start, "bus", line);
+                Date startDate = df.parse(startTime.getText() + ":00");
+                card.updateOnTap("enters", startStation, startDate,
                         "bus", stationFactory);
             }
         }else {
-            normalConfirm(selected, boxToString, card, startTime, endTime);
+            normalConfirm(card, startTime, endTime);
             }
 
         for (ArrayList<CheckBox> checkBoxes : lines){
@@ -65,13 +74,12 @@ class BusConfirmTrip {
         endTime.clear();
         cardController.helpShowBalance(card.getBalance());
         helpSerialize.serializeUser(User.getUsers());
-        logWriter.helpLog(Level.INFO, "Valid Trip. Fare deducted accordingly."); // 改一下这个地方的String
+        logWriter.helpLog(Level.INFO, "Valid Trip. Fare deducted accordingly.");
         cardController.alert("Trip Completed! Thanks for using our system!");
     }
 
     /** Confirm the stations and time selected by user and start a trip.*/
-    private void normalConfirm(ArrayList<CheckBox> selected, HashMap<CheckBox, String> boxToString , Card card,
-                       TextField startTime, TextField endTime)
+    private void normalConfirm(Card card, TextField startTime, TextField endTime)
             throws ParseException{
         StationFactory stationFactory = new StationFactory();
             String start = boxToString.get(selected.get(0));
@@ -96,10 +104,9 @@ class BusConfirmTrip {
     }
 
     /** A helper method for selected Box.
-     * @ param box: the CheckBox which is selected.
-     * @ param selected: an ArrayList of selected CheckBox.
+     * @param box: the CheckBox which is selected.
      */
-    void disable(CheckBox box, ArrayList<CheckBox> selected){
+    void disable(CheckBox box){
         selected.add(box);
         if (selected.size() == 2){
             for (ArrayList<CheckBox> line : lines){
@@ -121,7 +128,7 @@ class BusConfirmTrip {
     }
 
     /** A helper method for disable.
-     * @ param: box, list
+     * @param box: Checkbox which is selected.
      */
     private void helpSetDisable(CheckBox box, ArrayList<CheckBox> list) {
         for (ArrayList<CheckBox> line : lines) {
@@ -136,9 +143,9 @@ class BusConfirmTrip {
     }
 
     /** A helper method for selectedBox.
-     * @ param box: the box which is selected.
-     * @ param selected: an ArrayList containing selected CheckBox.*/
-    void enable(CheckBox box, ArrayList<CheckBox> selected){
+     * @param box: the box which is selected.
+     */
+    void enable(CheckBox box){
         selected.remove(box);
         if (selected.size() == 0){
             for (ArrayList<CheckBox> line : lines){

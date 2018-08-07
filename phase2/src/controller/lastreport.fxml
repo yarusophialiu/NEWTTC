@@ -7,7 +7,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane prefHeight="500.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.YesterdayController">
+<AnchorPane prefHeight="500.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.LastReportController">
    <children>
       <Button layoutX="591.0" layoutY="56.0" mnemonicParsing="false" onAction="#goBackPage" style="-fx-background-color: rgba(19, 173, 243, 0.63);" text="go back" textFill="WHITE" />
       <Text fill="#6b6868" layoutX="42.0" layoutY="79.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Admin Dashboard">
