@@ -48,14 +48,14 @@ class BusConfirmTrip {
                 Station endStation = stationFactory.newStation(end, "bus", line);
                 Date endDate = df.parse(endTime.getText() + ":00");
                 card.updateOnTap("exits", endStation, endDate,
-                        "bus", stationFactory);
+                        "bus");
             }else {
                 String start = boxToString.get(selected.get(0));
                 SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
                 Station startStation = stationFactory.newStation(start, "bus", line);
                 Date startDate = df.parse(startTime.getText() + ":00");
                 card.updateOnTap("enters", startStation, startDate,
-                        "bus", stationFactory);
+                        "bus");
             }
         }else {
             normalConfirm(card, startTime, endTime);
@@ -98,9 +98,9 @@ class BusConfirmTrip {
             Date startDate = df.parse(startTime.getText() + ":00");
             Date endDate = df.parse(endTime.getText() + ":00");
             card.updateOnTap("enters", startStation, startDate,
-                    "bus", stationFactory);
+                    "bus");
             card.updateOnTap("exits", endStation, endDate,
-                    "bus", stationFactory);
+                    "bus");
     }
 
     /** A helper method for selected Box.
