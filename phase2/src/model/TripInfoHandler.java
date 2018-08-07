@@ -3,7 +3,8 @@ package model;
 import java.io.Serializable;
 import java.util.Date;
 
-public class TripInfoHandler implements Serializable {
+/** This class is to handle events on setting and acquiring the station and date information of the trip. */
+class TripInfoHandler implements Serializable {
     /** The start station of the trip. */
     Station entrance;
     /** The end station of the trip. */
@@ -19,14 +20,17 @@ public class TripInfoHandler implements Serializable {
         this.exitTime = exitTime;
     }
 
+    /** A getter to get the station that the user enters at the beginning of this trip. */
     Station getEntrance() {
         return entrance;
     }
 
+    /** A getter to get the station that the user exits at the end of this trip. */
     Station getExit() {
         return exit;
     }
 
+    /** A getter to get the enter time that the user enters the station at the beginning of this trip. */
     Date getEnterTime(){
         return enterTime;
     }

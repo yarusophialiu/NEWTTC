@@ -9,8 +9,11 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
-public class AlertBox{
+/** A class that helps other class to display alert messages. */
+class AlertBox{
 
+    /** A method that takes in an String of message and display them in an alert box where the user cannot do anything
+     * else before clicking ok. */
     void alertMessage(String message){
         Stage window = new Stage();
         window.initModality(Modality.APPLICATION_MODAL);

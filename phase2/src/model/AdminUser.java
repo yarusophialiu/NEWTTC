@@ -20,6 +20,8 @@ public class AdminUser extends User{
 
     private YearlyStats yearlyStats = new YearlyStats();
 
+    private Integer highestID = 1000;
+
     /**
      * initialize a new User instance.
      *
@@ -56,5 +58,21 @@ public class AdminUser extends User{
         yesterdayStations = totalStations;
         totalFare = 0;
         totalStations = 0;
+    }
+
+    public MonthlyStats getMonthlyStats() {
+        return monthlyStats;
+    }
+
+    public YearlyStats getYearlyStats() {
+        return yearlyStats;
+    }
+
+    void highestIDIncrement(){
+        highestID++;
+    }
+
+    int getHighestID(){
+        return highestID;
     }
 }

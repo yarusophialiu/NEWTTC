@@ -1,8 +1,9 @@
 package model;
 
+import java.io.Serializable;
 import java.util.HashMap;
 
-public class YearlyStats implements SystemStats{
+public class YearlyStats implements SystemStats, Serializable {
     private HashMap<Integer, Double> yearlyStats = new HashMap<Integer, Double>();
 
     YearlyStats() {

@@ -18,20 +18,26 @@ import java.util.HashMap;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 
+/** LoginController is to control login.fxml, the purpose of this class is to handle user events in login stage. */
 public class LoginController extends Controller implements Initializable{
+
+    /** This PasswordField is to store the user password input. */
     @FXML
     private PasswordField password;
 
+    /** This TextField is to store the user email input. */
     @FXML
     private TextField email;
 
 
+    /** This method is to handle events where the login user is an admin User. */
     void loginAdminUser() throws IOException{
         FXMLLoader loader = loading("adminuser.fxml");
         AdminUserController adminUserController = loader.getController();
         adminUserController.loadInfo();
     }
 
+    /** This method is to handle events where the login user is a regular User. */
     void loginRegularUser(String email, String password, HashMap<String, User> users, Stage loginWindow) throws IOException{
         LogWriter logWriter = new LogWriter();
         for (User user : users.values()){
@@ -55,6 +61,7 @@ public class LoginController extends Controller implements Initializable{
     }
 
 
+    /** This method is to handle events for the button login. */
     @FXML
     void login(javafx.event.ActionEvent event) throws Exception {
         LogWriter logWriter = new LogWriter();
@@ -84,6 +91,7 @@ public class LoginController extends Controller implements Initializable{
         }
     }
 
+    /** This method is to handle events for the button signUp. */
     @FXML
     void signUp(javafx.event.ActionEvent event) throws IOException{
         Parent signUp = FXMLLoader.load(getClass().getResource("signUp.fxml"));
