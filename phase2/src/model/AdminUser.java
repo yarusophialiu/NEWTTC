@@ -9,6 +9,11 @@ public class AdminUser extends User{
     private double totalFare = 0;
     /** an int storing total stations reached by all cards from all users. */
     private int totalStations = 0;
+
+    private double yesterdayFare = 0;
+
+    private int yesterdayStations = 0;
+
     /**
      * initialize a new User instance.
      *
@@ -35,8 +40,14 @@ public class AdminUser extends User{
         return Double.toString(totalFare) + " dollars were collected " + "from " + Integer.toString(totalStations) + " stations today.";
     }
 
+    public String yesterdayReport() {
+        return Double.toString(yesterdayFare) + " dollars were collected " + "from " + Integer.toString(yesterdayStations) + " stations yesterday.";
+    }
+
     /** used to clear data for each day to start recording information for a new day. */
     void clearData() {
+        yesterdayFare = totalFare;
+        yesterdayStations = totalStations;
         totalFare = 0;
         totalStations = 0;
     }
