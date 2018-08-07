@@ -33,8 +33,8 @@ public class Controller implements Initializable{
         stage.show();
     }
 
-    FXMLLoader loader(String fileName) throws IOException{
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("adminuser.fxml"));
+    FXMLLoader loading(String fileName) throws IOException{
+        FXMLLoader loader = new FXMLLoader(getClass().getResource(fileName));
         Parent root = loader.load();
         Stage stage = new Stage();
         stage.setScene(new Scene(root, 800, 500));
