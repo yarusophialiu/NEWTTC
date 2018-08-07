@@ -63,5 +63,25 @@
       <Label layoutX="261.0" layoutY="262.0" text="Frank" />
       <Label layoutX="339.0" layoutY="243.0" text="Sophia" />
       <Label layoutX="305.0" layoutY="125.0" text="Steven" />
+      <Label layoutX="509.0" layoutY="108.0" text="Start Station:">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <Label layoutX="513.0" layoutY="164.0" text="End Station:">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <Label fx:id="startStation" layoutX="629.0" layoutY="108.0">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <Label fx:id="endStation" layoutX="629.0" layoutY="164.0">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

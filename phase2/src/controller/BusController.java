@@ -4,6 +4,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.CheckBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import model.*;
@@ -33,6 +34,12 @@ public class BusController extends Controller implements Initializable, SelectSt
     @FXML
     private TextField endTime;
 
+    @FXML
+    private Label startStation;
+
+    @FXML
+    private Label endStation;
+
     private Stage previousStage;
 
     private CardController cardController;
@@ -51,6 +58,16 @@ public class BusController extends Controller implements Initializable, SelectSt
         else{
             helper.enable(newSelect, selected);
 
+        }
+        if (selected.size() == 1){
+            startStation.setText(boxToString.get(selected.get(0)));
+            endStation.setText("");
+        }else if (selected.size() == 2){
+            startStation.setText(boxToString.get(selected.get(0)));
+            endStation.setText(boxToString.get(selected.get(1)));
+        }else{
+            startStation.setText("");
+            endStation.setText("");
         }
     }
 
@@ -111,9 +128,10 @@ public class BusController extends Controller implements Initializable, SelectSt
     }
 
     public void confirmTrip()throws ParseException, IOException{
+        startStation.setText("");
+        endStation.setText("");
         helper.confirm(selected, boxToString, card, startTime, endTime, cardController);
         dashboard.helpUpdateInfo();
-
     }
 
     void setPreviousController(CardController cardController, Dashboard dashboard){
