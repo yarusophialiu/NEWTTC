@@ -12,6 +12,7 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 
 public class TransitApp extends Application{
 
@@ -37,13 +38,16 @@ public class TransitApp extends Application{
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        AdminUser admin = new AdminUser("adminuser", "adminuser@mail.com", "admin123");
-        Card.setAdminUser(admin);
         HelpSerialize helpSerialize = new HelpSerialize();
-
-        BufferedReader tryToRead = new BufferedReader(new FileReader("/Users/yaruliu/Desktop/group_0165/phase2/serializedUser.ser"));
+        BufferedReader tryToRead = new BufferedReader(new FileReader("/Users/ShellyWu/Desktop/group_0165/phase2/serializedUser.ser"));
         if (! (tryToRead.readLine() == null)) {
-            User.setUsers(helpSerialize.deserializeUser());
+            HashMap<String, User> users = helpSerialize.deserializeUser();
+            User.setUsers(users);
+            Card.setAdminUser((AdminUser) users.get("adminuser@mail.com"));
+        }
+        else{
+            AdminUser admin = new AdminUser("adminuser", "adminuser@mail.com", "admin123");
+            Card.setAdminUser(admin);
         }
         Parent root = FXMLLoader.load(getClass().getResource("../controller/login.fxml"));
         primaryStage.setTitle("Presto System App");
@@ -54,7 +58,7 @@ public class TransitApp extends Application{
         BufferedReader fileReader =
         new BufferedReader(
             new FileReader(
-                "stations.txt"));
+                "phase2/stations.txt"));
         String vehicle = fileReader.readLine();
         String info = fileReader.readLine();
         StationFactory stationFactory = new StationFactory();

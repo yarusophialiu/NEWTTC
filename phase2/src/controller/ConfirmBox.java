@@ -10,10 +10,14 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
-public class ConfirmBox {
+/** A class that helps other class to display confirm messages. */
+class ConfirmBox {
 
+    /** A boolean variable that stores the user answer. */
     private boolean answer;
 
+    /** A method that takes in an String of message and display them in an confirm box where the user cannot do anything
+     * else before clicking yes or no and return it as a boolean value. */
     boolean confirm(String message){
         Stage window = new Stage();
         window.initModality(Modality.APPLICATION_MODAL);

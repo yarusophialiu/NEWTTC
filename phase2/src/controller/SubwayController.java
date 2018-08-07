@@ -24,20 +24,29 @@ import java.util.logging.Level;
 
 public class SubwayController extends Controller implements Initializable, SelectStation {
 
+    /** The card you used in this subway trip. */
     private Card card;
 
+    /** Record previous stage to for the goBack button.*/
     private Stage previousStage;
 
+    /** Each checkbox stands for a station in the scene. Select check box to choose
+     * start/end stations. */
     @FXML
     private CheckBox stop1,stop2,stop3,stop4,stop5,stop6,stop7,stop8,stop9,
             stop10,stop11;
 
+    /** List contains all the checkboxes representing stations in line1. */
     private ArrayList<CheckBox> line1 = new ArrayList<>();
 
+    /** List contains all the checkboxes representing stations in line2. */
     private ArrayList<CheckBox> line2 = new ArrayList<>();
 
+    /** A hashmap with values checkbox and values strings corresponded to the its key
+     * checkbox. */
     private HashMap<CheckBox, String> boxToString = new HashMap<>();
 
+    /** This is the controller of this trip's card  */
     private CardController cardController;
 
     ArrayList<CheckBox> selected = new ArrayList<>();
@@ -47,6 +56,7 @@ public class SubwayController extends Controller implements Initializable, Selec
 
     @FXML
     private TextField endTime;
+
     private Dashboard dashboard;
 
     @FXML
@@ -141,29 +151,19 @@ public class SubwayController extends Controller implements Initializable, Selec
         StationFactory stationFactory = new StationFactory();
         LogWriter logWriter = new LogWriter();
         if (selected.size() == 1){
-            String line;
-            if (line1.contains(selected.get(0))){
-                line = "1";
-            }else{
-                line = "2";
-            }
             if (startTime.getText().isEmpty()){
                 String end = boxToString.get(selected.get(0));
-
+                String line;
+                if (line1.contains(selected.get(0))){
+                    line = "1";
+                }else{
+                    line = "2";
+                }
                 SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
                 Station endStation = stationFactory.newStation(end, "subway", line);
 
                 Date endDate = df.parse(endTime.getText() + ":00");
                 card.updateOnTap("exits", endStation, endDate,
-                        "subway", stationFactory);
-            }else{
-                String start = boxToString.get(selected.get(0));
-
-                SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-                Station endStation = stationFactory.newStation(start, "subway", line);
-
-                Date startDate = df.parse(startTime.getText() + ":00");
-                card.updateOnTap("enters", endStation, startDate,
                         "subway", stationFactory);
             }
         }else {

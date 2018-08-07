@@ -74,7 +74,7 @@ public class Dashboard extends Controller implements Initializable{
         this.cards = ((RegularUser) user).getMyCard();
         this.averageMonthlyCost.setText (String.valueOf(((RegularUser) user).getAverageMonthlyFare()));
         this.preferredVehicle.setText("None");
-        long millis = user.getTimeSpendOnTransitToday();
+        long millis = user.getTimeSpendOnTransit();
         String time = String.format("%d min, %d sec",
                 TimeUnit.MILLISECONDS.toMinutes(millis),
                 TimeUnit.MILLISECONDS.toSeconds(millis) -
@@ -136,10 +136,10 @@ public class Dashboard extends Controller implements Initializable{
             hBox.getChildren().clear();
         }
         else{
+            hBox.getChildren().clear();
             for (Card card : cards) {
                 Button button = new Button(Integer.toString(card.getId()));
                 button.setText(Integer.toString(card.getId()));
-                hBox.getChildren().clear();
                 hBox.getChildren().add(button);
                 button.setOnAction(event -> {
                     try {
@@ -219,7 +219,7 @@ public class Dashboard extends Controller implements Initializable{
     /** update average monthly cost */
     void helpUpdateInfo(){
         averageMonthlyCost.setText(String.valueOf(((RegularUser)user).getAverageMonthlyFare()));
-        long millis = user.getTimeSpendOnTransitToday();
+        long millis = user.getTimeSpendOnTransit();
         String time = String.format("%d min, %d sec",
                 TimeUnit.MILLISECONDS.toMinutes(millis),
                 TimeUnit.MILLISECONDS.toSeconds(millis) -

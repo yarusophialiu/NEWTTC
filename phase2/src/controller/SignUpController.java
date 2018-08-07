@@ -13,19 +13,25 @@ import java.net.URL;
 import java.util.HashMap;
 import java.util.ResourceBundle;
 
+/** SignUpController is to control signUp.fxml, the purpose of this class is to handle user events in signUp stage. */
 public class SignUpController extends Controller implements Initializable{
+
+    /** This TextField is to store the user signUpEmail input. */
     @FXML
     private TextField signUpEmail;
 
+    /** This TextField is to store the user signUpUserName input. */
     @FXML
     private  TextField signUpUserName;
 
+    /** This TextField is to store the user signUpPassword input. */
     @FXML
     private TextField signUpPassword;
 
 
+    /** This method is to handle events for the button signUp. */
     @FXML
-    void signUp(javafx.event.ActionEvent event) throws IOException {
+    void signUp(javafx.event.ActionEvent event) {
         String emailInput = signUpEmail.getText();
         String passwordInput = signUpPassword.getText();
         String userNameInput = signUpUserName.getText();
@@ -56,6 +62,7 @@ public class SignUpController extends Controller implements Initializable{
         }
     }
 
+    /** This method is to handle events for the button login. */
     @FXML
     void login(javafx.event.ActionEvent event) throws Exception {
         switchScene(event, "login.fxml");

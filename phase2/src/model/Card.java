@@ -9,17 +9,12 @@ public class Card extends CardBalanceHandler implements Serializable {
     /** A boolean to indicate whether the card is suspended or not. */
     private boolean isSuspended = false;
 
-    /**
-     * CardController number starts from 1000 and will be increased by 1 each time when a new card is generated.
-     */
-    private static int idIncrementer = 1000;
-
 
     /** Initialize a new card. */
     public Card() {
         super(19);
-        this.id = idIncrementer;
-        idIncrementer++;
+        this.id = adminUser.getHighestID();
+        adminUser.highestIDIncrement();
     }
 
     /** Adjust the boolean isSuspended when the card is suspended and the card is retrieved. */
@@ -41,7 +36,7 @@ public class Card extends CardBalanceHandler implements Serializable {
 
 
 
-
+    /** This method is called whenever a user tap in or out of the station. */
     public void updateOnTap(String enterOrExit, Station station, Date time, String vehicle, StationFactory stationFactory){
         if (isSuspended){
             System.out.println("You cannot enter because card " + id + " is suspended " + time);
@@ -62,18 +57,17 @@ public class Card extends CardBalanceHandler implements Serializable {
                 deductFare(2, "enters");
                 trip.setCurrentFare(2);
                 adminUser.updateTotalFare(2);
-                user.updateAverageMonthlyFare(trip.getEnterTime().toString().split(" ")[1], 2);
             }
         }
         else {  //since this is the case of the first trip of the card, and its exiting, therefore must be entered the station without tapping.
             System.out.println("Exit without enter, 6 dollars deducted from your balance.");
             this.balance -= 6.0; //allow to be negative       // haven't calculate the average monthly fare here.
-            logWriter.helpLog(Level.INFO, "exit without enter, 6 dollars deducted from your balance.");
+            logWriter.helpLog(Level.WARNING, "exit without enter, 6 dollars deducted from your balance.");
         }
     }
 
 
-
+    /** This is a helper method for the case where the user starts a new trip and its not the first trip of the card. */
     private void helpEnter(Station station, Date time, String vehicle, Trip previousTrip){
         if (balance <= 0){
             System.out.println("CardController " + id + " balance is not enough at " + time);
@@ -100,11 +94,11 @@ public class Card extends CardBalanceHandler implements Serializable {
                 double fare = fareCalculator.calculateFare(trip);
                 deductFare(fare, "enters");
                 adminUser.updateTotalFare(fare);
-                user.updateAverageMonthlyFare(trip.getEnterTime().toString().split(" ")[1], fare);
             }
         }
     }
 
+    /** This is a helper method for the case where the user ends a trip. */
     private void helpExit(Station station, Date time, String vehicle, Trip trip, StationFactory stationFactory){
         if (!(trip.getExit() == null)){
             System.out.println("Exit without enter, 6 dollars deducted from your balance.");
@@ -117,7 +111,6 @@ public class Card extends CardBalanceHandler implements Serializable {
                 double fare = fareCalculator.calculateFare(trip);
                 deductFare(fare, "exits");
                 adminUser.updateTotalFare(fare);
-                user.updateAverageMonthlyFare(trip.getEnterTime().toString().split(" ")[1], fare);
             }
             else{
                 MinDistance busMinDistance = new BusMinDistance(stationFactory);
@@ -128,10 +121,12 @@ public class Card extends CardBalanceHandler implements Serializable {
         }
     }
 
+    /** A getter to get the balance of the card. */
     public double getBalance(){
         return this.balance;
     }
 
+    /** A getter to get the suspend status of the card. */
     public boolean getSuspended(){
         return this.isSuspended;
     }
