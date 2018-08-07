@@ -29,7 +29,7 @@
       <VBox layoutX="45.0" layoutY="250.0" prefHeight="200.0" prefWidth="84.0" spacing="20.0">
          <children>
             <Button mnemonicParsing="false" onAction="#yesterdayReport" prefHeight="27.0" prefWidth="93.0" style="-fx-background-color: rgba(19, 173, 243, 0.63);" text="Yesterday" textFill="WHITE" />
-            <Button mnemonicParsing="false" onAction="#montlyReport" prefHeight="27.0" prefWidth="96.0" style="-fx-background-color: rgba(19, 173, 243, 0.63);" text="Monthly" textFill="WHITE" />
+            <Button mnemonicParsing="false" onAction="#monthlyReport" prefHeight="27.0" prefWidth="96.0" style="-fx-background-color: rgba(19, 173, 243, 0.63);" text="Monthly" textFill="WHITE" />
             <Button lineSpacing="20.0" mnemonicParsing="false" onAction="#yearlyReport" prefHeight="27.0" prefWidth="88.0" style="-fx-background-color: rgba(19, 173, 243, 0.63);" text="Yearly" textFill="WHITE" />
          </children>
       </VBox>
