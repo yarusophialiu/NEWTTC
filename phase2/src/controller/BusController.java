@@ -21,16 +21,13 @@ public class BusController extends Controller implements Initializable, SelectSt
             stop10,stop11,stop12,stop13,stop14;
 
     /** A helper class used by passengers to take bus.*/
-    private BusConfirmTrip helper = new BusConfirmTrip();
+    private BusConfirmTrip helper;
 
     /** A HashMap converting CheckBoxes to station name.*/
     private HashMap<CheckBox, String> boxToString = new HashMap<>();
 
     /** Current card user used to take a bus.*/
     private Card card;
-
-    /** An ArrayList representing CheckBoxes selected by user.*/
-    private ArrayList<CheckBox> selected = new ArrayList<>();
 
     /** The time when user get on a bus.*/
     @FXML
@@ -57,6 +54,10 @@ public class BusController extends Controller implements Initializable, SelectSt
     /** The controller of last Dashboard page. */
     private Dashboard dashboard;
 
+    BusController(){
+        this.helper = new BusConfirmTrip(boxToString);
+    }
+
     /** Setter of variable card.*/
     public void setCard(Card card){
         this.card = card;
@@ -66,12 +67,13 @@ public class BusController extends Controller implements Initializable, SelectSt
     public void selectBox (javafx.event.ActionEvent event){
         CheckBox newSelect = ((CheckBox) event.getSource());
         if (newSelect.isSelected()){
-            helper.disable(newSelect, selected);
+            helper.disable(newSelect);
         }
         else{
-            helper.enable(newSelect, selected);
+            helper.enable(newSelect);
 
         }
+        ArrayList<CheckBox> selected = helper.selected;
         if (selected.size() == 1){
             startStation.setText(boxToString.get(selected.get(0)));
             endStation.setText("");
@@ -83,7 +85,6 @@ public class BusController extends Controller implements Initializable, SelectSt
             endStation.setText("");
         }
     }
-
 
     /** Go to the last page.*/
     @FXML
@@ -146,7 +147,7 @@ public class BusController extends Controller implements Initializable, SelectSt
     public void confirmTrip()throws ParseException, IOException{
         startStation.setText("");
         endStation.setText("");
-        helper.confirm(selected, boxToString, card, startTime, endTime, cardController);
+        helper.confirm(card, startTime, endTime, cardController);
         dashboard.helpUpdateInfo();
     }
 
@@ -155,6 +156,4 @@ public class BusController extends Controller implements Initializable, SelectSt
         this.cardController = cardController;
         this.dashboard = dashboard;
     }
-
-
 }
