@@ -1,16 +1,23 @@
 package model;
 
-public class SubwayFareCalculator implements FareCalculator{
-    private StationFactory stationFactory;
+/** Class SubwayFareCalculator is an implementation of strategy FareCalculator. The main functionality of the class
+ * is to calculate fares for subway stations.*/
+public class SubwayFareCalculator implements FareCalculator {
     private AdminUser adminUser;
 
-    SubwayFareCalculator(StationFactory stationFactory, AdminUser adminUser){
-        this.stationFactory = stationFactory;
+  /** Constructor for class SubwayFareCalculator.
+   * @param adminUser set adminUser for this class to update daily revenue for adminUser.*/
+  SubwayFareCalculator(AdminUser adminUser) {
         this.adminUser = adminUser;
     }
 
-    @Override
-    public double calculateFare(Trip trip) {
+  /** this method takes in a trip and help to calculate the fare that's needed to complete the trip.
+   * @param trip trip that the user is currently in.
+   * @return return a double representation of fare needed to pay.
+   */
+  @Override
+  public double calculateFare(Trip trip) {
+        StationFactory stationFactory = new StationFactory();
         SubwayMinDistance subwayMinDistance= new SubwayMinDistance(stationFactory);
         int minDistance = subwayMinDistance.minDistance(trip.getEntrance(), trip.getExit());
         adminUser.updateTotalStation(minDistance);
