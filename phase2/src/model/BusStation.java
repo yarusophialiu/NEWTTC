@@ -3,6 +3,7 @@ package model;
 import java.io.Serializable;
 import java.util.ArrayList;
 
+/** Basic properties that a single bus station has */
 public class BusStation extends Station implements Serializable {
     /** stores the neighbouring stations of this station */
     private ArrayList<BusStation> neighbours = new ArrayList<>();
@@ -24,11 +25,14 @@ public class BusStation extends Station implements Serializable {
         return neighbours;
     }
 
-    /** Add neighbours to this station. */
+    /** Add neighbours to this station.
+     * @param neighbour: a neighbour to be added to this station
+     */
     public void addNeighbours(BusStation neighbour) {
         this.neighbours.add(neighbour);
     }
 
+    /** Get line number. */
     int getLineNumber(){
         return this.lineNumber;
     }
