@@ -13,6 +13,12 @@ import java.util.ResourceBundle;
 
 public class Controller implements Initializable{
 
+    /**
+     * Switch the current scene with new scene
+     *
+     * @param actionEvent the action which happens when click button.
+     * @param newScene the new scene that will be switched to
+     */
     void switchScene(javafx.event.ActionEvent actionEvent, String newScene) throws Exception {
         Parent root = FXMLLoader.load(Controller.class.getResource(newScene));
         Scene scene = new Scene(root, 800, 500);
@@ -21,11 +27,21 @@ public class Controller implements Initializable{
         window.show();
     }
 
+    /**
+     * Pop out alert message
+     *
+     * @param messgae the message that we want to alert user.
+     */
     void alert(String messgae) {
         AlertBox alertBox= new AlertBox();
         alertBox.alertMessage(messgae);
     }
 
+    /**
+     * Build a new stage
+     *
+     * @param root the base for all nodes that have children in the scene graph.
+     */
     void newStage(Parent root) {
         Stage stage = new Stage();
         stage.setScene(new Scene(root, 800, 500));
@@ -33,6 +49,12 @@ public class Controller implements Initializable{
         stage.show();
     }
 
+
+    /**
+     * Load a file
+     *
+     * @param fileName the file that will be loaded
+     */
     FXMLLoader loading(String fileName) throws IOException{
         FXMLLoader loader = new FXMLLoader(getClass().getResource(fileName));
         Parent root = loader.load();
