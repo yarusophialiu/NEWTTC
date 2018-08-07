@@ -1,9 +1,11 @@
 package model;
 
+/** Calculate fare when taking a bus. */
 public class BusFareCalculator implements FareCalculator {
 
     /** Calculate the fare passenger should pay according to trip.
-     * @ param trip: a Trip instance used to calculate fare.*/
+     * @ param trip: a Trip instance used to calculate fare.
+     */
     @Override
     public double calculateFare(Trip trip) {
         double currentFare = trip.getCurrentFare();
