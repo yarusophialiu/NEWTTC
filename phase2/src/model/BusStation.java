@@ -19,12 +19,12 @@ public class BusStation extends Station implements Serializable {
         this.lineNumber = lineNumber;
     }
 
-    /** return an ArrayList of stations that is the neighbour of this station. */
+    /** Return an ArrayList of stations that is the neighbour of this station. */
     ArrayList<BusStation> getNeighbours() {
         return neighbours;
     }
 
-    /** add neighbours to this station. */
+    /** Add neighbours to this station. */
     public void addNeighbours(BusStation neighbour) {
         this.neighbours.add(neighbour);
     }
