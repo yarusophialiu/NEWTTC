@@ -15,8 +15,10 @@ import java.util.HashMap;
 import java.util.logging.Level;
 
 class BusConfirmTrip {
+    /** An ArrayList containing different bus operating line.*/
     private ArrayList<ArrayList<CheckBox>> lines;
 
+    /** Confirm special case selected by user and start a Trip.*/
     void confirm (ArrayList<CheckBox> selected, HashMap<CheckBox, String> boxToString , Card card,
                   TextField startTime, TextField endTime, CardController cardController)
                     throws ParseException, IOException {
@@ -41,6 +43,31 @@ class BusConfirmTrip {
                         "bus", stationFactory);
             }
         }else {
+            normalConfirm(selected, boxToString, card, startTime, endTime);
+            }
+
+        for (ArrayList<CheckBox> checkBoxes : lines){
+            for(CheckBox item : checkBoxes){
+                item.setDisable(false);
+            }
+        }
+        for (CheckBox item : selected){
+            item.setSelected(false);
+        }
+        selected.clear();
+        startTime.clear();
+        endTime.clear();
+        cardController.helpShowBalance(card.getBalance());
+        helpSerialize.serializeUser(User.getUsers());
+        logWriter.helpLog(Level.INFO, "Valid Trip. Fare deducted accordingly."); // 改一下这个地方的String
+        cardController.alert("Trip Completed! Thanks for using our system!");
+    }
+
+    /** Confirm the stations and time selected by user and start a trip.*/
+    private void normalConfirm(ArrayList<CheckBox> selected, HashMap<CheckBox, String> boxToString , Card card,
+                       TextField startTime, TextField endTime)
+            throws ParseException{
+        StationFactory stationFactory = new StationFactory();
             String start = boxToString.get(selected.get(0));
             String end = boxToString.get(selected.get(1));
             String line = "";
@@ -60,24 +87,12 @@ class BusConfirmTrip {
                     "bus", stationFactory);
             card.updateOnTap("exits", endStation, endDate,
                     "bus", stationFactory);
-        }
-        for (ArrayList<CheckBox> checkBoxes : lines){
-            for(CheckBox item : checkBoxes){
-                item.setDisable(false);
-            }
-        }
-        for (CheckBox item : selected){
-            item.setSelected(false);
-        }
-        selected.clear();
-        startTime.clear();
-        endTime.clear();
-        cardController.helpShowBalance(card.getBalance());
-        helpSerialize.serializeUser(User.getUsers());
-        logWriter.helpLog(Level.INFO, "Valid Trip. Fare deducted accordingly."); // 改一下这个地方的String
-        cardController.alert("Trip Completed! Thanks for using our system!");
     }
 
+    /** A helper method for selected Box.
+     * @ param box: the CheckBox which is selected.
+     * @ param selected: an ArrayList of selected CheckBox.
+     */
     void disable(CheckBox box, ArrayList<CheckBox> selected){
         selected.add(box);
         if (selected.size() == 2){
@@ -99,6 +114,9 @@ class BusConfirmTrip {
         }
     }
 
+    /** A helper method for disable.
+     * @ param: box, list
+     */
     private void helpSetDisable(CheckBox box, ArrayList<CheckBox> list) {
         for (ArrayList<CheckBox> line : lines) {
             if (!line.contains(box)) {
@@ -111,6 +129,9 @@ class BusConfirmTrip {
         }
     }
 
+    /** A helper method for selectedBox.
+     * @ param box: the box which is selected.
+     * @ param selected: an ArrayList containing selected CheckBox.*/
     void enable(CheckBox box, ArrayList<CheckBox> selected){
         selected.remove(box);
         if (selected.size() == 0){
@@ -137,6 +158,7 @@ class BusConfirmTrip {
         }
     }
 
+    /** Setter of variable lines.*/
     void setLines (ArrayList<ArrayList<CheckBox>> lines){
         this.lines = lines;
     }
