@@ -32,15 +32,12 @@ public class SubwayController extends Controller implements Initializable, Selec
 
     /** Each checkbox stands for a station in the scene. Select check box to choose
      * start/end stations. */
+
+    private ArrayList<ArrayList<CheckBox>> lines = new ArrayList<>();
+
     @FXML
     private CheckBox stop1,stop2,stop3,stop4,stop5,stop6,stop7,stop8,stop9,
             stop10,stop11;
-
-    /** List contains all the checkboxes representing stations in line1. */
-    private ArrayList<CheckBox> line1 = new ArrayList<>();
-
-    /** List contains all the checkboxes representing stations in line2. */
-    private ArrayList<CheckBox> line2 = new ArrayList<>();
 
     /** A hashmap with values checkbox and values strings corresponded to the its key
      * checkbox. */
@@ -78,8 +75,8 @@ public class SubwayController extends Controller implements Initializable, Selec
         this.card = card;
     }
 
-  /**
-   *  @param event */
+  /** This is designed for the function of go back button.
+   *  @param event Click the button. */
   public void goBackPage(javafx.event.ActionEvent event) {
         Stage subwayController = (Stage) ((Node) event.getSource()).getScene().getWindow();
         previousStage.show();
@@ -90,11 +87,13 @@ public class SubwayController extends Controller implements Initializable, Selec
         this.previousStage = stage;
     }
 
-  /**
-   * @param location
-   * @param resources
+  /**Initialize the scene.
+   * @param location Follow the format.
+   * @param resources Follow the format.
    */
   public void initialize(URL location, ResourceBundle resources) {
+        //Add all the stops to its line.
+        ArrayList<CheckBox> line1 = new ArrayList<>();
         line1.add(stop1);
         line1.add(stop2);
         line1.add(stop3);
@@ -102,6 +101,7 @@ public class SubwayController extends Controller implements Initializable, Selec
         line1.add(stop5);
         line1.add(stop6);
 
+        ArrayList<CheckBox> line2 = new ArrayList<>();
         line2.add(stop7);
         line2.add(stop8);
         line2.add(stop9);
@@ -109,6 +109,11 @@ public class SubwayController extends Controller implements Initializable, Selec
         line2.add(stop10);
         line2.add(stop11);
 
+
+        lines.add(line1);
+        lines.add(line2);
+
+        //Update the hashmap.
         boxToString.put(stop1, "Bloor-Yonge");
         boxToString.put(stop2, "Wellesley");
         boxToString.put(stop3, "College");
@@ -122,8 +127,10 @@ public class SubwayController extends Controller implements Initializable, Selec
         boxToString.put(stop11, "Xiaolei");
     }
 
-    @FXML
-    public void selectBox(javafx.event.ActionEvent event){
+  /** Disable some boxes once the user selected one.
+   *  @param event Select one box.*/
+  @FXML
+  public void selectBox(javafx.event.ActionEvent event) {
         ArrayList<CheckBox> newSelected = new ArrayList<>();
         for (CheckBox checkBox: boxToString.keySet()){
             if (checkBox.isSelected()){
@@ -142,13 +149,8 @@ public class SubwayController extends Controller implements Initializable, Selec
             for (CheckBox cb: boxToString.keySet()){
                 cb.setDisable(false);
             }
-            if (selected.size() == 0){
-                startStation.setText("");
-                endStation.setText("");
-            }else{
-                startStation.setText(boxToString.get(selected.get(0)));
-                endStation.setText("");
-            }
+            startStation.setText("");
+            endStation.setText("");
 
         }
         if (selected.size() == 2){
@@ -162,16 +164,21 @@ public class SubwayController extends Controller implements Initializable, Selec
         }
     }
 
-    public void confirmTrip() throws ParseException, IOException {
+  /** The function is designed for the Confirm Trip button.
+   * @throws ParseException This is to ensure the format of time typed by user.
+   * @throws IOException Follow the format.
+   */
+  public void confirmTrip() throws ParseException, IOException {
         HelpSerialize helpSerialize = new HelpSerialize();
         StationFactory stationFactory = new StationFactory();
         LogWriter logWriter = new LogWriter();
         if (selected.size() == 1){
             String line = "";
-            if (line1.contains(selected.get(0))){
-                line = "1";
-            }else if (line2.contains(selected.get(0))){
-                line = "2";
+            for (int i = 0; i < lines.size(); i++){
+                if (lines.get(i).contains(selected.get(0))){
+                    Integer lineNum = 1 + i;
+                    line = lineNum.toString();
+                }
             }
             if (startTime.getText().isEmpty()){
                 String end = boxToString.get(selected.get(0));
@@ -181,7 +188,7 @@ public class SubwayController extends Controller implements Initializable, Selec
 
                 Date endDate = df.parse(endTime.getText() + ":00");
                 card.updateOnTap("exits", endStation, endDate,
-                        "subway", stationFactory);
+                        "subway");
             }else{
                 String start = boxToString.get(selected.get(0));
 
@@ -190,16 +197,17 @@ public class SubwayController extends Controller implements Initializable, Selec
 
                 Date startDate = df.parse(startTime.getText() + ":00");
                 card.updateOnTap("enters", endStation, startDate,
-                        "subway", stationFactory);
+                        "subway");
             }
         }else {
             String start = boxToString.get(selected.get(0));
             String end = boxToString.get(selected.get(1));
-            String line;
-            if (line1.contains(selected.get(0)) & line1.contains(selected.get(1))){
-                line = "1";
-            }else{
-                line = "2";
+            String line = "";
+            for (int i = 0; i < lines.size(); i++){
+                if (lines.get(i).contains(selected.get(0))){
+                    Integer lineNum = 1 + i;
+                    line = lineNum.toString();
+                }
             }
 
             Station startStation = stationFactory.newStation(start, "subway", line);
@@ -209,9 +217,9 @@ public class SubwayController extends Controller implements Initializable, Selec
             Date startDate = df.parse(startTime.getText() + ":00");
             Date endDate = df.parse(endTime.getText() + ":00");
             card.updateOnTap("enters", startStation, startDate,
-                    "subway", stationFactory);
+                    "subway");
             card.updateOnTap("exits", endStation, endDate,
-                    "subway", stationFactory);
+                    "subway");
         }
         for (CheckBox checkBox: boxToString.keySet()){
             checkBox.setDisable(false);
@@ -222,7 +230,7 @@ public class SubwayController extends Controller implements Initializable, Selec
         endTime.clear();
         cardController.helpShowBalance(card.getBalance());
         helpSerialize.serializeUser(User.getUsers());
-        logWriter.helpLog(Level.INFO, "Valid Trip. Fare deducted accordingly."); // 改一下这个地方的String
+        logWriter.helpLog(Level.INFO, "Valid Trip. Fare deducted accordingly.");
         dashboard.helpUpdateInfo();
         startStation.setText("");
         endStation.setText("");
