@@ -1,5 +1,7 @@
 package model;
 
+import java.time.Year;
+
 /**
  * class AdminUser is for Administrator to store important informations like the total profit per
  * day and total stations reached by cardholders
@@ -13,6 +15,10 @@ public class AdminUser extends User{
     private double yesterdayFare = 0;
 
     private int yesterdayStations = 0;
+
+    private MonthlyStats monthlyStats = new MonthlyStats();
+
+    private YearlyStats yearlyStats = new YearlyStats();
 
     /**
      * initialize a new User instance.
