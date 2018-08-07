@@ -29,15 +29,21 @@ public class LoginController extends Controller implements Initializable{
     @FXML
     private TextField email;
 
-
-    /** This method is to handle events where the login user is an admin User. */
+    /** This method is to handle events where the login user is an admin User */
     void loginAdminUser() throws IOException{
         FXMLLoader loader = loading("adminuser.fxml");
         AdminUserController adminUserController = loader.getController();
         adminUserController.loadInfo();
     }
 
-    /** This method is to handle events where the login user is a regular User. */
+    /**
+     * This method is to handle events where the login user is a regular User
+     *
+     * @param email email of regular user
+     * @param password password of regular user
+     * @param users hashmap storing all users
+     * @param loginWindow login window
+     */
     void loginRegularUser(String email, String password, HashMap<String, User> users, Stage loginWindow) throws IOException{
         LogWriter logWriter = new LogWriter();
         for (User user : users.values()){
@@ -61,7 +67,11 @@ public class LoginController extends Controller implements Initializable{
     }
 
 
-    /** This method is to handle events for the button login. */
+    /**
+     * This method is to handle events for the button login.
+     *
+     * @param event an event that happens when click the login button.
+     */
     @FXML
     void login(javafx.event.ActionEvent event) throws Exception {
         LogWriter logWriter = new LogWriter();
@@ -91,7 +101,12 @@ public class LoginController extends Controller implements Initializable{
         }
     }
 
-    /** This method is to handle events for the button signUp. */
+
+    /**
+     * This method is to handle events for the button signup.
+     *
+     * @param event an event that happens when click the signup button.
+     */
     @FXML
     void signUp(javafx.event.ActionEvent event) throws IOException{
         Parent signUp = FXMLLoader.load(getClass().getResource("signUp.fxml"));
