@@ -2,6 +2,7 @@ package controller;
 
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.TextField;
+import model.Card;
 import model.Station;
 import model.StationFactory;
 import model.User;
@@ -16,11 +17,12 @@ import java.util.logging.Level;
 class BusConfirmTrip {
     private ArrayList<ArrayList<CheckBox>> lines;
 
-    void confirm (ArrayList<CheckBox> selected, HashMap<CheckBox, String> boxToString , model.Card card,
+    void confirm (ArrayList<CheckBox> selected, HashMap<CheckBox, String> boxToString , Card card,
                   TextField startTime, TextField endTime, CardController cardController)
                     throws ParseException, IOException {
         HelpSerialize helpSerialize = new HelpSerialize();
         StationFactory stationFactory = new StationFactory();
+        LogWriter logWriter = new LogWriter();
         if (selected.size() == 1){
             if (startTime.getText().isEmpty()){
                 String end = boxToString.get(selected.get(0));
@@ -72,7 +74,7 @@ class BusConfirmTrip {
         endTime.clear();
         cardController.helpShowBalance(card.getBalance());
         helpSerialize.serializeUser(User.getUsers());
-        card.helpLog(Level.INFO, "information in log."); // 改一下这个地方的String
+        logWriter.helpLog(Level.INFO, "information in log."); // 改一下这个地方的String
     }
 
     void disable(CheckBox box, ArrayList<CheckBox> selected){

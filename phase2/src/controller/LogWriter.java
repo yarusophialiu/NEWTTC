@@ -2,23 +2,24 @@ package controller;
 
 
 import java.io.IOException;
+import java.io.Serializable;
 import java.util.logging.FileHandler;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.logging.SimpleFormatter;
 
-class LoginSignUpLog {
+public class LogWriter implements Serializable {
 
-    private static final Logger logger = Logger.getLogger(LoginSignUpLog.class.getName());
+    private static final Logger logger = Logger.getLogger(LogWriter.class.getName());
 
 
-    LoginSignUpLog(){
+    public LogWriter(){
         logger.setLevel(Level.ALL);
     }
 
-    void helpLog(Level level, String message){
+    public void helpLog(Level level, String message){
         try{
-            FileHandler fileHandler = new FileHandler("CardAndUserLog.log", true);
+            FileHandler fileHandler = new FileHandler("phase2/CardAndUserLog.log", true);
             logger.addHandler(fileHandler);
             SimpleFormatter simpleFormatter= new SimpleFormatter();
             fileHandler.setFormatter(simpleFormatter);

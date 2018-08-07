@@ -16,7 +16,7 @@ public class User implements Serializable {
     private String password;
     private static HashMap<String, User> users = new HashMap<>();
 
-    private Long timeSpendOnTransitToday;
+    private Long timeSpendOnTransitToday = (long)0;
 
 
     /** initialize a new User instance. */

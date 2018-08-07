@@ -3,15 +3,8 @@ package model;
 import java.io.Serializable;
 import java.util.Date;
 
-public class Trip implements Serializable {
-    /** The start station of the trip. */
-    private Station entrance;
-    /** The end station of the trip. */
-    private Station exit;
-    /** The start time of the trip. */
-    private Date enterTime;
-    /** The end time of the trip. */
-    private Date exitTime;
+public class Trip extends TripInfoHandler implements Serializable {
+
     /** A boolean to indicate whether the trip is continuous trip in a two-hour period. */
     private boolean isContinuous = false;
     /** A double to represent the cumulative fare in the chain of continuous trips in two hours. */
@@ -28,19 +21,6 @@ public class Trip implements Serializable {
         this.transportation = vehicle.equals("subway");
     }
 
-    /** A setter to set exit information when user tap the card when getting out of the station. */
-    void setExit(Station exit, Date exitTime) {
-        this.exit = exit;
-        this.exitTime = exitTime;
-    }
-
-    Station getEntrance() {
-        return entrance;
-    }
-
-    Station getExit() {
-        return exit;
-    }
 
     /**
      * A setter to update the current fare to make sure that the user aren't paying over $6 when
@@ -50,9 +30,6 @@ public class Trip implements Serializable {
         this.currentFare = fare;
     }
 
-    Date getEnterTime(){
-        return enterTime;
-    }
 
     /** A getter to get the current fare that the user has payed for this continuous trip. */
     double getCurrentFare() {
@@ -64,15 +41,6 @@ public class Trip implements Serializable {
         return this.isContinuous;
     }
 
-    /** Used to calculate the time duration of this trip. */
-    Long tripTime() {
-        return exitTime.getTime() - enterTime.getTime();
-    }
-
-    /** A getter of the time user exit the destination station. */
-    Date getExitTime() {
-        return exitTime;
-    }
 
     long getContinuousTime(){
         return continuousTime;
