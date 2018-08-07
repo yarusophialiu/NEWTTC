@@ -66,8 +66,8 @@ public class Card extends CardBalanceHandler implements Serializable {
             }
         }
         else {  //since this is the case of the first trip of the card, and its exiting, therefore must be entered the station without tapping.
-            System.out.println("exit without enter, 6 dollars deducted from your balance.");
-            this.balance -= 6; //allow to be negative       // haven't calculate the average monthly fare here.
+            System.out.println("Exit without enter, 6 dollars deducted from your balance.");
+            this.balance -= 6.0; //allow to be negative       // haven't calculate the average monthly fare here.
             logWriter.helpLog(Level.INFO, "exit without enter, 6 dollars deducted from your balance.");
         }
     }
@@ -79,12 +79,22 @@ public class Card extends CardBalanceHandler implements Serializable {
             System.out.println("CardController " + id + " balance is not enough at " + time);
         }
         else{
+            if (previousTrip.getExit() == null){
+                if (vehicle.equals("bus")){
+                System.out.println("Please tap when you get off the bus next time.");
+                }else {
+                System.out.println("Last trip was incomplete, 6 dollars deducted as punishment.");
+                this.balance -= 6.0;
+                }
+            }
             Trip trip = new Trip(station, time, vehicle);
             if(myTrip.size() >= 3){
                 this.myTrip.remove(0);
             }
             this.myTrip.add(trip);
-            trip.updateContinuity(previousTrip);
+            if (!(previousTrip.getExit() == null)){
+                trip.updateContinuity(previousTrip);
+            }
             if (!trip.getTransportation()){
                 FareCalculator fareCalculator = new BusFareCalculator();
                 double fare = fareCalculator.calculateFare(trip);
@@ -97,8 +107,8 @@ public class Card extends CardBalanceHandler implements Serializable {
 
     private void helpExit(Station station, Date time, String vehicle, Trip trip, StationFactory stationFactory){
         if (!(trip.getExit() == null)){
-            System.out.println("exit without enter, 6 dollars deducted from your balance.");
-            this.balance -= 6;
+            System.out.println("Exit without enter, 6 dollars deducted from your balance.");
+            this.balance -= 6.0;
         }else{
             trip.setExit(station, time);
             trip.updateContinuity(trip);

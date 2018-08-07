@@ -141,19 +141,29 @@ public class SubwayController extends Controller implements Initializable, Selec
         StationFactory stationFactory = new StationFactory();
         LogWriter logWriter = new LogWriter();
         if (selected.size() == 1){
+            String line;
+            if (line1.contains(selected.get(0))){
+                line = "1";
+            }else{
+                line = "2";
+            }
             if (startTime.getText().isEmpty()){
                 String end = boxToString.get(selected.get(0));
-                String line;
-                if (line1.contains(selected.get(0))){
-                    line = "1";
-                }else{
-                    line = "2";
-                }
+
                 SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
                 Station endStation = stationFactory.newStation(end, "subway", line);
 
                 Date endDate = df.parse(endTime.getText() + ":00");
                 card.updateOnTap("exits", endStation, endDate,
+                        "subway", stationFactory);
+            }else{
+                String start = boxToString.get(selected.get(0));
+
+                SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+                Station endStation = stationFactory.newStation(start, "subway", line);
+
+                Date startDate = df.parse(startTime.getText() + ":00");
+                card.updateOnTap("enters", endStation, startDate,
                         "subway", stationFactory);
             }
         }else {
