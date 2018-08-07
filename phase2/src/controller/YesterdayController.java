@@ -10,6 +10,7 @@ public class YesterdayController extends Controller{
     @FXML
     private Text yesterdayReport;
 
+    /**Load information of yesterday.fxml*/
     public void loadInfo() {
         for (User user : User.getUsers().values()){
             if (user.getEmailAddress().equals("adminuser@mail.com")){
@@ -18,6 +19,11 @@ public class YesterdayController extends Controller{
         }
     }
 
+    /**
+     * Go back to previous page when click the button
+     *
+     * @param event the action that happens when we click button
+     */
     public void goBackPage(ActionEvent event) throws Exception{
         switchScene(event, "adminuser.fxml");
     }
