@@ -33,7 +33,7 @@ public class CardController extends Controller implements Initializable{
     CheckBox checkbox20;
 
     @FXML
-    CheckBox checkbox30;
+    CheckBox checkbox50;
 
     private Stage previousStage;
 
@@ -95,14 +95,14 @@ public class CardController extends Controller implements Initializable{
             checkbox20.setSelected(false);
             myCard.increaseBalance(20);
             if (confirmBox.confirm("Add $20 to your balance?")){
-                myCard.increaseBalance(10);
+                myCard.increaseBalance(20);
             }
         }
-        else if (checkbox30.isSelected()){
-            checkbox30.setSelected(false);
-            myCard.increaseBalance(30);
-            if (confirmBox.confirm("Add $30 to your balance?")){
-                myCard.increaseBalance(10);
+        else if (checkbox50.isSelected()){
+            checkbox50.setSelected(false);
+            myCard.increaseBalance(50);
+            if (confirmBox.confirm("Add $50 to your balance?")){
+                myCard.increaseBalance(50);
             }
         }
         helpShowBalance(myCard.getBalance());
@@ -136,14 +136,14 @@ public class CardController extends Controller implements Initializable{
     void selectAmount(){
         if (checkbox10.isSelected()){
             checkbox20.setDisable(true);
-            checkbox30.setDisable(true);
+            checkbox50.setDisable(true);
 
         }
         else if (checkbox20.isSelected()){
             checkbox10.setDisable(true);
-            checkbox30.setDisable(true);
+            checkbox50.setDisable(true);
         }
-        else if (checkbox30.isSelected()){
+        else if (checkbox50.isSelected()){
             checkbox10.setDisable(true);
             checkbox20.setDisable(true);
         }
@@ -169,7 +169,7 @@ public class CardController extends Controller implements Initializable{
     private void helpSetAble(){
         checkbox10.setDisable(false);
         checkbox20.setDisable(false);
-        checkbox30.setDisable(false);
+        checkbox50.setDisable(false);
     }
 
 }

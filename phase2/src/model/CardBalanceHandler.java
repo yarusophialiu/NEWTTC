@@ -2,7 +2,6 @@ package model;
 
 import controller.LogWriter;
 
-import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.logging.*;
