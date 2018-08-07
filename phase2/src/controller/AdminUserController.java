@@ -28,7 +28,7 @@ public class AdminUserController extends Controller{
         switchScene(event, "yesterday.fxml");
     }
 
-    public void montlyReport(ActionEvent event) throws Exception{
+    public void monthlyReport(ActionEvent event) throws Exception{
         switchScene(event, "monthly.fxml");
     }
 
