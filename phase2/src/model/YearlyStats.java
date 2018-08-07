@@ -18,6 +18,20 @@ public class YearlyStats implements SystemStats, Serializable {
     }
 
     void updateYearlyStats(int year, double fare) {
-        yearlyStats.replace(year, yearlyStats.get(year) + fare);
+        if (year >= 11) {
+            HashMap<Integer, Double> newYearlyStats = new HashMap<Integer, Double>();
+            yearlyStats.put(11, fare);
+
+            yearlyStats.forEach((key, value) -> {
+                if (key >=2) {
+                    newYearlyStats.put(key-1, value);
+                }
+            });
+        }
+
+
+        if (yearlyStats.size() < 10) {
+            yearlyStats.replace(year, yearlyStats.get(year) + fare);
+        }
     }
 }

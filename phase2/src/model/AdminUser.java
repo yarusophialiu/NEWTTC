@@ -1,25 +1,23 @@
 package model;
 
-import java.time.Year;
-
 /**
  * class AdminUser is for Administrator to store important informations like the total profit per
  * day and total stations reached by cardholders
  */
 public class AdminUser extends User{
-    /** a double storing totalFare collected from all card in one day */
+    /** a double storing totalFare collected from all card within today */
     private double totalFare = 0;
-    /** an int storing total stations reached by all cards from all users. */
+    /** an int storing total stations reached by all cards from all users within today. */
     private int totalStations = 0;
-
+    /** an double storing total fare reached by all cards from all users within yesterday. */
     private double yesterdayFare = 0;
-
+    /** an int storing total stations reached by all cards from all users within yesterday. */
     private int yesterdayStations = 0;
-
+    /** build a new monthly stats */
     private MonthlyStats monthlyStats = new MonthlyStats();
-
+    /** build a new yearly stats */
     private YearlyStats yearlyStats = new YearlyStats();
-
+    /** Card ID counter */
     private Integer highestID = 1000;
 
     /**
@@ -71,18 +69,22 @@ public class AdminUser extends User{
         totalStations = 0;
     }
 
+    /** get monthly stats */
     public MonthlyStats getMonthlyStats() {
         return monthlyStats;
     }
 
+    /** get yearly stats */
     public YearlyStats getYearlyStats() {
         return yearlyStats;
     }
 
+    /** Increase highest id */
     void highestIDIncrement(){
         highestID++;
     }
 
+    /** get highest id */
     int getHighestID(){
         return highestID;
     }
