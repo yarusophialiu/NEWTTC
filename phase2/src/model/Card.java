@@ -4,15 +4,11 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.logging.Level;
 
-public class Card extends CardHandler implements Serializable {
+public class Card extends CardBalanceHandler implements Serializable {
+
     /** A boolean to indicate whether the card is suspended or not. */
     private boolean isSuspended = false;
 
-    /** An int to represent card number. */
-    private int id;
-
-    /** The card's balance. */
-    private double balance;
     /**
      * CardController number starts from 1000 and will be increased by 1 each time when a new card is generated.
      */
@@ -21,20 +17,20 @@ public class Card extends CardHandler implements Serializable {
 
     /** Initialize a new card. */
     public Card() {
+        super(19);
         this.id = idIncrementer;
         idIncrementer++;
-        this.balance = 19;
     }
 
     /** Adjust the boolean isSuspended when the card is suspended and the card is retrieved. */
-    public void reverseSuspended() { ;
+    public void reverseSuspended() {
         this.isSuspended = !this.isSuspended;
         if (isSuspended) {
             System.out.println("CardController " + id + " has been suspended.");
-            helpLog(Level.WARNING, "Card " + id + " has been suspended.");
+            logWriter.helpLog(Level.WARNING, "Card " + id + " has been suspended.");
         } else {
             System.out.println("CardController " + id + " has been retrieved.");
-            helpLog(Level.WARNING, "Card " + id + " has been retrieved.");
+            logWriter.helpLog(Level.WARNING, "Card " + id + " has been retrieved.");
         }
     }
 
@@ -43,52 +39,6 @@ public class Card extends CardHandler implements Serializable {
         return this.id;
     }
 
-
-    /**
-     * Add money to card's balance. Exception will be threw if the adding money is not $10 or $20 or
-     * $50.
-     */
-    public void increaseBalance(int i) throws Exception {
-        if (i == 10 || i == 20 || i == 50) {
-            this.balance += i;
-            System.out.println(i + " dollars has been added to card " + id + " New balance: $" + balance);
-            helpLog(Level.INFO, i + " dollars has been added to card " + id + " New balance: $" + balance);
-        } else {
-            helpLog(Level.SEVERE, "You can only add $10, $20 or $50");
-            throw new Exception("You can only add $10, $20 or $50");
-        }
-    }
-
-    private void deductFare(double fare, String enterOrExit){
-        Trip trip = this.myTrip.get(this.myTrip.size() - 1);
-        if (balance <= 0){
-            System.out.println(
-                    "CardController " + id + " balance is not enough at " + trip.getEnterTime());
-            helpLog(Level.WARNING, "Card " + id + " balance is not enough at " + trip.getEnterTime());
-        }
-        else if(enterOrExit.equals("enters")){
-            balance -= fare;
-            System.out.println(
-                    "CardController "
-                            + id
-                            + " new balance: $"
-                            + balance
-                            + " at "
-                            + trip.getEnterTime());
-            helpLog(Level.INFO, "Card " + id + " new balance: $" + balance + " at " + trip.getEnterTime());
-        }
-        else if (enterOrExit.equals("exits")){
-            balance -= fare;
-            System.out.println(
-                    "CardController "
-                            + id
-                            + " new balance: $"
-                            + balance
-                            + " at "
-                            + trip.getExitTime());
-            helpLog(Level.INFO, "Card " + id + " new balance: $" + balance + " at " + trip.getExitTime());
-        }
-    }
 
 
 
@@ -118,7 +68,7 @@ public class Card extends CardHandler implements Serializable {
         else {  //since this is the case of the first trip of the card, and its exiting, therefore must be entered the station without tapping.
             System.out.println("exit without enter, 6 dollars deducted from your balance.");
             this.balance -= 6; //allow to be negative       // haven't calculate the average monthly fare here.
-            helpLog(Level.INFO, "exit without enter, 6 dollars deducted from your balance.");
+            logWriter.helpLog(Level.INFO, "exit without enter, 6 dollars deducted from your balance.");
         }
     }
 

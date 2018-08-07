@@ -1,11 +1,8 @@
 package controller;
 
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
@@ -126,6 +123,7 @@ public class SubwayController extends Controller implements Initializable, Selec
     public void confirmTrip() throws ParseException, IOException {
         HelpSerialize helpSerialize = new HelpSerialize();
         StationFactory stationFactory = new StationFactory();
+        LogWriter logWriter = new LogWriter();
         if (selected.size() == 1){
             if (startTime.getText().isEmpty()){
                 String end = boxToString.get(selected.get(0));
@@ -172,7 +170,7 @@ public class SubwayController extends Controller implements Initializable, Selec
         endTime.clear();
         cardController.helpShowBalance(card.getBalance());
         helpSerialize.serializeUser(User.getUsers());
-        card.helpLog(Level.INFO, "information in log."); // 改一下这个地方的String
+        logWriter.helpLog(Level.INFO, "information in log."); // 改一下这个地方的String
         dashboard.helpUpdateInfo();
     }
 

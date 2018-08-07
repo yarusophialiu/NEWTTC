@@ -33,11 +33,11 @@ public class LoginController extends Controller implements Initializable{
     }
 
     void loginRegularUser(String email, String password, HashMap<String, User> users, Stage loginWindow) throws IOException{
-        LoginSignUpLog loginSignUpLog = new LoginSignUpLog();
+        LogWriter logWriter = new LogWriter();
         for (User user : users.values()){
             if (user.getEmailAddress().equals(email)){
                 if (user.correctPassword(password)){
-                    loginSignUpLog.helpLog(Level.INFO, "Regular User " + user.getEmailAddress() + " login in.");
+                    logWriter.helpLog(Level.INFO, "Regular User " + user.getEmailAddress() + " login in.");
                     FXMLLoader loader = new FXMLLoader(getClass().getResource("dashboard.fxml"));
                     Parent root = loader.load();
                     Dashboard dashboardControl = loader.getController();
@@ -48,7 +48,7 @@ public class LoginController extends Controller implements Initializable{
                 }
                 else {
                     alert("Trying to login with wrong password.");
-                    loginSignUpLog.helpLog(Level.WARNING, "user " + user.getEmailAddress() + " trying to login but failed: wrong password.");
+                    logWriter.helpLog(Level.WARNING, "user " + user.getEmailAddress() + " trying to login but failed: wrong password.");
                 }
             }
         }
@@ -57,7 +57,7 @@ public class LoginController extends Controller implements Initializable{
 
     @FXML
     void login(javafx.event.ActionEvent event) throws Exception {
-        LoginSignUpLog loginSignUpLog = new LoginSignUpLog();
+        LogWriter logWriter = new LogWriter();
         if (email.getText().matches("[\\S]+") && password.getText().matches("[\\S]+")) {
             HashMap<String, User> users = User.getUsers();
             String emailInput = email.getText();
@@ -66,12 +66,12 @@ public class LoginController extends Controller implements Initializable{
 
             if (emailInput.equals("adminuser@mail.com") && passwordInput.equals("admin123")) {
                 loginAdminUser();
-                loginSignUpLog.helpLog(Level.INFO, "Admin User login in.");
+                logWriter.helpLog(Level.INFO, "Admin User login in.");
                 loginWindow.close();
 
             } else if (!users.keySet().contains(emailInput)){
                 alert("User with that email does not exists, try sign up.");
-                loginSignUpLog.helpLog(Level.WARNING, "Trying to login with email that does not exist.");
+                logWriter.helpLog(Level.WARNING, "Trying to login with email that does not exist.");
 
             }
             else{
