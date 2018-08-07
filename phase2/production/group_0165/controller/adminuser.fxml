@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.chart.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.AdminUserController">
+   <children>
+      <Text fill="#6b6868" layoutX="45.0" layoutY="97.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Admin Dashboard">
+         <font>
+            <Font size="25.0" />
+         </font>
+      </Text>
+      <Text fill="#6b6868" layoutX="45.0" layoutY="155.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Today:">
+         <font>
+            <Font size="17.0" />
+         </font>
+      </Text>
+      <Button layoutX="585.0" layoutY="74.0" mnemonicParsing="false" onAction="#goBackPage" style="-fx-background-color: rgba(19, 173, 243, 0.63);" text="Log Out" textFill="WHITE" />
+      <Text fx:id="dailyReport" layoutX="100.0" layoutY="218.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="474.21875">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Text>
+      <VBox layoutX="45.0" layoutY="250.0" prefHeight="200.0" prefWidth="84.0" spacing="20.0">
+         <children>
+            <Button mnemonicParsing="false" onAction="#yesterdayReport" prefHeight="27.0" prefWidth="93.0" style="-fx-background-color: rgba(19, 173, 243, 0.63);" text="Yesterday" textFill="WHITE" />
+            <Button mnemonicParsing="false" onAction="#monthlyReport" prefHeight="27.0" prefWidth="96.0" style="-fx-background-color: rgba(19, 173, 243, 0.63);" text="Monthly" textFill="WHITE" />
+            <Button lineSpacing="20.0" mnemonicParsing="false" onAction="#yearlyReport" prefHeight="27.0" prefWidth="88.0" style="-fx-background-color: rgba(19, 173, 243, 0.63);" text="Yearly" textFill="WHITE" />
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>
