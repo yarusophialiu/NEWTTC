@@ -24,20 +24,29 @@ import java.util.logging.Level;
 
 public class SubwayController extends Controller implements Initializable, SelectStation {
 
+    /** The card you used in this subway trip. */
     private Card card;
 
+    /** Record previous stage to for the goBack button.*/
     private Stage previousStage;
 
+    /** Each checkbox stands for a station in the scene. Select check box to choose
+     * start/end stations. */
     @FXML
     private CheckBox stop1,stop2,stop3,stop4,stop5,stop6,stop7,stop8,stop9,
             stop10,stop11;
 
+    /** List contains all the checkboxes representing stations in line1. */
     private ArrayList<CheckBox> line1 = new ArrayList<>();
 
+    /** List contains all the checkboxes representing stations in line2. */
     private ArrayList<CheckBox> line2 = new ArrayList<>();
 
+    /** A hashmap with values checkbox and values strings corresponded to the its key
+     * checkbox. */
     private HashMap<CheckBox, String> boxToString = new HashMap<>();
 
+    /** This is the controller of this trip's card  */
     private CardController cardController;
 
     ArrayList<CheckBox> selected = new ArrayList<>();
@@ -47,6 +56,7 @@ public class SubwayController extends Controller implements Initializable, Selec
 
     @FXML
     private TextField endTime;
+
     private Dashboard dashboard;
 
     @FXML
