@@ -41,7 +41,7 @@ public class Card extends CardBalanceHandler implements Serializable {
 
 
 
-
+    /** This method is called whenever a user tap in or out of the station. */
     public void updateOnTap(String enterOrExit, Station station, Date time, String vehicle, StationFactory stationFactory){
         if (isSuspended){
             System.out.println("You cannot enter because card " + id + " is suspended " + time);
@@ -73,7 +73,7 @@ public class Card extends CardBalanceHandler implements Serializable {
     }
 
 
-
+    /** This is a helper method for the case where the user starts a new trip and its not the first trip of the card. */
     private void helpEnter(Station station, Date time, String vehicle, Trip previousTrip){
         if (balance <= 0){
             System.out.println("CardController " + id + " balance is not enough at " + time);
@@ -95,6 +95,7 @@ public class Card extends CardBalanceHandler implements Serializable {
         }
     }
 
+    /** This is a helper method for the case where the user ends a trip. */
     private void helpExit(Station station, Date time, String vehicle, Trip trip, StationFactory stationFactory){
         if (!(trip.getExit() == null)){
             System.out.println("exit without enter, 6 dollars deducted from your balance.");
@@ -118,10 +119,12 @@ public class Card extends CardBalanceHandler implements Serializable {
         }
     }
 
+    /** A getter to get the balance of the card. */
     public double getBalance(){
         return this.balance;
     }
 
+    /** A getter to get the suspend status of the card. */
     public boolean getSuspended(){
         return this.isSuspended;
     }
