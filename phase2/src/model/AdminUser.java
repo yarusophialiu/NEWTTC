@@ -17,34 +17,45 @@ public class AdminUser extends User{
     /**
      * initialize a new User instance.
      *
-     * @param userName
-     * @param emailAddress
-     * @param password
+     * @param userName user name of admin user
+     * @param emailAddress email address of admin user
+     * @param password password of admin user
      */
-   public AdminUser(String userName, String emailAddress, String password) {
+    public AdminUser(String userName, String emailAddress, String password) {
         super(userName, emailAddress, password);
     }
 
+    /**
+     * Update total fare.
+     *
+     * @param fare the newly collected fare that need to be added to total fare.
+     */
     void updateTotalFare(double fare){
         this.totalFare += fare;
     }
 
+    /**
+     * Update total stations.
+     *
+     * @param numStations the newly reached fare that need to be added to total stations.
+     */
     void updateTotalStation(int numStations){
         this.totalStations += numStations;
     }
 
-    /**
-     * used to print a report for adminUser about the profit and the totalStation reached each day.
-     */
+    /** used to print a report for adminUser about the profit and the totalStation reached today. */
     public String report() {
         return Double.toString(totalFare) + " dollars were collected " + "from " + Integer.toString(totalStations) + " stations today.";
     }
 
+    /** used to print a report for adminUser about the profit and the totalStation reached yesterday. */
     public String yesterdayReport() {
         return Double.toString(yesterdayFare) + " dollars were collected " + "from " + Integer.toString(yesterdayStations) + " stations yesterday.";
     }
 
-    /** used to clear data for each day to start recording information for a new day. */
+    /**
+     * used to record yesterday's total fare and reached stations and clear data for each day to start recording information for a new day.
+     */
     void clearData() {
         yesterdayFare = totalFare;
         yesterdayStations = totalStations;
