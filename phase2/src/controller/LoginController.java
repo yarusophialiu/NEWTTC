@@ -27,7 +27,7 @@ public class LoginController extends Controller implements Initializable{
 
 
     void loginAdminUser() throws IOException{
-        FXMLLoader loader = loader("adminuser.fxml");
+        FXMLLoader loader = loading("adminuser.fxml");
         AdminUserController adminUserController = loader.getController();
         adminUserController.loadInfo();
     }
