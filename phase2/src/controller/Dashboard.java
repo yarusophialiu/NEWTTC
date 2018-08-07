@@ -39,8 +39,6 @@ public class Dashboard extends Controller implements Initializable{
     @FXML
     private Label averageMonthlyCost;
 
-    @FXML
-    private Label preferredVehicle;
 
     @FXML
     private Label timeOnTransit;
@@ -73,7 +71,6 @@ public class Dashboard extends Controller implements Initializable{
         this.userName.setText(user.getUserName());
         this.cards = ((RegularUser) user).getMyCard();
         this.averageMonthlyCost.setText (String.valueOf(((RegularUser) user).getAverageMonthlyFare()));
-        this.preferredVehicle.setText("None");
         long millis = user.getTimeSpendOnTransit();
         String time = String.format("%d min, %d sec",
                 TimeUnit.MILLISECONDS.toMinutes(millis),
