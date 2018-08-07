@@ -74,7 +74,8 @@ class BusConfirmTrip {
         endTime.clear();
         cardController.helpShowBalance(card.getBalance());
         helpSerialize.serializeUser(User.getUsers());
-        logWriter.helpLog(Level.INFO, "information in log."); // 改一下这个地方的String
+        logWriter.helpLog(Level.INFO, "Valid Trip. Fare deducted accordingly."); // 改一下这个地方的String
+        cardController.alert("Trip Completed! Thanks for using our system!");
     }
 
     void disable(CheckBox box, ArrayList<CheckBox> selected){

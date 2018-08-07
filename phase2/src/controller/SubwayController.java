@@ -4,6 +4,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.CheckBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import model.Card;
@@ -47,6 +48,11 @@ public class SubwayController extends Controller implements Initializable, Selec
     @FXML
     private TextField endTime;
     private Dashboard dashboard;
+
+    @FXML
+    private Label startStation;
+    @FXML
+    private Label endStation;
 
     public void setCard(Card card){
         this.card = card;
@@ -110,6 +116,14 @@ public class SubwayController extends Controller implements Initializable, Selec
             for (CheckBox cb: boxToString.keySet()){
                 cb.setDisable(false);
             }
+            if (selected.size() == 0){
+                startStation.setText("");
+                endStation.setText("");
+            }else{
+                startStation.setText(boxToString.get(selected.get(0)));
+                endStation.setText("");
+            }
+
         }
         if (selected.size() == 2){
             for (CheckBox cb: boxToString.keySet()){
@@ -117,6 +131,8 @@ public class SubwayController extends Controller implements Initializable, Selec
                     cb.setDisable(true);
                 }
             }
+            startStation.setText(boxToString.get(selected.get(0)));
+            endStation.setText(boxToString.get(selected.get(1)));
         }
     }
 
@@ -170,8 +186,11 @@ public class SubwayController extends Controller implements Initializable, Selec
         endTime.clear();
         cardController.helpShowBalance(card.getBalance());
         helpSerialize.serializeUser(User.getUsers());
-        logWriter.helpLog(Level.INFO, "information in log."); // 改一下这个地方的String
+        logWriter.helpLog(Level.INFO, "Valid Trip. Fare deducted accordingly."); // 改一下这个地方的String
         dashboard.helpUpdateInfo();
+        startStation.setText("");
+        endStation.setText("");
+        alert("Trip Completed! Thanks for using our system!");
     }
 
     void setPreviousController(CardController cardController, Dashboard dashboard){
