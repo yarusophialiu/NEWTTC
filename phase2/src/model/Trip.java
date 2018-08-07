@@ -3,6 +3,7 @@ package model;
 import java.io.Serializable;
 import java.util.Date;
 
+/** Class Trip is used to store information on whether its still a continuous trip or not. */
 public class Trip extends TripInfoHandler implements Serializable {
 
     /** A boolean to indicate whether the trip is continuous trip in a two-hour period. */
@@ -41,7 +42,7 @@ public class Trip extends TripInfoHandler implements Serializable {
         return this.isContinuous;
     }
 
-
+    /** A getter for how long the current continuous Trip has been. */
     long getContinuousTime(){
         return continuousTime;
     }
@@ -51,6 +52,8 @@ public class Trip extends TripInfoHandler implements Serializable {
         return transportation;
     }
 
+    /** The method is called to compare the trip with the previous trip(if it is called when enters a station), or
+     * compare with itself(if it exit the station).*/
     void updateContinuity(Trip trip){
         if (trip == this) {
             this.continuousTime += tripTime();

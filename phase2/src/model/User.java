@@ -14,9 +14,10 @@ public class User implements Serializable {
 
     /** store the password for the user when login into the system(for phase 2) */
     private String password;
+
     private static HashMap<String, User> users = new HashMap<>();
 
-    private Long timeSpendOnTransitToday = (long)0;
+    private Long timeSpendOnTransit = (long)0;
 
 
     /** initialize a new User instance. */
@@ -57,10 +58,10 @@ public class User implements Serializable {
     }
 
     void addTime(long time){
-        this.timeSpendOnTransitToday += time;
+        this.timeSpendOnTransit += time;
     }
 
-    public Long getTimeSpendOnTransitToday(){
-        return timeSpendOnTransitToday;
+    public Long getTimeSpendOnTransit(){
+        return timeSpendOnTransit;
     }
 }

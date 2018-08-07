@@ -15,41 +15,54 @@ import java.util.*;
 
 public class BusController extends Controller implements Initializable, SelectStation{
 
+    /** CheBoxes representing bus stations on screen.*/
     @FXML
     private CheckBox stop1,stop2,stop3,stop4,stop5,stop6,stop7,stop8,stop9,
             stop10,stop11,stop12,stop13,stop14;
 
-
+    /** A helper class used by passengers to take bus.*/
     private BusConfirmTrip helper = new BusConfirmTrip();
 
+    /** A HashMap converting CheckBoxes to station name.*/
     private HashMap<CheckBox, String> boxToString = new HashMap<>();
 
+    /** Current card user used to take a bus.*/
     private Card card;
 
+    /** An ArrayList representing CheckBoxes selected by user.*/
     private ArrayList<CheckBox> selected = new ArrayList<>();
 
+    /** The time when user get on a bus.*/
     @FXML
     private TextField startTime;
 
+    /** The time when user get off a bus. */
     @FXML
     private TextField endTime;
 
+    /** A label telling the user the start station.*/
     @FXML
     private Label startStation;
 
+    /** A label telling the user the end station.*/
     @FXML
     private Label endStation;
 
+    /** The previous stage of current stage, used to go to last page.*/
     private Stage previousStage;
 
+    /** The controller of the card user is using.*/
     private CardController cardController;
 
+    /** The controller of last Dashboard page. */
     private Dashboard dashboard;
 
+    /** Setter of variable card.*/
     public void setCard(Card card){
         this.card = card;
     }
 
+    /** User select stations and make other stations disable to chose.*/
     public void selectBox (javafx.event.ActionEvent event){
         CheckBox newSelect = ((CheckBox) event.getSource());
         if (newSelect.isSelected()){
@@ -72,7 +85,7 @@ public class BusController extends Controller implements Initializable, SelectSt
     }
 
 
-
+    /** Go to the last page.*/
     @FXML
     public void goBackPage(javafx.event.ActionEvent event){
         Stage busController = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -80,6 +93,7 @@ public class BusController extends Controller implements Initializable, SelectSt
         busController.close();
     }
 
+    /** Initialize the BusController.*/
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         ArrayList<CheckBox> line1 = new ArrayList<>();
@@ -123,10 +137,12 @@ public class BusController extends Controller implements Initializable, SelectSt
         boxToString.put(stop14, "Steven");
     }
 
+    /** Setter of the variable previousStage.*/
     public void setPreviousStage(Stage stage){
         this.previousStage = stage;
     }
 
+    /** Confirm the stations and time selected bu user and start a trip.*/
     public void confirmTrip()throws ParseException, IOException{
         startStation.setText("");
         endStation.setText("");
@@ -134,6 +150,7 @@ public class BusController extends Controller implements Initializable, SelectSt
         dashboard.helpUpdateInfo();
     }
 
+    /** Setter of previousController.*/
     void setPreviousController(CardController cardController, Dashboard dashboard){
         this.cardController = cardController;
         this.dashboard = dashboard;
