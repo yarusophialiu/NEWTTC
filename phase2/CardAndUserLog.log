@@ -6,3 +6,5 @@ Aug 06, 2018 6:00:06 PM model.CardHandler helpLog
 INFO: 10 dollars has been added to card 1000 New balance: $29.0
 Aug 06, 2018 6:01:15 PM model.CardHandler helpLog
 INFO: Card 1000 new balance: $28.0 at Tue May 01 09:00:00 EDT 2018
+Aug 07, 2018 3:57:23 PM controller.LogWriter helpLog
+INFO: Admin User login in.

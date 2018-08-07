@@ -46,29 +46,41 @@ public class SubwayController extends Controller implements Initializable, Selec
      * checkbox. */
     private HashMap<CheckBox, String> boxToString = new HashMap<>();
 
-    /** This is the controller of this trip's card  */
+    /** This is the controller of this trip's card to help updating the card's balance. */
     private CardController cardController;
 
-    ArrayList<CheckBox> selected = new ArrayList<>();
+    /** The list contains all the currently selected boxes. Its size should
+     *  be no greater than 2. */
+    private ArrayList<CheckBox> selected = new ArrayList<>();
 
+    /** The start time of the trip typed by user. */
     @FXML
     private TextField startTime;
 
+    /** The end time of the trip typed  by the user.*/
     @FXML
     private TextField endTime;
 
+    /** This is the dashboard of the card used in this trip. */
     private Dashboard dashboard;
 
+    /** The start station chose by the user. */
     @FXML
     private Label startStation;
+
+    /** The end station chose by the user. */
     @FXML
     private Label endStation;
 
-    public void setCard(Card card){
+  /** Set the card to use in this trip.
+   * @param card The card user wants to use in the trip.*/
+  public void setCard(Card card) {
         this.card = card;
     }
 
-    public void goBackPage(javafx.event.ActionEvent event){
+  /**
+   *  @param event */
+  public void goBackPage(javafx.event.ActionEvent event) {
         Stage subwayController = (Stage) ((Node) event.getSource()).getScene().getWindow();
         previousStage.show();
         subwayController.close();
@@ -78,7 +90,11 @@ public class SubwayController extends Controller implements Initializable, Selec
         this.previousStage = stage;
     }
 
-    public void initialize(URL location, ResourceBundle resources) {
+  /**
+   * @param location
+   * @param resources
+   */
+  public void initialize(URL location, ResourceBundle resources) {
         line1.add(stop1);
         line1.add(stop2);
         line1.add(stop3);
@@ -151,19 +167,29 @@ public class SubwayController extends Controller implements Initializable, Selec
         StationFactory stationFactory = new StationFactory();
         LogWriter logWriter = new LogWriter();
         if (selected.size() == 1){
+            String line = "";
+            if (line1.contains(selected.get(0))){
+                line = "1";
+            }else if (line2.contains(selected.get(0))){
+                line = "2";
+            }
             if (startTime.getText().isEmpty()){
                 String end = boxToString.get(selected.get(0));
-                String line;
-                if (line1.contains(selected.get(0))){
-                    line = "1";
-                }else{
-                    line = "2";
-                }
+
                 SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
                 Station endStation = stationFactory.newStation(end, "subway", line);
 
                 Date endDate = df.parse(endTime.getText() + ":00");
                 card.updateOnTap("exits", endStation, endDate,
+                        "subway", stationFactory);
+            }else{
+                String start = boxToString.get(selected.get(0));
+
+                SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+                Station endStation = stationFactory.newStation(start, "subway", line);
+
+                Date startDate = df.parse(startTime.getText() + ":00");
+                card.updateOnTap("enters", endStation, startDate,
                         "subway", stationFactory);
             }
         }else {
