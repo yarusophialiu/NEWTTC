@@ -53,10 +53,21 @@ public class Dashboard extends Controller implements Initializable{
 
     private HelpSerialize helpSerialize = new HelpSerialize();
 
+    /**
+     * Go back to previous page.
+     *
+     * @param event the action that happens when click a button.
+     */
     public void goBackPage(javafx.event.ActionEvent event) throws Exception {
         switchScene(event, "login.fxml");
     }
 
+
+    /**
+     * Set related information of user.
+     *
+     * @param newUser a user.
+     */
     void setUser(User newUser){
         this.user = newUser;
         this.userName.setText(user.getUserName());
@@ -73,6 +84,11 @@ public class Dashboard extends Controller implements Initializable{
     }
 
 
+    /**
+     * Add a new card to the user when click the button.
+     *
+     * @param event an action that happens when click a button.
+     */
     @FXML
     void addCard(javafx.event.ActionEvent event) throws IOException {
         ConfirmBox confirmBox = new ConfirmBox();
@@ -94,6 +110,11 @@ public class Dashboard extends Controller implements Initializable{
 
     }
 
+    /**
+     * Change user name of the user
+     *
+     * @param event an action that happens when click a button.
+     */
     @FXML
     void changeUsername(javafx.event.ActionEvent event) throws IOException {
         //find user
@@ -109,6 +130,7 @@ public class Dashboard extends Controller implements Initializable{
         helpSerialize.serializeUser(User.getUsers());
     }
 
+    /** Load all the card that the user has. */
     void loadCard() {
         if (cards.isEmpty()){
             hBox.getChildren().clear();
@@ -130,6 +152,12 @@ public class Dashboard extends Controller implements Initializable{
         }
     }
 
+    /**
+     * Load the card if not suspended when click the card
+     *
+     * @param card the card we click on.
+     * @param event an action that happens when click a button.
+     */
     private void cardButtonAction(Card card, javafx.event.ActionEvent event) throws IOException {
         ConfirmBox confirmBox = new ConfirmBox();
         if (card.getSuspended()){
@@ -143,6 +171,12 @@ public class Dashboard extends Controller implements Initializable{
         }
     }
 
+    /**
+     * Load the card
+     *
+     * @param card the card we want to suspend or unlock
+     * @param event an action that happens when click a button.
+     */
     private void helpLoadCard(Card card, javafx.event.ActionEvent event) throws IOException {
         Stage dashboard = (Stage) ((Node) event.getSource()).getScene().getWindow();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("cardController.fxml"));
@@ -160,6 +194,11 @@ public class Dashboard extends Controller implements Initializable{
 
     }
 
+    /**
+     * Change the password
+     *
+     * @param event the card we want to suspend or unlock
+     */
     @FXML
     public void changePassword(ActionEvent event) throws IOException {
         if (user.correctPassword(currentPassword.getText())) {
@@ -177,6 +216,7 @@ public class Dashboard extends Controller implements Initializable{
         }
     }
 
+    /** update average monthly cost */
     void helpUpdateInfo(){
         averageMonthlyCost.setText(String.valueOf(((RegularUser)user).getAverageMonthlyFare()));
         long millis = user.getTimeSpendOnTransitToday();
