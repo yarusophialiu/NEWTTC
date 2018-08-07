@@ -6,11 +6,11 @@ import javafx.scene.text.Text;
 import model.AdminUser;
 import model.User;
 
-public class YesterdayController extends Controller{
+public class LastReportController extends Controller{
     @FXML
     private Text yesterdayReport;
 
-    /**Load information of yesterday.fxml*/
+    /**Load information of lastreport.fxml*/
     public void loadInfo() {
         for (User user : User.getUsers().values()){
             if (user.getEmailAddress().equals("adminuser@mail.com")){

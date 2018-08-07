@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.chart.*?>
 <?import java.lang.*?>
 <?import java.util.*?>
 <?import javafx.scene.*?>
@@ -9,5 +10,13 @@
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MonthlyController">
    <children>
       <Button layoutX="427.0" layoutY="63.0" mnemonicParsing="false" onAction="#goBackPage" style="-fx-background-color: rgba(19, 173, 243, 0.63);" text="go back" textFill="WHITE" />
+      <BarChart fx:id="monthlyBarChart" layoutX="6.0" layoutY="41.0" prefHeight="351.0" prefWidth="416.0" title="Monthly Revenue for the past year.">
+        <xAxis>
+          <CategoryAxis label="Month" side="BOTTOM" />
+        </xAxis>
+        <yAxis>
+          <NumberAxis label="Revenue" side="LEFT" />
+        </yAxis>
+      </BarChart>
    </children>
 </AnchorPane>

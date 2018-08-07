@@ -29,15 +29,15 @@ public class AdminUserController extends Controller{
     }
 
     /**
-     * Enter and load information of yesterday.fxml when click the button
+     * Enter and load information of lastreport.fxml when click the button
      *
      * @param event the action that happens when we click button
      */
     public void yesterdayReport(ActionEvent event) throws Exception{
         Stage loginWindow = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        FXMLLoader loader = loading("yesterday.fxml");
-        YesterdayController yesterdayController= loader.getController();
-        yesterdayController.loadInfo();
+        FXMLLoader loader = loading("lastreport.fxml");
+        LastReportController lastReportController = loader.getController();
+        lastReportController.loadInfo();
         loginWindow.close();
     }
 
