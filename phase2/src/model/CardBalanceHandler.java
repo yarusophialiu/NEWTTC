@@ -18,19 +18,21 @@ public class CardBalanceHandler implements Serializable {
     /** An int to represent card number. */
     int id;
 
-
     /** An array list to store the 3 most recent trips. */
     ArrayList<Trip> myTrip = new ArrayList<>();
+
     /** The card's owner. */
     RegularUser user;
+
     /** initialize a logWriter instance to help write log files when balance changed. */
     LogWriter logWriter = new LogWriter();
+
     /** All the card shares the same adminUser instance since adminUser needs to collect all the fare information.. */
     static AdminUser adminUser;
 
-
-    /** Constructor of the class where it records balance information from card. */
-    public CardBalanceHandler(double balance){
+  /** Constructor of the class where it records balance information from card.
+   * @param balance  the balance of the card.*/
+  public CardBalanceHandler(double balance) {
         this.balance = balance;
     }
 
@@ -38,7 +40,7 @@ public class CardBalanceHandler implements Serializable {
     /**
      * Add money to card's balance. Exception will be threw if the adding money is not $10 or $20 or
      * $50.
-     */
+     * @param i  balance that's going to be added to the card balance.*/
     public void increaseBalance(int i) throws Exception {
         if (i == 10 || i == 20 || i == 50) {
             this.balance += i;
@@ -51,7 +53,9 @@ public class CardBalanceHandler implements Serializable {
     }
 
 
-    /** Method used to check if the remaining balance is enough to take the trip.*/
+    /** Method used to check if the remaining balance is enough to take the trip.
+     * @param enterOrExit A string that indicate whether the user enter or exit the station.
+     * @param fare a double that tells the balance how much to deduct.*/
     void deductFare(double fare, String enterOrExit){
         Trip trip = this.myTrip.get(this.myTrip.size() - 1);
         if (balance <= 0){
@@ -89,7 +93,8 @@ public class CardBalanceHandler implements Serializable {
         return output.toString();
     }
 
-    /** A setter for the static variable AdminUser. */
+    /** A setter for the static variable AdminUser.
+     * @param newAdminUser  AdminUser that all card and user shares.*/
     public static void setAdminUser(AdminUser newAdminUser){
         adminUser = newAdminUser;
     }
@@ -104,6 +109,9 @@ public class CardBalanceHandler implements Serializable {
         this.user = user;
     }
 
+    /** A helper method that help to update the monthly and yearly data for admin user to display information.
+     * @param fare the amount of money used in this trip.
+     * @param trip the trip that the card is currently in.*/
     private void helpUpdateStats(Trip trip, double fare){
         LocalDate localDate = trip.getEnterTime().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
         user.updateAverageMonthlyFare(trip.getEnterTime(), fare);

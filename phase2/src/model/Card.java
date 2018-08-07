@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.logging.Level;
 
+/** Class Card used to handle the events that uses card. */
 public class Card extends CardBalanceHandler implements Serializable {
 
     /** A boolean to indicate whether the card is suspended or not. */
@@ -34,10 +35,13 @@ public class Card extends CardBalanceHandler implements Serializable {
         return this.id;
     }
 
-
-
-    /** This method is called whenever a user tap in or out of the station. */
-    public void updateOnTap(String enterOrExit, Station station, Date time, String vehicle, StationFactory stationFactory){
+  /**This method is called whenever a user tap in or out of the station.
+   * @param enterOrExit Indicate whether it enters or exit a station.
+   * @param station The station that the card has been tapped on.
+   * @param time time indicate when the user tapped the card.
+   * @param vehicle indicate which type of vehicle the person is using.
+   */
+  public void updateOnTap(String enterOrExit, Station station, Date time, String vehicle) {
         if (isSuspended){
             System.out.println("You cannot enter because card " + id + " is suspended " + time);
         }
@@ -47,7 +51,7 @@ public class Card extends CardBalanceHandler implements Serializable {
                 helpEnter(station, time, vehicle, previousTrip);
             }
             else if (enterOrExit.equals("exits")){
-                helpExit(station, time, vehicle, previousTrip, stationFactory);
+                helpExit(station, time, vehicle, previousTrip);
             }
         }
         else if (enterOrExit.equals("enters")){  //this is the case where this trip is the first trip of that card.
@@ -66,9 +70,13 @@ public class Card extends CardBalanceHandler implements Serializable {
         }
     }
 
-
-    /** This is a helper method for the case where the user starts a new trip and its not the first trip of the card. */
-    private void helpEnter(Station station, Date time, String vehicle, Trip previousTrip){
+  /** This is a helper method for the case where the user starts a new trip and its not the first trip of the card.
+   * @param station station that the person enters.
+   * @param time time user enters the station.
+   * @param vehicle vehicle the person is using.
+   * @param previousTrip The trip before this one to decide whether the trip is continuous or not.
+   */
+  private void helpEnter(Station station, Date time, String vehicle, Trip previousTrip) {
         if (balance <= 0){
             System.out.println("CardController " + id + " balance is not enough at " + time);
         }
@@ -98,8 +106,15 @@ public class Card extends CardBalanceHandler implements Serializable {
         }
     }
 
-    /** This is a helper method for the case where the user ends a trip. */
-    private void helpExit(Station station, Date time, String vehicle, Trip trip, StationFactory stationFactory){
+  /** This is a helper method for the case where the user ends a trip.
+   *  @param station station the user exits.
+   * @param time time user exit the station.
+   * @param vehicle vehicle the user is using.
+   * @param trip the Trip that is about to end.
+   */
+  private void helpExit(
+      Station station, Date time, String vehicle, Trip trip) {
+      StationFactory stationFactory = new StationFactory();
         if (!(trip.getExit() == null)){
             System.out.println("Exit without enter, 6 dollars deducted from your balance.");
             this.balance -= 6.0;
@@ -107,19 +122,20 @@ public class Card extends CardBalanceHandler implements Serializable {
             trip.setExit(station, time);
             trip.updateContinuity(trip);
             if (trip.getTransportation()){
-                FareCalculator fareCalculator = new SubwayFareCalculator(stationFactory, adminUser);
+                FareCalculator fareCalculator = new SubwayFareCalculator(adminUser);
                 double fare = fareCalculator.calculateFare(trip);
                 deductFare(fare, "exits");
                 adminUser.updateTotalFare(fare);
             }
             else{
-                MinDistance busMinDistance = new BusMinDistance(stationFactory);
+                MinDistance busMinDistance = new BusMinDistance();
                 int numStations = busMinDistance.minDistance(trip.getEntrance(), trip.getExit());
                 adminUser.updateTotalStation(numStations);
             }
             user.addTime(trip.tripTime());
         }
     }
+
 
     /** A getter to get the balance of the card. */
     public double getBalance(){

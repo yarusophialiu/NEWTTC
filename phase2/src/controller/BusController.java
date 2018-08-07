@@ -54,7 +54,7 @@ public class BusController extends Controller implements Initializable, SelectSt
     /** The controller of last Dashboard page. */
     private Dashboard dashboard;
 
-    BusController(){
+    public BusController(){
         this.helper = new BusConfirmTrip(boxToString);
     }
 
