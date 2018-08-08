@@ -153,7 +153,11 @@ public class BusController extends Controller implements Initializable, SelectSt
         if ((startStation.getText().isEmpty() & endStation.getText().isEmpty()) |
                 helper.selected.isEmpty()){
             alert("Necessary information required!");
-        }else{
+        }else if(helper.selected.size() == 1 & !startStation.getText().isEmpty()
+                & !endStation.getText().isEmpty()){
+            alert("Enter and exit at the same station. No fare deducted.");
+        }
+        else{
             startStation.setText("");
             endStation.setText("");
             helper.confirm(card, startTime, endTime, cardController);
