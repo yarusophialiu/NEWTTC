@@ -93,7 +93,7 @@
       <TextField fx:id="endTime" layoutX="495.0" layoutY="311.0" promptText="EndTime" />
       <Button layoutX="531.0" layoutY="353.0" mnemonicParsing="false" onAction="#confirmTrip" style="-fx-background-color: rgba(19, 173, 243, 0.63);" text="Confirm Trip" textFill="WHITE" />
       <Label layoutX="539.0" layoutY="203.0" text="Time format:" />
-      <Label layoutX="505.0" layoutY="235.0" text="yyyy-MM-dd HH:mm:ss" />
+      <Label layoutX="505.0" layoutY="235.0" text="yyyy-MM-dd HH:mm" />
       <Label layoutX="495.0" layoutY="102.0" text="Start Station:">
          <font>
             <Font size="16.0" />
