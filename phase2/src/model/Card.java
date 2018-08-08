@@ -1,6 +1,8 @@
 package model;
 
 import java.io.Serializable;
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.Date;
 import java.util.logging.Level;
 
@@ -48,6 +50,7 @@ public class Card extends CardBalanceHandler implements Serializable {
         else if (myTrip.size() >= 1){ //since the size of myTrip is greater than one, therefore it must be either exiting the first trip for starting a new trip.
             Trip previousTrip = this.myTrip.get(this.myTrip.size() - 1);
             if (enterOrExit.equals("enters")){
+
                 helpEnter(station, time, vehicle, previousTrip);
             }
             else if (enterOrExit.equals("exits")){
@@ -68,6 +71,7 @@ public class Card extends CardBalanceHandler implements Serializable {
             this.balance -= 6.0; //allow to be negative       // haven't calculate the average monthly fare here.
             logWriter.helpLog(Level.WARNING, "exit without enter, 6 dollars deducted from your balance.");
         }
+
     }
 
   /** This is a helper method for the case where the user starts a new trip and its not the first trip of the card.
@@ -94,6 +98,11 @@ public class Card extends CardBalanceHandler implements Serializable {
                 this.myTrip.remove(0);
             }
             this.myTrip.add(trip);
+            LocalDate previousDate = myTrip.get(myTrip.size() - 2).getEnterTime().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+            LocalDate thisDate = myTrip.get(myTrip.size() - 1).getEnterTime().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+            if (!(previousDate.getDayOfMonth() == thisDate.getDayOfMonth())){
+                adminUser.clearData();
+            }
             if (!(previousTrip.getExit() == null)){
                 trip.updateContinuity(previousTrip);
             }
