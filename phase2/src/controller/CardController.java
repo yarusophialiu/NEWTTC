@@ -4,6 +4,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
+import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
@@ -39,6 +40,9 @@ public class CardController extends Controller{
     /** A checkbox that allow user to select adding 50 dollars to the card balance. */
     @FXML
     CheckBox checkbox50;
+
+    @FXML
+    Button RecentTrip;
 
     /** A stage that store the stage before this one to allow user to go back page into the same instance of the last
      * stage.*/
@@ -170,6 +174,12 @@ public class CardController extends Controller{
         }
     }
 
+    @FXML
+    void recentTrip(){
+        AlertBox alertBox = new AlertBox();
+        alertBox.alertMessage(myCard.recentTripString());
+    }
+
     /** A setter help to set the previous stage and controller to help display information. */
     void setPrevious(Stage stage, Dashboard dashboard){
         this.previousStage = stage;
@@ -188,5 +198,6 @@ public class CardController extends Controller{
         checkbox20.setDisable(false);
         checkbox50.setDisable(false);
     }
+
 
 }

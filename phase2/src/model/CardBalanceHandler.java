@@ -84,9 +84,16 @@ public class CardBalanceHandler implements Serializable {
         StringBuilder output = new StringBuilder();
         int i = 1;
         for (Trip trip : myTrip) {
+            boolean transportation = trip.getTransportation();
+            String vehicle;
+            if (transportation){
+                vehicle = "subway";
+            }else{
+                vehicle = "bus";
+            }
             String tripInfo = "Trip " + i + ": begin at " + trip.getEntrance().getName()
                             + " " + trip.getEnterTime() + " end at " + trip.getExit().getName()
-                            + " using " + trip.getTransportation() + " " + trip.getExitTime() + " " + "\n";
+                            + " using " + vehicle + " " + trip.getExitTime() + " " + "\n";
             output.append(tripInfo);
             i++;
         }

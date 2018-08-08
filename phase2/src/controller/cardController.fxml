@@ -7,17 +7,32 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane prefHeight="500.0" prefWidth="800.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.CardController">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.CardController">
    <children>
-      <AnchorPane layoutX="5.0" prefHeight="281.0" prefWidth="806.0">
+      <AnchorPane layoutX="-2.0" layoutY="-2.0" prefHeight="225.0" prefWidth="634.0">
          <children>
-            <Button layoutX="641.0" layoutY="73.0" mnemonicParsing="false" onAction="#goBackPage" style="-fx-background-color: rgba(19, 173, 243, 0.63);" text="Dashboard" textFill="WHITE" />
+            <Button layoutX="72.0" layoutY="178.0" mnemonicParsing="false" onAction="#suspend" prefHeight="17.0" prefWidth="66.0" style="-fx-background-color: rgba(19, 173, 243, 0.63);" text="Suspend" textFill="WHITE">
+               <font>
+                  <Font size="9.0" />
+               </font>
+            </Button>
+            <Button layoutX="72.0" layoutY="109.0" mnemonicParsing="false" onAction="#addBalance" style="-fx-background-color: rgba(19, 173, 243, 0.63);" text="Add Balance" textFill="WHITE">
+               <font>
+                  <Font size="9.0" />
+               </font>
+            </Button>
+            <Button layoutX="482.0" layoutY="27.0" mnemonicParsing="false" onAction="#goBackPage" style="-fx-background-color: rgba(19, 173, 243, 0.63);" text="Dashboard" textFill="WHITE" />
             <Label fx:id="cardNum" layoutX="66.0" layoutY="24.0">
                <font>
                   <Font size="27.0" />
                </font>
             </Label>
             <Label fx:id="balance" layoutX="69.0" layoutY="69.0" />
+            <Button layoutX="72.0" layoutY="145.0" mnemonicParsing="false" onAction="#deleteCard" prefHeight="17.0" prefWidth="66.0" style="-fx-background-color: rgba(19, 173, 243, 0.63);" text="Delete Card" textFill="WHITE">
+               <font>
+                  <Font size="9.0" />
+               </font>
+            </Button>
             <CheckBox fx:id="checkbox10" layoutX="230.0" layoutY="111.0" mnemonicParsing="false" onAction="#selectAmount" text="10">
                <font>
                   <Font size="9.0" />
@@ -33,40 +48,18 @@
                   <Font size="9.0" />
                </font>
             </CheckBox>
-            <VBox layoutX="55.0" layoutY="103.0" prefHeight="138.0" prefWidth="100.0" spacing="10.0">
-               <children>
-                  <Button mnemonicParsing="false" onAction="#addBalance" prefHeight="30.0" prefWidth="85.0" style="-fx-background-color: rgba(19, 173, 243, 0.63);" text="Add Balance" textFill="WHITE">
-                     <font>
-                        <Font size="11.0" />
-                     </font>
-                  </Button>
-                  <Button mnemonicParsing="false" onAction="#deleteCard" prefHeight="30.0" prefWidth="85.0" style="-fx-background-color: rgba(19, 173, 243, 0.63);" text="Delete Card" textFill="WHITE">
-                     <font>
-                        <Font size="11.0" />
-                     </font>
-                  </Button>
-                  <Button mnemonicParsing="false" onAction="#suspend" prefHeight="30.0" prefWidth="85.0" style="-fx-background-color: rgba(19, 173, 243, 0.63);" text="Suspend" textFill="WHITE">
-                     <font>
-                        <Font size="11.0" />
-                     </font>
-                  </Button>
-               </children>
-            </VBox>
+            <Button fx:id="RecentTrip" layoutX="482.0" layoutY="173.0" mnemonicParsing="false" onAction="#recentTrip" style="-fx-background-color: rgba(19, 173, 243, 0.63);" text="RecentTrip" textFill="WHITE" />
          </children>
       </AnchorPane>
-      <AnchorPane layoutY="262.0" prefHeight="238.0" prefWidth="815.0" style="-fx-background-color: #ffffff;">
+      <AnchorPane layoutX="-2.0" layoutY="200.0" prefHeight="200.0" prefWidth="646.0" style="-fx-background-color: #ffffff;">
          <children>
             <Label layoutX="66.0" layoutY="25.0" text="Start A Trip">
                <font>
                   <Font size="27.0" />
                </font>
             </Label>
-            <HBox layoutX="58.0" layoutY="99.0" prefHeight="100.0" prefWidth="501.0" spacing="150.0">
-               <children>
-                  <Button mnemonicParsing="false" onAction="#takeSubway" prefHeight="30.0" prefWidth="85.0" style="-fx-background-color: rgba(19, 173, 243, 0.63);" text="Subway" textFill="WHITE" />
-                  <Button mnemonicParsing="false" onAction="#takeBus" prefHeight="30.0" prefWidth="85.0" style="-fx-background-color: rgba(19, 173, 243, 0.63);" text="   Bus   " textFill="WHITE" />
-               </children>
-            </HBox>
+            <Button layoutX="66.0" layoutY="87.0" mnemonicParsing="false" onAction="#takeSubway" style="-fx-background-color: rgba(19, 173, 243, 0.63);" text="Subway" textFill="WHITE" />
+            <Button layoutX="316.0" layoutY="87.0" mnemonicParsing="false" onAction="#takeBus" style="-fx-background-color: rgba(19, 173, 243, 0.63);" text="   Bus   " textFill="WHITE" />
          </children>
       </AnchorPane>
    </children>
