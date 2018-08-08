@@ -28,7 +28,8 @@ public class User implements Serializable {
         users.put(emailAddress, this);
     }
 
-    /** change the users user name. */
+    /** change the users user name.
+     * @param newName the name that this user is about to change to.*/
     public void changeName(String newName) {
         this.userName = newName;
     }
@@ -43,25 +44,40 @@ public class User implements Serializable {
         return emailAddress;
     }
 
-    public static HashMap<String, User> getUsers(){
+  /**  @return return a HashMap of key: email and value: user.*/
+  public static HashMap<String, User> getUsers() {
         return users;
     }
 
-    public boolean correctPassword(String verifyPassword){
+  /** This method is used when a user trying to log into the system to compare if the given password is the same as the
+   * one stored.
+   * @param verifyPassword the password from user input.
+   * @return return whether the password is the right one.
+   */
+  public boolean correctPassword(String verifyPassword) {
         return password.equals(verifyPassword);
     }
 
-    public void setPassword(String password) { this.password = password; }
+  /** This method is used to reset the user password.
+   *  @param password the new password that is about to change to.*/
+  public void setPassword(String password) {
+    this.password = password; }
 
-    public static void setUsers(HashMap<String, User> users) {
+  /** this is called whenever the transit system is opened to load all users from the .ser file.
+   *  @param users this parameter is read from the .ser file.*/
+  public static void setUsers(HashMap<String, User> users) {
         User.users = users;
     }
 
-    void addTime(long time){
+  /**  this method is used to increment total time user spend on transit.
+   * @param time time about to add to the total time spend on transit.*/
+  void addTime(long time) {
         this.timeSpendOnTransit += time;
     }
 
-    public Long getTimeSpendOnTransit(){
+  /** A getter that get the total time spend on transit system.
+   *  @return return a long representation of total time spend on transit system.*/
+  public Long getTimeSpendOnTransit() {
         return timeSpendOnTransit;
     }
 }

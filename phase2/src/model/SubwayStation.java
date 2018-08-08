@@ -3,6 +3,7 @@ package model;
 import java.io.Serializable;
 import java.util.ArrayList;
 
+/** class Subway station is an instance of station that represent subway station.*/
 public class SubwayStation extends Station implements Serializable {
     /** stores the neighbouring stations of this station */
     private ArrayList<SubwayStation> neighbours = new ArrayList<>();
@@ -23,7 +24,8 @@ public class SubwayStation extends Station implements Serializable {
         return neighbours;
     }
 
-    /** add neighbours to this station. */
+    /** add neighbours to this station.
+     * @param neighbour neighbouring station of this station.*/
      public void addNeighbours(SubwayStation neighbour) {
         this.neighbours.add(neighbour);
     }

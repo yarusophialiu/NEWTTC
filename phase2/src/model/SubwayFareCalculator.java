@@ -17,8 +17,7 @@ public class SubwayFareCalculator implements FareCalculator {
    */
   @Override
   public double calculateFare(Trip trip) {
-        StationFactory stationFactory = new StationFactory();
-        SubwayMinDistance subwayMinDistance= new SubwayMinDistance(stationFactory);
+        SubwayMinDistance subwayMinDistance= new SubwayMinDistance();
         int minDistance = subwayMinDistance.minDistance(trip.getEntrance(), trip.getExit());
         adminUser.updateTotalStation(minDistance);
         double fare = minDistance * 0.5;

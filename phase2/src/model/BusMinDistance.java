@@ -5,13 +5,7 @@ import java.util.Collection;
 
 /** Calculate the minimum distance in a bus trip.*/
 public class BusMinDistance implements MinDistance {
-    /** StationFactory collecting of all existing station information.*/
-    private StationFactory stationFactory;
 
-    /** A setter of variable stationFactory. */
-    BusMinDistance(StationFactory stationFactory){
-        this.stationFactory = stationFactory;
-    }
 
     /** Add undiscoverred bus stations
      *  @param busStations a collection of bus stations.
@@ -46,6 +40,7 @@ public class BusMinDistance implements MinDistance {
      */
     @Override
     public int minDistance (Station source, Station destination){
+        StationFactory stationFactory = new StationFactory();
         Collection<BusStation> busStations = stationFactory.getBusStationHashMap().values();
         ArrayList<BusStation> undiscovered = new ArrayList<>();
         addUndiscovered(busStations, undiscovered, source);

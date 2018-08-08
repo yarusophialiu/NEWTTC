@@ -3,15 +3,18 @@ package model;
 import java.util.ArrayList;
 import java.util.Collection;
 
-public class SubwayMinDistance implements MinDistance{
-    private StationFactory stationFactory;
+/** Class SubwayMinDistance is the implementation of strategy MinDistance, it if used to calculate the minimum
+ * distance between the source station and destination station.*/
+public class SubwayMinDistance implements MinDistance {
 
-    SubwayMinDistance(StationFactory stationFactory){
-        this.stationFactory = stationFactory;
-    }
-
-    @Override
-    public int minDistance(Station source, Station destination){
+  /** Method minDistance was used to calculate the minimum distance between the source and the destination station.
+   * @param source the station that the user start the trip in.
+   * @param destination the destination station that the user end his trip in.
+   * @return
+   */
+  @Override
+  public int minDistance(Station source, Station destination) {
+        StationFactory stationFactory = new StationFactory();
         Collection<SubwayStation> subwayStations = stationFactory.getSubwayStationHashMap().values();
         source.setDistance(0);
         ArrayList<SubwayStation> undiscovered = new ArrayList<>();

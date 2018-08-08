@@ -15,7 +15,10 @@ public class Trip extends TripInfoHandler implements Serializable {
     /** vehicles used in this trip. */
     private boolean transportation;
 
-    /** initialize a new Trip when enters the station */
+    /** initialize a new Trip when enters the station
+     * @param enterTime the start time of this trip.
+     * @param entrance the station that this trip start in.
+     * @param vehicle the vehicle this trip is using.*/
     Trip(Station entrance, Date enterTime, String vehicle) {
         this.enterTime = enterTime;
         this.entrance = entrance;
@@ -26,6 +29,7 @@ public class Trip extends TripInfoHandler implements Serializable {
     /**
      * A setter to update the current fare to make sure that the user aren't paying over $6 when
      * he/she is still in a continuous trip.
+     * @param fare the current continuous fare for this continuous trip.
      */
     void setCurrentFare(double fare) {
         this.currentFare = fare;
@@ -53,7 +57,8 @@ public class Trip extends TripInfoHandler implements Serializable {
     }
 
     /** The method is called to compare the trip with the previous trip(if it is called when enters a station), or
-     * compare with itself(if it exit the station).*/
+     * compare with itself(if it exit the station).
+     * @param trip this trip that used to compare whether the trip is still continuous or not. */
     void updateContinuity(Trip trip){
         if (trip == this) {
             this.continuousTime += tripTime();

@@ -51,7 +51,7 @@ public class Card extends CardBalanceHandler implements Serializable {
                 helpEnter(station, time, vehicle, previousTrip);
             }
             else if (enterOrExit.equals("exits")){
-                helpExit(station, time, vehicle, previousTrip);
+                helpExit(station, time, previousTrip);
             }
         }
         else if (enterOrExit.equals("enters")){  //this is the case where this trip is the first trip of that card.
@@ -109,12 +109,10 @@ public class Card extends CardBalanceHandler implements Serializable {
   /** This is a helper method for the case where the user ends a trip.
    *  @param station station the user exits.
    * @param time time user exit the station.
-   * @param vehicle vehicle the user is using.
    * @param trip the Trip that is about to end.
    */
   private void helpExit(
-      Station station, Date time, String vehicle, Trip trip) {
-      StationFactory stationFactory = new StationFactory();
+      Station station, Date time, Trip trip) {
         if (!(trip.getExit() == null)){
             System.out.println("Exit without enter, 6 dollars deducted from your balance.");
             this.balance -= 6.0;

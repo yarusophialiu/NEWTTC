@@ -14,7 +14,9 @@ class TripInfoHandler implements Serializable {
     /** The end time of the trip. */
     Date exitTime;
 
-    /** A setter to set exit information when user tap the card when getting out of the station. */
+    /** A setter to set exit information when user tap the card when getting out of the station.
+     * @param exit the station that this trip end in.
+     * @param exitTime the time that this trip ends.*/
     void setExit(Station exit, Date exitTime) {
         this.exit = exit;
         this.exitTime = exitTime;
