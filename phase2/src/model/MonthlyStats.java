@@ -3,6 +3,7 @@ package model;
 import java.io.Serializable;
 import java.util.HashMap;
 
+/** This class is used to */
 public class MonthlyStats implements SystemStats, Serializable {
 
     private HashMap<Integer, Double> monthlyStats = new HashMap<>();

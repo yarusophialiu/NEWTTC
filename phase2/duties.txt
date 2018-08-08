@@ -1,0 +1,4 @@
+Xiaolei Wu: modify design related to card and its controller.
+Yaru Liu: modify design related to user and its controller.
+Yunfan Zhang: modify design related to busStation and its controller.
+Yuxin Shi: modify design related to subwayStation and its controller.
