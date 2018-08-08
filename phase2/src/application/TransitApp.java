@@ -39,7 +39,7 @@ public class TransitApp extends Application{
     @Override
     public void start(Stage primaryStage) throws Exception {
         HelpSerialize helpSerialize = new HelpSerialize();
-        BufferedReader tryToRead = new BufferedReader(new FileReader("/Users/ShellyWu/Desktop/group_0165/phase2/serializedUser.ser"));
+        BufferedReader tryToRead = new BufferedReader(new FileReader("/Users/yaruliu/Desktop/group_0165/phase2/serializedUser.ser"));
         if (! (tryToRead.readLine() == null)) {
             HashMap<String, User> users = helpSerialize.deserializeUser();
             User.setUsers(users);
@@ -58,7 +58,7 @@ public class TransitApp extends Application{
         BufferedReader fileReader =
         new BufferedReader(
             new FileReader(
-                "phase2/stations.txt"));
+                "/Users/yaruliu/Desktop/group_0165/phase2/stations.txt"));
         String vehicle = fileReader.readLine();
         String info = fileReader.readLine();
         StationFactory stationFactory = new StationFactory();
