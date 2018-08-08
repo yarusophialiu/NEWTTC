@@ -13,6 +13,8 @@ import java.net.URL;
 import java.text.ParseException;
 import java.util.*;
 
+/** Class BusController is to control the busController.fxml, the purpose of this class is to handle events
+ * that users take buses.*/
 public class BusController extends Controller implements Initializable, SelectStation{
 
     /** CheBoxes representing bus stations on screen.*/
@@ -58,12 +60,14 @@ public class BusController extends Controller implements Initializable, SelectSt
         this.helper = new BusConfirmTrip(boxToString);
     }
 
-    /** Setter of variable card.*/
+    /** Setter of variable card.
+     * @param card: the card which is being used*/
     public void setCard(Card card){
         this.card = card;
     }
 
-    /** User select stations and make other stations disable to chose.*/
+    /** User select stations and make other stations disable to chose.
+     * @param event: the event which triggers this method, the checkboxes on the screen in this case*/
     public void selectBox (javafx.event.ActionEvent event){
         CheckBox newSelect = ((CheckBox) event.getSource());
         if (newSelect.isSelected()){
@@ -86,7 +90,8 @@ public class BusController extends Controller implements Initializable, SelectSt
         }
     }
 
-    /** Go to the last page.*/
+    /** Go to the last page.
+     * @param event: the event which triggers this method, the button go back in this case*/
     @FXML
     public void goBackPage(javafx.event.ActionEvent event){
         Stage busController = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -138,7 +143,9 @@ public class BusController extends Controller implements Initializable, SelectSt
         boxToString.put(stop14, "Steven");
     }
 
-    /** Setter of the variable previousStage.*/
+    /** Setter of the variable previousStage.
+     * @param stage: the stage of last page
+     */
     public void setPreviousStage(Stage stage){
         this.previousStage = stage;
     }
@@ -151,7 +158,9 @@ public class BusController extends Controller implements Initializable, SelectSt
         dashboard.helpUpdateInfo();
     }
 
-    /** Setter of previousController.*/
+    /** Setter of previousController.
+     * @param cardController: the controller of the card which is being used
+     * @param dashboard: the controller of the dashboard of last page*/
     void setPreviousController(CardController cardController, Dashboard dashboard){
         this.cardController = cardController;
         this.dashboard = dashboard;

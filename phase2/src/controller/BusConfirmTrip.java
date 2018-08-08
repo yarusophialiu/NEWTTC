@@ -14,6 +14,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.logging.Level;
 
+/** A helper Class for Bus Controller.*/
 class BusConfirmTrip {
 
   /** An ArrayList containing different bus operating line. */
@@ -22,13 +23,19 @@ class BusConfirmTrip {
   /** An ArrayList containing selected Checkboxes.*/
   ArrayList<CheckBox> selected;
 
+  /** A HashMap converting CheckBox to String.*/
   private HashMap<CheckBox, String> boxToString;
 
   BusConfirmTrip(HashMap<CheckBox, String> boxToString){
       this.selected = new ArrayList<>();
       this.boxToString = boxToString;
   }
-    /** Confirm special case selected by user and start a Trip.*/
+    /** Confirm special case selected by user and start a Trip.
+     * @param card: the card which is being used
+     * @param startTime: the start time of a trip
+     * @param endTime: the end time of a trip
+     * @param cardController: the controller of the card
+     */
     void confirm (Card card, TextField startTime, TextField endTime, CardController cardController)
                     throws ParseException, IOException {
         HelpSerialize helpSerialize = new HelpSerialize();
@@ -78,7 +85,10 @@ class BusConfirmTrip {
         cardController.alert("Trip Completed! Thanks for using our system!");
     }
 
-    /** Confirm the stations and time selected by user and start a trip.*/
+    /** Confirm the stations and time selected by user and start a trip.
+     * @param card: the card which is being used
+     * @param startTime: the start time of the trip
+     * @param endTime: the end time of the trip*/
     private void normalConfirm(Card card, TextField startTime, TextField endTime)
             throws ParseException{
         StationFactory stationFactory = new StationFactory();
@@ -104,7 +114,7 @@ class BusConfirmTrip {
     }
 
     /** A helper method for selected Box.
-     * @param box: the CheckBox which is selected.
+     * @param box: the CheckBox which is selected
      */
     void disable(CheckBox box){
         selected.add(box);
@@ -128,7 +138,7 @@ class BusConfirmTrip {
     }
 
     /** A helper method for disable.
-     * @param box: Checkbox which is selected.
+     * @param box: Checkbox which is selected
      */
     private void helpSetDisable(CheckBox box, ArrayList<CheckBox> list) {
         for (ArrayList<CheckBox> line : lines) {
@@ -143,7 +153,7 @@ class BusConfirmTrip {
     }
 
     /** A helper method for selectedBox.
-     * @param box: the box which is selected.
+     * @param box: the box which is selected
      */
     void enable(CheckBox box){
         selected.remove(box);
@@ -171,7 +181,9 @@ class BusConfirmTrip {
         }
     }
 
-    /** Setter of variable lines.*/
+    /** Setter of variable lines.
+     * @param lines: An ArrayList containing all lines
+     */
     void setLines (ArrayList<ArrayList<CheckBox>> lines){
         this.lines = lines;
     }
