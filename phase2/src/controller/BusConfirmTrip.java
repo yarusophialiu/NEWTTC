@@ -30,14 +30,17 @@ class BusConfirmTrip {
       this.selected = new ArrayList<>();
       this.boxToString = boxToString;
   }
-    /** Confirm special case selected by user and start a Trip.
-     * @param card: the card which is being used
-     * @param startTime: the start time of a trip
-     * @param endTime: the end time of a trip
-     * @param cardController: the controller of the card
-     */
-    void confirm (Card card, TextField startTime, TextField endTime, CardController cardController)
-                    throws ParseException, IOException {
+  /**
+   * Confirm special case selected by user and start a Trip.
+   * @param card: the card which is being used
+   * @param startTime: the start time of a trip
+   * @param endTime: the end time of a trip
+   * @param cardController: the controller of the card
+   * @throws ParseException This is to ensure the format of time typed by user.
+   * @throws IOException Follow the format.
+   */
+  void confirm(Card card, TextField startTime, TextField endTime, CardController cardController)
+      throws ParseException, IOException {
         HelpSerialize helpSerialize = new HelpSerialize();
         StationFactory stationFactory = new StationFactory();
         LogWriter logWriter = new LogWriter();
@@ -88,7 +91,8 @@ class BusConfirmTrip {
     /** Confirm the stations and time selected by user and start a trip.
      * @param card: the card which is being used
      * @param startTime: the start time of the trip
-     * @param endTime: the end time of the trip*/
+     * @param endTime: the end time of the trip
+     * @throws ParseException This is to ensure the format of time typed by user*/
     private void normalConfirm(Card card, TextField startTime, TextField endTime)
             throws ParseException{
         StationFactory stationFactory = new StationFactory();
