@@ -166,42 +166,57 @@ public class SubwayController extends Controller implements Initializable, Selec
 
   /** The function is designed for the Confirm Trip button.
    * @throws ParseException This is to ensure the format of time typed by user.
-   * @throws IOException Follow the format.
+   * @throws IOException handle failed or interrupted I/O operation.
    */
-  public void confirmTrip() throws ParseException, IOException {
+  public void confirmTrip() throws ParseException, IOException{
         HelpSerialize helpSerialize = new HelpSerialize();
         StationFactory stationFactory = new StationFactory();
         LogWriter logWriter = new LogWriter();
         SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        if (selected.size() == 1){
-            String line = "";
-            for (int i = 0; i < lines.size(); i++){
-                if (lines.get(i).contains(selected.get(0))){
-                    Integer lineNum = 1 + i;
-                    line = lineNum.toString();
-                }
+        if ((startStation.getText().isEmpty() & endStation.getText().isEmpty()) | selected.isEmpty()) {
+        alert("Necessary information required!");
+    } else {
+      if (selected.size() == 1) {
+          if (!startTime.toString().isEmpty() & !endTime.toString().isEmpty()){
+              alert("Enter and exit at the same station, no fare deducted.");
+        } else {
+          String line = "";
+          for (int i = 0; i < lines.size(); i++) {
+            if (lines.get(i).contains(selected.get(0))) {
+              Integer lineNum = 1 + i;
+              line = lineNum.toString();
             }
-            if (startTime.getText().isEmpty()){
-                String end = boxToString.get(selected.get(0));
-                Station endStation = stationFactory.newStation(end, "subway", line);
-                Date endDate = df.parse(endTime.getText() + ":00");
-                card.updateOnTap("exits", endStation, endDate,
-                        "subway");
-            }else{
-                String start = boxToString.get(selected.get(0));
-                Station endStation = stationFactory.newStation(start, "subway", line);
+          }
+          if (startTime.getText().isEmpty()) {
+            String end = boxToString.get(selected.get(0));
+            Station endStation = stationFactory.newStation(end, "subway", line);
+            Date endDate = df.parse(endTime.getText() + ":00");
+            card.updateOnTap("exits", endStation, endDate, "subway");
+          } else {
+            String start = boxToString.get(selected.get(0));
+            Station endStation = stationFactory.newStation(start, "subway", line);
 
-                Date startDate = df.parse(startTime.getText() + ":00");
-                card.updateOnTap("enters", endStation, startDate,
-                        "subway");
-            }
-        }else {
-            normalConfirm(df, stationFactory);
+            Date startDate = df.parse(startTime.getText() + ":00");
+            card.updateOnTap("enters", endStation, startDate, "subway");
+          }
+      }
+      } else {
+        normalConfirm(df, stationFactory);
+      }
         }
         for (CheckBox checkBox: boxToString.keySet()){
             checkBox.setDisable(false);
             checkBox.setSelected(false);
         }
+        clear(helpSerialize, logWriter);
+    }
+
+  /**
+   *  @param helpSerialize: used to serialize data
+   * @param logWriter: used to write log information
+   * @throws IOException: handle failed or interrupted I/O operation
+   */
+  private void clear(HelpSerialize helpSerialize, LogWriter logWriter) throws IOException {
         selected.clear();
         startTime.clear();
         endTime.clear();
@@ -215,7 +230,6 @@ public class SubwayController extends Controller implements Initializable, Selec
     }
 
     /** A helper method for confirmTrip.
-     *
      * @param df: the date format we need
      * @param stationFactory: the class containing station information
      * @throws ParseException: This is to ensure the format of time typed by user
