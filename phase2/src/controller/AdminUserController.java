@@ -33,7 +33,7 @@ public class AdminUserController extends Controller{
      *
      * @param event the action that happens when we click button
      */
-    public void yesterdayReport(ActionEvent event) throws Exception{
+    public void lastDayReport(ActionEvent event) throws Exception{
         Stage loginWindow = (Stage) ((Node) event.getSource()).getScene().getWindow();
         FXMLLoader loader = loading("lastreport.fxml");
         LastReportController lastReportController = loader.getController();
