@@ -17,7 +17,7 @@ class AlertBox{
     void alertMessage(String message){
         Stage window = new Stage();
         window.initModality(Modality.APPLICATION_MODAL);
-        window.setTitle("Alert Box");
+        window.setTitle("Alert");
         VBox layer = new VBox(25);
         layer.setPadding(new Insets(10, 30, 10, 30));
         layer.setAlignment(Pos.CENTER);
