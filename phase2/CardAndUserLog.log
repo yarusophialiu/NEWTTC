@@ -1,0 +1,8 @@
+Aug 07, 2018 8:27:09 PM controller.LogWriter helpLog
+INFO: Admin User login in.
+Aug 07, 2018 8:28:22 PM controller.LogWriter helpLog
+INFO: Regular User 1 login in.
+Aug 07, 2018 8:32:42 PM controller.LogWriter helpLog
+INFO: Card 1000 new balance: $18.5 at Wed Aug 01 12:40:00 EDT 2018
+Aug 07, 2018 8:32:42 PM controller.LogWriter helpLog
+INFO: Valid Trip. Fare deducted accordingly.

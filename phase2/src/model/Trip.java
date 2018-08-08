@@ -51,7 +51,7 @@ public class Trip extends TripInfoHandler implements Serializable {
         return continuousTime;
     }
 
-    /** A getter for the type of transportation user used in this trip. */
+    /** A getter for the type of transportation user used in this trip. true:subway, false:bus*/
     Boolean getTransportation() {
         return transportation;
     }

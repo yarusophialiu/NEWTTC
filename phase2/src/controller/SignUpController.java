@@ -7,7 +7,6 @@ import model.User;
 
 import java.io.File;
 import java.io.FileOutputStream;
-import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.net.URL;
 import java.util.HashMap;
@@ -47,7 +46,7 @@ public class SignUpController extends Controller implements Initializable{
                 user.buyCard();
                 alert("User successfully created");
                 try{
-                    File f = new File("/Users/ShellyWu/Desktop/group_0165/phase2/serializedUser.ser");
+                    File f = new File("/Users/yaruliu/Desktop/group_0165/phase2/serializedUser.ser");
                     FileOutputStream fos =new FileOutputStream(f);
                     ObjectOutputStream oos = new ObjectOutputStream(fos);
                     oos.writeObject(users);

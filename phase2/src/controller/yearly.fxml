@@ -12,12 +12,12 @@
       <Button layoutX="649.0" layoutY="50.0" mnemonicParsing="false" onAction="#goBackPage" style="-fx-background-color: rgba(19, 173, 243, 0.63);" text="go back" textFill="WHITE" />
       <HBox layoutX="63.0" layoutY="99.0" prefHeight="338.0" prefWidth="701.0" spacing="20.0">
          <children>
-            <BarChart fx:id="yearlyChart" layoutX="10.0" layoutY="10.0" prefHeight="338.0" prefWidth="661.0" title="Total Revenue">
+            <BarChart fx:id="yearlyChart" layoutX="10.0" layoutY="10.0" prefHeight="338.0" prefWidth="758.0" title="Yearly Revenue For the Past Years">
                <xAxis>
-                  <CategoryAxis fx:id="year" label="year" side="BOTTOM" />
+                  <CategoryAxis fx:id="year" label="Year" side="BOTTOM" />
                </xAxis>
                <yAxis>
-                  <NumberAxis fx:id="revenue" label="revenue" prefHeight="288.0" prefWidth="0.0" side="LEFT" />
+                  <NumberAxis fx:id="revenue" label="Revenue" prefHeight="288.0" prefWidth="0.0" side="LEFT" />
                </yAxis>
             </BarChart>
          </children>
