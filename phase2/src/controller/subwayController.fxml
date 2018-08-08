@@ -104,12 +104,12 @@
             <Font size="16.0" />
          </font>
       </Label>
-      <Label fx:id="startStation" layoutX="715.0" layoutY="83.0" prefHeight="20.0" prefWidth="79.0">
+      <Label fx:id="startStation" layoutX="656.0" layoutY="82.0" prefHeight="20.0" prefWidth="79.0">
          <font>
             <Font size="16.0" />
          </font>
       </Label>
-      <Label fx:id="endStation" layoutX="715.0" layoutY="126.0" prefHeight="20.0" prefWidth="79.0">
+      <Label fx:id="endStation" layoutX="656.0" layoutY="126.0" prefHeight="20.0" prefWidth="79.0">
          <font>
             <Font size="16.0" />
          </font>

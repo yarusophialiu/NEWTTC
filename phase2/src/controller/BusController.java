@@ -78,13 +78,11 @@ public class BusController extends Controller implements Initializable, SelectSt
 
         }
         ArrayList<CheckBox> selected = helper.selected;
-        if (selected.size() == 1){
-            startStation.setText(boxToString.get(selected.get(0)));
-            endStation.setText("");
-        }else if (selected.size() == 2){
+        if (selected.size() == 2){
             startStation.setText(boxToString.get(selected.get(0)));
             endStation.setText(boxToString.get(selected.get(1)));
-        }else{
+        }
+        else{
             startStation.setText("");
             endStation.setText("");
         }
@@ -152,10 +150,16 @@ public class BusController extends Controller implements Initializable, SelectSt
 
     /** Confirm the stations and time selected bu user and start a trip.*/
     public void confirmTrip()throws ParseException, IOException{
-        startStation.setText("");
-        endStation.setText("");
-        helper.confirm(card, startTime, endTime, cardController);
-        dashboard.helpUpdateInfo();
+        if ((startStation.getText().isEmpty() & endStation.getText().isEmpty()) |
+                helper.selected.isEmpty()){
+            alert("Necessary information required!");
+        }else{
+            startStation.setText("");
+            endStation.setText("");
+            helper.confirm(card, startTime, endTime, cardController);
+            dashboard.helpUpdateInfo();
+        }
+
     }
 
     /** Setter of previousController.
