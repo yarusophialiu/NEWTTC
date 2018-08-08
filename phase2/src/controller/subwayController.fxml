@@ -13,12 +13,12 @@
 
 <AnchorPane prefHeight="500.0" prefWidth="800.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.SubwayController">
    <children>
-      <ImageView fitHeight="406.0" fitWidth="484.0" layoutX="3.0" layoutY="78.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="244.0" fitWidth="589.0" layoutX="32.0" layoutY="81.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../background.jpg" />
          </image>
       </ImageView>
-      <Button layoutX="578.0" layoutY="37.0" mnemonicParsing="false" onAction="#goBackPage" style="-fx-background-color: rgba(19, 173, 243, 0.63);" text="go back" textFill="WHITE" />
+      <Button layoutX="612.0" layoutY="37.0" mnemonicParsing="false" onAction="#goBackPage" style="-fx-background-color: rgba(19, 173, 243, 0.63);" text="go back" textFill="WHITE" />
       <Label layoutX="53.0" layoutY="35.0" prefHeight="30.0" prefWidth="116.0" text="Subway">
          <font>
             <Font size="25.0" />
@@ -89,27 +89,27 @@
          <font>
             <Font name="System Bold" size="12.0" />
          </font></Label>
-      <TextField fx:id="startTime" layoutX="495.0" layoutY="267.0" promptText="StartTime" />
-      <TextField fx:id="endTime" layoutX="495.0" layoutY="311.0" promptText="EndTime" />
-      <Button layoutX="531.0" layoutY="353.0" mnemonicParsing="false" onAction="#confirmTrip" style="-fx-background-color: rgba(19, 173, 243, 0.63);" text="Confirm Trip" textFill="WHITE" />
-      <Label layoutX="539.0" layoutY="203.0" text="Time format:" />
-      <Label layoutX="505.0" layoutY="235.0" text="yyyy-MM-dd HH:mm" />
-      <Label layoutX="495.0" layoutY="102.0" text="Start Station:">
+      <TextField fx:id="startTime" layoutX="562.0" layoutY="262.0" promptText="StartTime" />
+      <TextField fx:id="endTime" layoutX="562.0" layoutY="310.0" promptText="EndTime" />
+      <Button layoutX="598.0" layoutY="354.0" mnemonicParsing="false" onAction="#confirmTrip" style="-fx-background-color: rgba(19, 173, 243, 0.63);" text="Confirm Trip" textFill="WHITE" />
+      <Label layoutX="606.0" layoutY="203.0" text="Time format:" />
+      <Label layoutX="581.0" layoutY="235.0" text="yyyy-MM-dd HH:mm" />
+      <Label layoutX="528.0" layoutY="83.0" text="Start Station:">
          <font>
             <Font size="16.0" />
          </font>
       </Label>
-      <Label layoutX="495.0" layoutY="136.0" text="End Station:">
+      <Label layoutX="528.0" layoutY="126.0" text="End Station:">
          <font>
             <Font size="16.0" />
          </font>
       </Label>
-      <Label fx:id="startStation" layoutX="622.0" layoutY="102.0">
+      <Label fx:id="startStation" layoutX="715.0" layoutY="83.0" prefHeight="20.0" prefWidth="79.0">
          <font>
             <Font size="16.0" />
          </font>
       </Label>
-      <Label fx:id="endStation" layoutX="622.0" layoutY="136.0">
+      <Label fx:id="endStation" layoutX="715.0" layoutY="126.0" prefHeight="20.0" prefWidth="79.0">
          <font>
             <Font size="16.0" />
          </font>
